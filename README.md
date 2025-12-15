@@ -1,9 +1,3 @@
-<styles>
-  .small{
-    width: 10px;
-    float: left;
-  }
-</styles>
 <img src="https://www.nolangraysongames.com/Title.png" alt="Title"/>
 <h2>The official Code For Nolan And Grayson Games</h2>
 <p>Nolan's And Grayson's Games is a wesite where user can get links to play games at school and bypassing the Securly Fire Wall.</p>
