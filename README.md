@@ -1,6 +1,6 @@
 <styles>
   .small{
-    width: 50px;
+    width: 10px;
     float: left;
   }
 </styles>
