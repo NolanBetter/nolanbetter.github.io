@@ -390,6 +390,38 @@
         border-color: #6366f1;
       }
       body.midnight .pageb { color: #a5b4fc; }
+      .game-box {
+        position: relative;
+        display: inline-block;
+        margin: 10px;
+        padding: 12px 20px;
+        border: 2px solid white;
+        border-radius: 10px;
+        background-color: black;
+        cursor: pointer;
+        text-align: center;
+      }
+      
+      .game-box a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      
+      .game-box .star {
+        position: absolute;
+        top: 5px;
+        right: 8px;
+        font-size: 20px;
+        color: gray;
+        cursor: pointer;
+        transition: transform 0.3s ease, color 0.3s ease;
+      }
+      
+      .game-box .star.favorited {
+        color: gold;
+        transform: scale(1.3);
+      }
 
 
 
@@ -777,8 +809,43 @@
                   updateStars();
                 });
                 </script>
+                <script>
+                  document.addEventListener("DOMContentLoaded", () => {
+                    const contentLinks = document.querySelectorAll("#content a");
+                  
+                    contentLinks.forEach(link => {
+                      // Skip if already wrapped
+                      if (!link.parentElement.classList.contains("game-box")) {
+                        // Create wrapper
+                        const box = document.createElement("div");
+                        box.className = "game-box";
+                  
+                        // Move the link inside the box
+                        link.parentNode.insertBefore(box, link);
+                        box.appendChild(link);
+                  
+                        // Create the star
+                        const star = document.createElement("span");
+                        star.className = "star";
+                        star.textContent = "★";
+                        star.style.cursor = "pointer";
+                  
+                        // Handle click to toggle favorite
+                        star.addEventListener("click", (e) => {
+                          e.stopPropagation(); // Prevent opening link
+                          toggleFavorite(link);
+                        });
+                  
+                        box.appendChild(star);
+                      }
+                    });
+                  
+                    // Update all stars according to saved favorites
+                    updateStars();
+                  });
+                  </script>
 
-
+                
 
     
     
