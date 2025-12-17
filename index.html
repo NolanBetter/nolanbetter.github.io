@@ -206,7 +206,18 @@
         z-index: -1; /* stays behind everything */
         background: black;
       }
-
+      #search {
+        width: 300px;
+        padding: 10px;
+        margin: 15px auto;
+        display: block;
+        font-size: 18px;
+        background-color: black;
+        color: white;
+        border: 2px solid white;
+        border-radius: 10px;
+        text-align: center;
+      }
 
     </style>
   </head>
@@ -318,6 +329,29 @@
     
       animate();
     </script>
+    <script>
+      function searchLinks() {
+        const input = document.getElementById("search").value.toLowerCase();
+        const links = document.querySelectorAll("#content a");
+    
+        links.forEach(link => {
+          const text = link.textContent.toLowerCase();
+          link.style.display = text.includes(input) ? "inline-block" : "none";
+        });
+      }
+    </script>
+    <script>
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          const search = document.getElementById("search");
+          if (search) {
+            search.value = "";
+            searchLinks(); // show all links again
+          }
+        }
+      });
+    </script>
+
     
     <!-- Password input area -->
     <img class="wobble" src="Title.png" alt="Title" onclick="window.location.href='https://www.nolangrayson.com';" style="cursor:pointer;">
@@ -331,7 +365,13 @@
     </div>
     <!-- Hidden content revealed after password -->
     <div id="content">
-
+      <input
+        type="text"
+        id="search"
+        placeholder="Search links..."
+        onkeyup="searchLinks()"
+      />
+      
       <h2>Websites</h2>
       <a href="https://helios-browser.vercel.app/?sca_esv=91bd149827a5c7e1&amp;ie=ISO-8859-1&amp;q=duck+the+dick+layer&amp;oq=&amp;aqs=">Helios Browser #1</a>
       <a href="https://helios-main-4-16277712.codehs.me/">Helios Browser #2</a>
