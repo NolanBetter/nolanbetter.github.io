@@ -1,0 +1,417 @@
+body {
+        text-align: center;
+        background-color: black;
+        color: white;
+        font-family: Arial, sans-serif;
+      }
+      
+
+      a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: black;
+        color: white; 
+        border-color: white;
+        text-decoration: none;
+        border: solid;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+      }
+      a:hover {
+        transform: scale(1.2); /* makes the link 20% bigger */
+        transition: transform 0.2s ease; /* smooth animation */
+      }
+      h2 {
+        text-decoration: underline;
+      }
+      .button-link {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: black;
+        color: white; 
+        border-color: white;
+        text-decoration: none;
+        border: solid;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+      }
+      .blocked {
+        color: red;
+        text-decoration: line-through;
+      }
+      .red{
+        color: red;
+      }
+      .discord{
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: black;
+        color: blue; 
+        border-color: blue;
+        text-decoration: none;
+        border: solid;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+      }
+      .pageb {
+        color: yellow;
+      }
+      .smallimg{
+        width: 50px;
+        float: left;
+      }
+
+      /* Center password area */
+      #password-area {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      #pw {
+        font-size: 24px;
+        padding: 10px;
+        width: 300px;
+        background-color: black;
+        color: white;
+        border: 2px solid white;
+        text-align: center;
+        border-radius: 10px;
+      }
+
+      #submit-btn {
+        font-size: 24px;
+        padding: 10px 20px;
+        margin-left: 10px;
+        background-color: black;
+        color: white;
+        border: 2px solid white;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: transform 0.25s ease;
+      }
+      #submit-btn:hover {
+       transform: scale(1.2);
+      }
+
+      /* Hidden content with fade-in */
+      #content {
+        margin-top: 20px;
+        opacity: 0;
+        transition: opacity 1s ease-in;
+        display: none; /* hide initially */
+      }
+
+      #content.show {
+        display: block;
+        opacity: 1;
+      }
+      .wobble {
+        display: inline-block;
+        cursor: pointer;
+        animation: wobble 1s infinite; /* continuous wobble */
+      }   
+
+      .wobble:active {
+        animation: bounce 1s; /* temporary bounce on click */
+      }
+
+      @keyframes wobble {
+        0%   { transform: rotate(0deg); }
+        25%  { transform: rotate(-2deg); }
+        50%  { transform: rotate(2deg); }
+        75%  { transform: rotate(-2deg); }
+        100% { transform: rotate(0deg); }
+      }
+
+      @keyframes bounce {
+        0%   { transform: scale(1); }
+        30%  { transform: scale(1.2); }
+        50%  { transform: scale(0.9); }
+        70%  { transform: scale(1.1); }
+        100% { transform: scale(1); }
+      }
+      /* Warning overlay */
+      #unofficial-warning {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      .pw-error {
+        display: none;
+        color: red;
+        font-size: 18px;
+        margin-top: 12px;
+        text-align: center;
+      }
+
+      
+      .warning-box {
+        background: black;
+        border: 2px solid red;
+        padding: 30px;
+        max-width: 500px;
+        text-align: center;
+        border-radius: 15px;
+        box-shadow: 0 0 20px red;
+      }
+      
+      .warning-box h2 {
+        color: red;
+      }
+      
+      .official-link {
+        color: yellow;
+        word-break: break-all;
+      }
+      
+      .warning-box button {
+        margin-top: 20px;
+        padding: 10px 25px;
+        font-size: 18px;
+        background: black;
+        color: white;
+        border: 2px solid white;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      
+      .warning-box button:hover {
+        transform: scale(1.1);
+      }
+      #bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* stays behind everything */
+        background: black;
+      }
+      #search {
+        width: 300px;
+        padding: 10px;
+        margin: 15px auto;
+        display: block;
+        font-size: 18px;
+        background-color: black;
+        color: white;
+        border: 2px solid white;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      .search-container {
+        position: relative;
+        width: 300px;
+        margin: 15px auto;
+      }
+      
+      #search {
+        width: 100%;
+        padding: 10px 35px 10px 10px; /* space for the × */
+        font-size: 18px;
+        background-color: black;
+        color: white;
+        border: 2px solid white;
+        border-radius: 10px;
+        text-align: center;
+      }
+      
+      #clear-search {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: white;
+        font-size: 20px;
+        user-select: none;
+      }
+      
+      #clear-search:hover {
+        color: red;
+      }
+      .star {
+        cursor: pointer;
+        color: gray;
+        margin-left: 8px;
+        font-size: 18px;
+      }
+      
+      .star.favorited {
+        color: gold;
+      }
+      
+      #favorites a {
+        display: inline-block;
+      }
+
+      @keyframes starPop {
+        0% {
+          transform: scale(1);
+          text-shadow: none;
+        }
+        50% {
+          transform: scale(1.6);
+          text-shadow: 0 0 10px gold;
+        }
+        100% {
+          transform: scale(1);
+          text-shadow: none;
+        }
+      }
+      
+      .star.animate {
+        animation: starPop 0.35s ease;
+      }
+      #tabs {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      
+      #tabs button {
+        background: black;
+        color: white;
+        border: 2px solid white;
+        margin: 5px;
+        padding: 8px 14px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      
+      #tabs button:hover {
+        transform: scale(1.1);
+      }
+      #sort {
+        background: black;
+        color: white;
+        border: 2px solid white;
+        padding: 6px 10px;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      /* Theme button */
+      #themeToggle {
+        background: black;
+        color: white;
+        border: 2px solid white;
+        padding: 6px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-left: 10px;
+      }
+      
+      /* LIGHT THEME */
+      body.light {
+        background-color: white;
+        color: black;
+      }
+      
+      body.light a {
+        background-color: white;
+        color: black;
+        border-color: black;
+      }
+      
+      body.light #themeToggle {
+        background: white;
+        color: black;
+        border-color: black;
+      }
+      * {
+        transition:
+          background-color 0.4s ease,
+          color 0.4s ease,
+          border-color 0.4s ease;
+      }
+      /* Theme selector */
+      #themeSelect {
+        background: black;
+        color: white;
+        border: 2px solid white;
+        padding: 6px 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      /* Keep special colors readable */
+      body.light .pageb { color: orange; }
+      body.light .blocked { color: darkred; }
+      body.light .discord { color: #5865F2; }
+      /* LIGHT */
+      body.light {
+        background: white;
+        color: black;
+      }
+      body.light a {
+        background: white;
+        color: black;
+        border-color: black;
+      }
+      
+      /* NEON */
+      body.neon {
+        background: #0f0f1a;
+        color: #39ff14;
+      }
+      body.neon a {
+        color: #39ff14;
+        border-color: #39ff14;
+      }
+      body.neon .pageb { color: #00eaff; }
+      
+      /* MIDNIGHT */
+      body.midnight {
+        background: #020617;
+        color: #c7d2fe;
+      }
+      body.midnight a {
+        color: #c7d2fe;
+        border-color: #6366f1;
+      }
+      body.midnight .pageb { color: #a5b4fc; }
+      .game-box {
+        position: relative;
+        display: inline-block;
+        margin: 10px;
+        padding: 12px 20px;
+        border: 2px solid white;
+        border-radius: 10px;
+        background-color: black;
+        cursor: pointer;
+        text-align: center;
+      }
+      
+      .game-box a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      
+      .game-box .star {
+        position: absolute;
+        top: 5px;
+        right: 8px;
+        font-size: 20px;
+        color: gray;
+        cursor: pointer;
+        transition: transform 0.3s ease, color 0.3s ease;
+      }
+      
+      .game-box .star.favorited {
+        color: gold;
+        transform: scale(1.3);
+      }
