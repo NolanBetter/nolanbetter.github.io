@@ -22,54 +22,77 @@
       }
 
       /* Default Dark Theme */
-      body.dark {
+      body.default {
         background-color: black;
         color: white;
       }
 
-      body.dark a,
-      body.dark #submit-btn {
+      body.default a,
+      body.default #submit-btn {
         background: black;
         color: white;
         border-color: white;
       }
 
-      body.dark #search,
-      body.dark #pw,
-      body.dark #sort,
-      body.dark #categorySelect,
-      body.dark #themeSelect {
+      body.default #search,
+      body.default #pw,
+      body.default #sort,
+      body.default #categorySelect,
+      body.default #themeSelect {
         background: black;
         color: white;
         border-color: white;
       }
 
-      body.dark .warning-box {
+      body.default .warning-box {
         background: black;
         border-color: red;
         box-shadow: 0 0 20px red;
       }
 
-      body.dark .warning-box button {
+      body.default .warning-box button {
         background: black;
         color: white;
         border-color: white;
       }
 
-      body.dark #clear-search {
+      body.default #clear-search {
         color: white;
       }
 
-      body.dark #clear-search:hover {
+      body.default #clear-search:hover {
         color: red;
       }
 
-      body.dark .link-container .star {
+      body.default .link-container .star {
         color: gray;
       }
 
-      body.dark .link-container .star.favorited {
+      body.default .link-container .star.favorited {
         color: gold;
+      }
+
+      body.default .pageb {
+        color: yellow;
+      }
+
+      body.default .blocked {
+        color: red;
+      }
+
+      body.default .discord {
+        color: blue;
+        border-color: blue;
+      }
+
+      body.default #visitor-count {
+        color: white;
+        border-color: white;
+      }
+
+      body.default .footer-text,
+      body.default h6 {
+        color: white;
       }
 
       /* Links */
@@ -99,6 +122,11 @@
 
       a:hover {
         transform: scale(1.02);
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+      }
+
+      a:active {
+        transform: scale(0.98);
       }
 
       /* Text Styles */
@@ -117,6 +145,25 @@
         font-size: 0.95em;
         padding: 0 15px;
         line-height: 1.6;
+      }
+
+      /* Visitor Counter */
+      #visitor-count {
+        font-size: 0.9em;
+        color: white;
+        margin: 15px auto;
+        padding: 10px 20px;
+        border: 2px solid white;
+        border-radius: 15px;
+        display: block;
+        max-width: 300px;
+        text-align: center;
+        transition: all 0.4s ease;
+      }
+
+      /* Footer text */
+      .footer-text {
+        transition: color 0.4s ease;
       }
 
       .blocked {
@@ -165,7 +212,13 @@
         display: inline-block;
         cursor: pointer;
         animation: wobble 1s infinite;
+        transition: transform 0.3s ease;
       }   
+
+      .wobble:hover {
+        animation: none;
+        transform: scale(1.1) rotate(5deg);
+      }
 
       .wobble:active {
         animation: bounce 1s;
@@ -239,6 +292,62 @@
 
       .warning-box button:hover {
         transform: scale(1.05);
+      }
+
+      /* W3Spaces Warning */
+      #w3spaces-warning {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .w3spaces-box {
+        background: black;
+        border: 2px solid orange;
+        padding: 20px;
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+        border-radius: 15px;
+        box-shadow: 0 0 20px orange;
+      }
+
+      .w3spaces-box h2 {
+        color: orange;
+        font-size: 1.3em;
+      }
+
+      .w3spaces-box p {
+        color: white;
+      }
+
+      .w3spaces-box button {
+        margin-top: 20px;
+        padding: 12px 25px;
+        font-size: 16px;
+        background: black;
+        color: white;
+        border: 2px solid orange;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 100%;
+        max-width: 200px;
+      }
+
+      .w3spaces-box button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px orange;
       }
 
       /* Background Canvas */
@@ -320,6 +429,26 @@
         animation: starPop 0.35s ease;
       }
 
+      /* Fade in animation for content */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .category {
+        animation: fadeInUp 0.5s ease;
+      }
+
+      h2 {
+        animation: fadeInUp 0.6s ease;
+      }
+
       /* Dropdowns Container */
       .controls-container {
         display: flex;
@@ -343,6 +472,16 @@
         min-width: 140px;
         flex: 1;
         max-width: 200px;
+        transition: all 0.3s ease;
+      }
+
+      #sort:hover, #categorySelect:hover, #themeSelect:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+      }
+
+      #sort:active, #categorySelect:active, #themeSelect:active {
+        transform: translateY(0);
       }
 
       /* Theme Styles */
@@ -381,6 +520,11 @@
       body.light .warning-box {
         background: white;
         color: black;
+        border-color: red;
+      }
+
+      body.light .warning-box h2 {
+        color: red;
       }
 
       body.light .warning-box button {
@@ -393,11 +537,31 @@
         color: black;
       }
 
-      body.light .pageb { color: orange; }
-      body.light .blocked { color: darkred; }
+      body.light .pageb { 
+        color: orange; 
+      }
+      
+      body.light .blocked { 
+        color: darkred; 
+      }
+      
       body.light .discord { 
         color: #5865F2; 
         border-color: #5865F2; 
+      }
+
+      body.light #visitor-count {
+        color: black;
+        border-color: black;
+      }
+
+      body.light .footer-text,
+      body.light h6 {
+        color: black;
+      }
+
+      body.light #bg {
+        background: white;
       }
 
       /* Neon Theme */
@@ -476,6 +640,16 @@
         color: #ffd700;
       }
 
+      body.neon #visitor-count {
+        color: #39ff14;
+        border-color: #39ff14;
+      }
+
+      body.neon .footer-text,
+      body.neon h6 {
+        color: #39ff14;
+      }
+
       /* Midnight Theme */
       body.midnight {
         background: #020617;
@@ -552,6 +726,250 @@
         color: #fbbf24;
       }
 
+      body.midnight #visitor-count {
+        color: #c7d2fe;
+        border-color: #6366f1;
+      }
+
+      body.midnight .footer-text,
+      body.midnight h6 {
+        color: #c7d2fe;
+      }
+
+      /* Sunset Theme */
+      body.sunset {
+        background: linear-gradient(to bottom, #ff6b6b, #ee5a24, #4a1a4a);
+        color: #fff5e1;
+      }
+
+      body.sunset a,
+      body.sunset #submit-btn {
+        background: rgba(74, 26, 74, 0.7);
+        color: #fff5e1;
+        border-color: #ff6b6b;
+      }
+
+      body.sunset .link-container .star {
+        color: #ff6b6b;
+      }
+
+      body.sunset .link-container .star.favorited {
+        color: #ffd700;
+      }
+
+      body.sunset #search,
+      body.sunset #pw,
+      body.sunset #sort,
+      body.sunset #categorySelect,
+      body.sunset #themeSelect {
+        background: rgba(74, 26, 74, 0.7);
+        color: #fff5e1;
+        border-color: #ff6b6b;
+      }
+
+      body.sunset .warning-box {
+        background: rgba(74, 26, 74, 0.9);
+        border-color: #ff6b6b;
+        box-shadow: 0 0 20px #ff6b6b;
+      }
+
+      body.sunset .warning-box h2 {
+        color: #ff6b6b;
+      }
+
+      body.sunset .warning-box button {
+        background: rgba(74, 26, 74, 0.7);
+        color: #fff5e1;
+        border-color: #ff6b6b;
+      }
+
+      body.sunset #clear-search {
+        color: #fff5e1;
+      }
+
+      body.sunset #clear-search:hover {
+        color: #ff6b6b;
+      }
+
+      body.sunset .pageb {
+        color: #ffd93d;
+      }
+
+      body.sunset .blocked {
+        color: #ff4757;
+      }
+
+      body.sunset .discord {
+        color: #a29bfe;
+        border-color: #a29bfe;
+      }
+
+      body.sunset #visitor-count {
+        color: #fff5e1;
+        border-color: #ff6b6b;
+      }
+
+      body.sunset .footer-text,
+      body.sunset h6 {
+        color: #fff5e1;
+      }
+
+      /* Ocean Theme */
+      body.ocean {
+        background: linear-gradient(to bottom, #0a4d68, #088395, #05bfdb);
+        color: #e8f9fd;
+      }
+
+      body.ocean a,
+      body.ocean #submit-btn {
+        background: rgba(10, 77, 104, 0.7);
+        color: #e8f9fd;
+        border-color: #05bfdb;
+      }
+
+      body.ocean .link-container .star {
+        color: #05bfdb;
+      }
+
+      body.ocean .link-container .star.favorited {
+        color: #ffd93d;
+      }
+
+      body.ocean #search,
+      body.ocean #pw,
+      body.ocean #sort,
+      body.ocean #categorySelect,
+      body.ocean #themeSelect {
+        background: rgba(10, 77, 104, 0.7);
+        color: #e8f9fd;
+        border-color: #05bfdb;
+      }
+
+      body.ocean .warning-box {
+        background: rgba(10, 77, 104, 0.9);
+        border-color: #05bfdb;
+        box-shadow: 0 0 20px #05bfdb;
+      }
+
+      body.ocean .warning-box h2 {
+        color: #05bfdb;
+      }
+
+      body.ocean .warning-box button {
+        background: rgba(10, 77, 104, 0.7);
+        color: #e8f9fd;
+        border-color: #05bfdb;
+      }
+
+      body.ocean #clear-search {
+        color: #e8f9fd;
+      }
+
+      body.ocean #clear-search:hover {
+        color: #05bfdb;
+      }
+
+      body.ocean .pageb {
+        color: #00d9ff;
+      }
+
+      body.ocean .blocked {
+        color: #ff6b9d;
+      }
+
+      body.ocean .discord {
+        color: #4ecdc4;
+        border-color: #4ecdc4;
+      }
+
+      body.ocean #visitor-count {
+        color: #e8f9fd;
+        border-color: #05bfdb;
+      }
+
+      body.ocean .footer-text,
+      body.ocean h6 {
+        color: #e8f9fd;
+      }
+
+      /* Forest Theme */
+      body.forest {
+        background: linear-gradient(to bottom, #1a3a1a, #2d5016, #4a7c59);
+        color: #d4edda;
+      }
+
+      body.forest a,
+      body.forest #submit-btn {
+        background: rgba(26, 58, 26, 0.7);
+        color: #d4edda;
+        border-color: #6fb98f;
+      }
+
+      body.forest .link-container .star {
+        color: #6fb98f;
+      }
+
+      body.forest .link-container .star.favorited {
+        color: #ffd700;
+      }
+
+      body.forest #search,
+      body.forest #pw,
+      body.forest #sort,
+      body.forest #categorySelect,
+      body.forest #themeSelect {
+        background: rgba(26, 58, 26, 0.7);
+        color: #d4edda;
+        border-color: #6fb98f;
+      }
+
+      body.forest .warning-box {
+        background: rgba(26, 58, 26, 0.9);
+        border-color: #6fb98f;
+        box-shadow: 0 0 20px #6fb98f;
+      }
+
+      body.forest .warning-box h2 {
+        color: #6fb98f;
+      }
+
+      body.forest .warning-box button {
+        background: rgba(26, 58, 26, 0.7);
+        color: #d4edda;
+        border-color: #6fb98f;
+      }
+
+      body.forest #clear-search {
+        color: #d4edda;
+      }
+
+      body.forest #clear-search:hover {
+        color: #6fb98f;
+      }
+
+      body.forest .pageb {
+        color: #90ee90;
+      }
+
+      body.forest .blocked {
+        color: #ff6b6b;
+      }
+
+      body.forest .discord {
+        color: #8fbc8f;
+        border-color: #8fbc8f;
+      }
+
+      body.forest #visitor-count {
+        color: #d4edda;
+        border-color: #6fb98f;
+      }
+
+      body.forest .footer-text,
+      body.forest h6 {
+        color: #d4edda;
+      }
+
       /* Mobile Optimizations */
       @media screen and (max-width: 768px) {
         .wobble {
@@ -616,7 +1034,7 @@
       }
     </style>
   </head>
-  <body class="dark">
+  <body class="default">
     <canvas id="bg"></canvas>
 
     <!-- Warning Overlay -->
@@ -631,6 +1049,19 @@
         </p>
         <p class="official-link">nolangraysongames.com</p>
         <button onclick="closeWarning()">Continue Anyway</button>
+      </div>
+    </div>
+
+    <!-- W3Spaces Warning -->
+    <div id="w3spaces-warning">
+      <div class="w3spaces-box">
+        <h2>⚠️ Limited Compatibility Notice</h2>
+        <p>
+          You Are Playing On A Website Where Not All Games Might Work.<br><br>
+          Some games may have compatibility issues on this platform.
+          For the best experience, visit the official site.
+        </p>
+        <button onclick="closeW3SpacesWarning()">I Understand</button>
       </div>
     </div>
 
@@ -650,8 +1081,9 @@
         <select id="categorySelect" onchange="showCategory(this.value)">
           <option value="all">📂 All Categories</option>
           <option value="favorites">⭐ Favorites</option>
-          <option value="websites">🌐 Websites</option>
           <option value="games">🎮 Games</option>
+          <option value="websites">🌐 Websites</option>
+          <option value="ourgames">🕹️ Our Games</option>
           <option value="eaglercraft">⛏ Eaglercraft</option>
           <option value="other">📦 Other</option>
         </select>
@@ -663,15 +1095,127 @@
         </select>
 
         <select id="themeSelect" onchange="setTheme(this.value)">
-          <option value="dark">🌙 Dark</option>
+          <option value="default">🌑 Default</option>
+          <option value="light">☀️ Light</option>
           <option value="neon">🌈 Neon</option>
           <option value="midnight">🌌 Midnight</option>
+          <option value="sunset">🌅 Sunset</option>
+          <option value="ocean">🌊 Ocean</option>
+          <option value="forest">🌲 Forest</option>
         </select>
       </div>
 
       <!-- Favorites Section -->
       <h2 id="favorites-title" style="display:none;">⭐ Favorites</h2>
       <div id="favorites"></div>
+
+      <!-- Games Category -->
+      <div class="category" data-category="games">
+        <h2>Games</h2>
+        <a href="Bad Parenting 1.html">Bad Parenting 1</a>
+        <a href="Baldi's Basics Plus.html">Baldi's Basics Plus</a>
+        <a href="Bendy and the Ink Machine.html">Bendy and the Ink Machine</a>
+        <a href="Buckshot Roulette.html">Buckshot Roulette</a>
+        <a href="Celeste.html">Celeste</a>
+        <a href="Cuphead.html">Cuphead</a>
+        <a href="Five Nights at Freddy's_ Pizza Simulator.html">Five Nights at Freddy's Pizza Simulator</a>
+        <a href="Five Nights at Freddy's_ Sister Location.html">Five Nights at Freddy's Sister Location</a>
+        <a href="Half Life.html">Half Life</a>
+        <a href="Hollow Knight.html">Hollow Knight</a>
+        <a href="Hotline Miami.html">Hotline Miami</a>
+        <a href="Jelly Drift.html">Jelly Drift</a>
+        <a href="Karlson.html">Karlson</a>
+        <a href="Kindergarten.html">Kindergarten</a>
+        <a href="Kindergarten 2.html">Kindergarten 2</a>
+        <a href="OMORI.html">OMORI</a>
+        <a href="Oneshot (LEGACY).html">Oneshot (LEGACY)</a>
+        <a href="People Playground.html">People Playground</a>
+        <a href="Pizza Tower.html">Pizza Tower</a>
+        <a href="Quake III Arena.html">Quake III Arena</a>
+        <a href="REPO.html">R.E.P.O</a>
+        <a href="Tattletail.html">Tattletail</a>
+        <a href="Schoolboy Runaway.html">Schoolboy Runaway</a>
+        <a href="Slime Rancher.html">Slime Rancher</a>
+        <a href="Soundboard.html">Soundboard</a>
+        <a href="That's Not My Neighbor.html">That's Not My Neighbor</a>
+        <a href="ULTRAKILL.html">ULTRAKILL</a>
+        <a href="WebFishing.html">WebFishing</a>
+        <a href="Yume Nikki.html">Yume Nikki</a>
+        <a href="1v1LoL.html">1v1.lol</a>
+        <a href="2048.html">2048</a>
+        <a href="2048 Merge Run.html">2048 Merge Run</a>
+        <a href="8 Ball Pool.html">8 Ball Pool</a>
+        <a href="A Bite at Freddy's.html">A Bite at Freddy's</a>
+        <a href="Abandoned.html">Abandoned</a>
+        <a href="Achievement Unlocked.html">Achievement Unlocked</a>
+        <a href="Achievement Unlocked 2.html">Achievement Unlocked 2</a>
+        <a href="Achievement Unlocked 3.html">Achievement Unlocked 3</a>
+        <a href="Adventure Capatalist.html">Adventure Capatalist</a>
+        <a href="Ages of Conflict.html">Ages of Conflict</a>
+        <a href="Angry Birds.html">Angry Birds</a>
+        <a href="Angry Birds Chrome.html">Angry Birds Chrome</a>
+        <a href="Awesome Tanks.html">Awesome Tanks.html</a>
+        <a href="Awesome Tanks 2.html">Awesome Tanks 2</a>
+        <a href="Backrooms.html">Backrooms</a>
+        <a href="Bad Ice Cream.html">Bad Ice Cream</a>
+        <a href="Bad Ice Cream 2.html">Bad Ice Cream 2</a>
+        <a href="Bad Ice Cream 3.html">Bad Ice Cream 3</a>
+        <a href="Basket Random.html">Basket Random</a>
+        <a href="Basketball Stars.html">Basketball Stars</a>
+        <a href="Big Tower Tiny Square.html">Big Tower Tiny Square</a>
+        <a href="Big Tower Tiny Square 2.html">Big Tower Tiny Square 2</a>
+        <a href="BitLife.html">BitLife</a>
+        <a href="BitPlanes.html">BitPlanes</a>
+        <a href="Block Blast.html">Block Blast</a>
+        <a href="BlockPost.html">BlockPost</a>
+        <a href="Bob The Robber 2.html">Bob The Robber 2</a>
+        <a href="Boxing Random.html">Boxing Random</a>
+        <a href="Brawl Guysio.html">Brawl Guys.io</a>
+        <a href="CircloO.html">CircloO</a>
+        <a href="CircloO 2.html">CircloO 2</a>
+        <a href="Cluster Rush.html">Cluster Rush</a>
+        <a href="Cookie Clicker.html">Cookie Clicker</a>
+        <a href="Crazy Cars.html">Crazy Cars</a>
+        <a href="Crossy Road.html">Crossy Road</a>
+        <a href="Cut the Rope.html">Cut the Rope</a>
+        <a href="DOOM.html">Doom</a>
+        <a href="Doom 2.html">Doom 2</a>
+        <a href="Doom 3.html">Doom 3</a>
+        <a href="Drift Boss.html">Drift Boss</a>
+        <a href="Draw Joust.html">Draw Joust</a>
+        <a href="Drift Hunters.html">Drift Hunters</a>
+        <a href="Duck Life.html">Duck Life</a>
+        <a href="Duck Life 2.html">Duck Life 2</a>
+        <a href="Duck Life 3.html">Duck Life 3</a>
+        <a href="Duck Life 4.html">Duck Life 4</a>
+        <a href="Duck Life 5.html">Duck Life 5</a>
+        <a href="Geometry Dash Lite.html">Geometry Dash Lite</a>
+        <a href="Google Feud.html">Google Feud</a>
+        <a href="Jetpack Joyride.html">Jetpack Joyride</a>
+        <a href="Learn to Fly.html">Learn to Fly</a>
+        <a href="Learn to Fly 2.html">Learn to Fly 2</a>
+        <a href="Learn to Fly 3.html">Learn to Fly 3</a>
+        <a href="Learn to Fly Idle.html">Learn to Fly Idle</a>
+        <a href="Line Rider.html">Line Rider</a>
+        <a href="Melon Playground.html">Melon Playground</a>
+        <a href="Moto X3M.html">Moto X3M</a>
+        <a href="OvO.html">OvO</a>
+        <a href="Pixel Gun Survival.html">Pixel Gun Survival</a>
+        <a href="Poly Track.html">Poly Track</a>
+        <a href="Rooftop Snipers.html">Rooftop Snipers</a>
+        <a href="Rooftop Snipers 2.html">Rooftop Snipers 2</a>
+        <a href="Run 1.html">Run</a>
+        <a href="Sandboxels.html">Sandboxels</a>
+        <a href="Sandtris.html">Sandtris</a>
+        <a href="Slope.html">Slope</a>
+        <a href="Slope 2.html">Slope 2</a>
+        <a href="Slowroads.html">Slowroads</a>
+        <a href="Smash Karts.html">Smash Karts</a>
+        <a href="Stone Grass Mowing Simulator.html">Stone Grass Mowing Simulator</a>
+        <a href="Temple Run 2.html">Temple Run 2</a>
+        <a href="The World's Hardest Game.html">The World's Hardest Game</a>
+        <a href="World Box.html">World Box</a>
+      </div>
 
       <!-- Websites Category -->
       <div class="category" data-category="websites">
@@ -762,13 +1306,10 @@
         <a class="pageb" href="https://rblx-7918337.codehs.me/">Roblox</a>
       </div>
 
-      <!-- Games Category -->
-      <div class="category" data-category="games">
-        <h2>Games</h2>
-        <a href="COMMENTS.html">Comments (gn-math)</a>
-        <a href="BadParentingone.html">Bad Parenting 1</a>
-        <a href="BaldisBasicsPlus.html">Baldi's Basics Plus</a>
-        <a href="BendyandtheInkMachine.html">Bendy and the Ink Machine</a>
+      <!-- Our Games Category -->
+      <div class="category" data-category="ourgames">
+        <h2>Our Games</h2>
+        <a href="pingpong.html">Ping Pong</a>
       </div>
 
       <!-- Eaglercraft Category -->
@@ -799,13 +1340,44 @@
       </div>
 
       <!-- Footer -->
-      <p>On November 13th, 2025 at 12:36pm Grayson Barnes And Nolan Boyer Made A Promise To Never Share This Website With Anyone Or Share Any Links on here until 2030. On November 17, 2025 at 7:43am Nolan Boyer And Joseph Dransfield Promised to not share any links on this website With anyone except for Grayson Barnes until 2030. All Other users that join agree to the rules found on the Rules page.</p>
+      <p class="footer-text">On November 13th, 2025 at 12:36pm Grayson Barnes And Nolan Boyer Made A Promise To Never Share This Website With Anyone Or Share Any Links on here until 2030. On November 17, 2025 at 7:43am Nolan Boyer And Joseph Dransfield Promised to not share any links on this website With anyone except for Grayson Barnes until 2030. All Other users that join agree to the rules found on the Rules page.</p>
       <h6>Last Updated On 12/31/25 By Nolan Boyer Via Github.</h6>
+      <div style="text-align: center;">
+        <p id="visitor-count">👥 Total Visitors: <span id="count">Loading...</span></p>
+      </div>
       <img class="smallimg" src="https://www.nolangraysongames.com/Logo.png" alt="Logo">
     </div>
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
+        
+        // Visitor Counter
+        const visitorKey = "totalVisitors";
+        
+        function getVisitorCount() {
+          return parseInt(localStorage.getItem(visitorKey)) || 0;
+        }
+        
+        function incrementVisitorCount() {
+          const sessionKey = "hasVisitedThisSession";
+          
+          // Only increment if this is a new session
+          if (!sessionStorage.getItem(sessionKey)) {
+            let count = getVisitorCount();
+            count++;
+            localStorage.setItem(visitorKey, count);
+            sessionStorage.setItem(sessionKey, "true");
+          }
+          
+          return getVisitorCount();
+        }
+        
+        // Display and update visitor count
+        const count = incrementVisitorCount();
+        const countElement = document.getElementById("count");
+        if (countElement) {
+          countElement.textContent = count.toLocaleString();
+        }
         
         // Favorites System - Define at the top
         const favoritesKey = "favoriteLinks";
@@ -881,14 +1453,18 @@
               wrapper.className = "link-container";
               wrapper.appendChild(clone);
               
-              // Add star to favorite
+              // Add functional star to favorite
               const star = document.createElement("span");
               star.textContent = "★";
               star.className = "star favorited";
               star.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                toggleFavorite(clone);
+                // Find the original link by href to toggle it
+                const originalLink = document.querySelector(`.category a[href="${href}"]`);
+                if (originalLink) {
+                  toggleFavorite(originalLink);
+                }
               };
               wrapper.appendChild(star);
               
@@ -946,42 +1522,6 @@
           a.target = '_blank';
         });
         
-        // Add about:blank launcher ONLY for games category
-        document.querySelectorAll('.category[data-category="games"] a').forEach(a => {
-          a.addEventListener('click', function(e) {
-            e.preventDefault();
-            const url = this.href;
-            const win = window.open('about:blank', '_blank');
-            if (win) {
-              win.document.write(`
-                <!DOCTYPE html>
-                <html>
-                  <head>
-                    <title>Loading...</title>
-                    <style>
-                      body, html {
-                        margin: 0;
-                        padding: 0;
-                        height: 100%;
-                        overflow: hidden;
-                      }
-                      iframe {
-                        width: 100%;
-                        height: 100%;
-                        border: none;
-                      }
-                    </style>
-                  </head>
-                  <body>
-                    <iframe src="${url}"></iframe>
-                  </body>
-                </html>
-              `);
-              win.document.close();
-            }
-          });
-        });
-        
         addStarsToLinks();
         renderFavorites();
         updateStars();
@@ -1006,6 +1546,17 @@
           if (warning) warning.style.display = "none";
         };
 
+        // W3Spaces Warning Check
+        if (window.location.origin === "https://nolansandgraysonsgames.w3spaces.com") {
+          const w3warning = document.getElementById("w3spaces-warning");
+          if (w3warning) w3warning.style.display = "flex";
+        }
+
+        window.closeW3SpacesWarning = function() {
+          const w3warning = document.getElementById("w3spaces-warning");
+          if (w3warning) w3warning.style.display = "none";
+        };
+
         // Canvas Star Animation
         const canvas = document.getElementById("bg");
         if (canvas) {
@@ -1027,7 +1578,15 @@
 
           function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "white";
+            
+            // Change star color based on theme
+            const theme = document.body.className;
+            if (theme === 'light') {
+              ctx.fillStyle = "black";
+            } else {
+              ctx.fillStyle = "white";
+            }
+
             stars.forEach(star => {
               star.y += star.s;
               if (star.y > canvas.height) star.y = 0;
@@ -1158,7 +1717,7 @@
         // Theme System
         window.setTheme = function(theme) {
           // Remove all theme classes first
-          document.body.classList.remove('dark', 'light', 'neon', 'midnight');
+          document.body.classList.remove('default', 'light', 'neon', 'midnight', 'sunset', 'ocean', 'forest');
           
           // Add the selected theme class
           document.body.classList.add(theme);
@@ -1174,10 +1733,10 @@
         };
 
         // Load Saved Theme
-        const savedTheme = localStorage.getItem("theme") || "dark";
+        const savedTheme = localStorage.getItem("theme") || "default";
         
         // Apply theme immediately
-        document.body.classList.remove('dark', 'light', 'neon', 'midnight');
+        document.body.classList.remove('default', 'light', 'neon', 'midnight', 'sunset', 'ocean', 'forest');
         document.body.classList.add(savedTheme);
         
         // Update select element
