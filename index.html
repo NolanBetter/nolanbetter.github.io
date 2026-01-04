@@ -22,67 +22,77 @@
       }
 
       /* Default Dark Theme */
-      body.dark {
+      body.default {
         background-color: black;
         color: white;
       }
 
-      body.dark a,
-      body.dark #submit-btn {
+      body.default a,
+      body.default #submit-btn {
         background: black;
         color: white;
         border-color: white;
       }
 
-      body.dark #search,
-      body.dark #pw,
-      body.dark #sort,
-      body.dark #categorySelect,
-      body.dark #themeSelect {
+      body.default #search,
+      body.default #pw,
+      body.default #sort,
+      body.default #categorySelect,
+      body.default #themeSelect {
         background: black;
         color: white;
         border-color: white;
       }
 
-      body.dark .warning-box {
+      body.default .warning-box {
         background: black;
         border-color: red;
         box-shadow: 0 0 20px red;
       }
 
-      body.dark .warning-box button {
+      body.default .warning-box button {
         background: black;
         color: white;
         border-color: white;
       }
 
-      body.dark #clear-search {
+      body.default #clear-search {
         color: white;
       }
 
-      body.dark #clear-search:hover {
+      body.default #clear-search:hover {
         color: red;
       }
 
-      body.dark .link-container .star {
+      body.default .link-container .star {
         color: gray;
       }
 
-      body.dark .link-container .star.favorited {
+      body.default .link-container .star.favorited {
         color: gold;
       }
 
-      body.dark .pageb {
+      body.default .pageb {
         color: yellow;
       }
 
-      body.dark .blocked {
+      body.default .blocked {
         color: red;
       }
 
-      body.dark .discord {
+      body.default .discord {
         color: blue;
         border-color: blue;
+      }
+
+      body.default #visitor-count {
+        color: white;
+        border-color: white;
+      }
+
+      body.default .footer-text,
+      body.default h6 {
+        color: white;
       }
 
       /* Links */
@@ -135,6 +145,25 @@
         font-size: 0.95em;
         padding: 0 15px;
         line-height: 1.6;
+      }
+
+      /* Visitor Counter */
+      #visitor-count {
+        font-size: 0.9em;
+        color: white;
+        margin: 15px auto;
+        padding: 10px 20px;
+        border: 2px solid white;
+        border-radius: 15px;
+        display: block;
+        max-width: 300px;
+        text-align: center;
+        transition: all 0.4s ease;
+      }
+
+      /* Footer text */
+      .footer-text {
+        transition: color 0.4s ease;
       }
 
       .blocked {
@@ -491,6 +520,11 @@
       body.light .warning-box {
         background: white;
         color: black;
+        border-color: red;
+      }
+
+      body.light .warning-box h2 {
+        color: red;
       }
 
       body.light .warning-box button {
@@ -503,11 +537,31 @@
         color: black;
       }
 
-      body.light .pageb { color: orange; }
-      body.light .blocked { color: darkred; }
+      body.light .pageb { 
+        color: orange; 
+      }
+      
+      body.light .blocked { 
+        color: darkred; 
+      }
+      
       body.light .discord { 
         color: #5865F2; 
         border-color: #5865F2; 
+      }
+
+      body.light #visitor-count {
+        color: black;
+        border-color: black;
+      }
+
+      body.light .footer-text,
+      body.light h6 {
+        color: black;
+      }
+
+      body.light #bg {
+        background: white;
       }
 
       /* Neon Theme */
@@ -586,6 +640,16 @@
         color: #ffd700;
       }
 
+      body.neon #visitor-count {
+        color: #39ff14;
+        border-color: #39ff14;
+      }
+
+      body.neon .footer-text,
+      body.neon h6 {
+        color: #39ff14;
+      }
+
       /* Midnight Theme */
       body.midnight {
         background: #020617;
@@ -662,6 +726,16 @@
         color: #fbbf24;
       }
 
+      body.midnight #visitor-count {
+        color: #c7d2fe;
+        border-color: #6366f1;
+      }
+
+      body.midnight .footer-text,
+      body.midnight h6 {
+        color: #c7d2fe;
+      }
+
       /* Sunset Theme */
       body.sunset {
         background: linear-gradient(to bottom, #ff6b6b, #ee5a24, #4a1a4a);
@@ -728,6 +802,16 @@
       body.sunset .discord {
         color: #a29bfe;
         border-color: #a29bfe;
+      }
+
+      body.sunset #visitor-count {
+        color: #fff5e1;
+        border-color: #ff6b6b;
+      }
+
+      body.sunset .footer-text,
+      body.sunset h6 {
+        color: #fff5e1;
       }
 
       /* Ocean Theme */
@@ -798,6 +882,16 @@
         border-color: #4ecdc4;
       }
 
+      body.ocean #visitor-count {
+        color: #e8f9fd;
+        border-color: #05bfdb;
+      }
+
+      body.ocean .footer-text,
+      body.ocean h6 {
+        color: #e8f9fd;
+      }
+
       /* Forest Theme */
       body.forest {
         background: linear-gradient(to bottom, #1a3a1a, #2d5016, #4a7c59);
@@ -866,6 +960,16 @@
         border-color: #8fbc8f;
       }
 
+      body.forest #visitor-count {
+        color: #d4edda;
+        border-color: #6fb98f;
+      }
+
+      body.forest .footer-text,
+      body.forest h6 {
+        color: #d4edda;
+      }
+
       /* Mobile Optimizations */
       @media screen and (max-width: 768px) {
         .wobble {
@@ -930,7 +1034,7 @@
       }
     </style>
   </head>
-  <body class="dark">
+  <body class="default">
     <canvas id="bg"></canvas>
 
     <!-- Warning Overlay -->
@@ -991,7 +1095,7 @@
         </select>
 
         <select id="themeSelect" onchange="setTheme(this.value)">
-          <option value="dark">🌙 Dark</option>
+          <option value="default">🌑 Default</option>
           <option value="light">☀️ Light</option>
           <option value="neon">🌈 Neon</option>
           <option value="midnight">🌌 Midnight</option>
@@ -1236,13 +1340,44 @@
       </div>
 
       <!-- Footer -->
-      <p>On November 13th, 2025 at 12:36pm Grayson Barnes And Nolan Boyer Made A Promise To Never Share This Website With Anyone Or Share Any Links on here until 2030. On November 17, 2025 at 7:43am Nolan Boyer And Joseph Dransfield Promised to not share any links on this website With anyone except for Grayson Barnes until 2030. All Other users that join agree to the rules found on the Rules page.</p>
-      <h6>Last Updated On 12/31/25 By Nolan Boyer Via Github.</h6>
+      <p class="footer-text">On November 13th, 2025 at 12:36pm Grayson Barnes And Nolan Boyer Made A Promise To Never Share This Website With Anyone Or Share Any Links on here until 2030. On November 17, 2025 at 7:43am Nolan Boyer And Joseph Dransfield Promised to not share any links on this website With anyone except for Grayson Barnes until 2030. All Other users that join agree to the rules found on the Rules page.</p>
+      <h6>Last Updated On: 01/04/26, Version: 1.0.0, Owner: Nolan Boyer, Updated Platform: Github</h6>
+      <div style="text-align: center;">
+        <p id="visitor-count">👥 Total Visitors: <span id="count">Loading...</span></p>
+      </div>
       <img class="smallimg" src="https://www.nolangraysongames.com/Logo.png" alt="Logo">
     </div>
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
+        
+        // Visitor Counter
+        const visitorKey = "totalVisitors";
+        
+        function getVisitorCount() {
+          return parseInt(localStorage.getItem(visitorKey)) || 0;
+        }
+        
+        function incrementVisitorCount() {
+          const sessionKey = "hasVisitedThisSession";
+          
+          // Only increment if this is a new session
+          if (!sessionStorage.getItem(sessionKey)) {
+            let count = getVisitorCount();
+            count++;
+            localStorage.setItem(visitorKey, count);
+            sessionStorage.setItem(sessionKey, "true");
+          }
+          
+          return getVisitorCount();
+        }
+        
+        // Display and update visitor count
+        const count = incrementVisitorCount();
+        const countElement = document.getElementById("count");
+        if (countElement) {
+          countElement.textContent = count.toLocaleString();
+        }
         
         // Favorites System - Define at the top
         const favoritesKey = "favoriteLinks";
@@ -1443,7 +1578,15 @@
 
           function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "white";
+            
+            // Change star color based on theme
+            const theme = document.body.className;
+            if (theme === 'light') {
+              ctx.fillStyle = "black";
+            } else {
+              ctx.fillStyle = "white";
+            }
+
             stars.forEach(star => {
               star.y += star.s;
               if (star.y > canvas.height) star.y = 0;
@@ -1574,7 +1717,7 @@
         // Theme System
         window.setTheme = function(theme) {
           // Remove all theme classes first
-          document.body.classList.remove('dark', 'light', 'neon', 'midnight', 'sunset', 'ocean', 'forest');
+          document.body.classList.remove('default', 'light', 'neon', 'midnight', 'sunset', 'ocean', 'forest');
           
           // Add the selected theme class
           document.body.classList.add(theme);
@@ -1590,10 +1733,10 @@
         };
 
         // Load Saved Theme
-        const savedTheme = localStorage.getItem("theme") || "dark";
+        const savedTheme = localStorage.getItem("theme") || "default";
         
         // Apply theme immediately
-        document.body.classList.remove('dark', 'light', 'neon', 'midnight', 'sunset', 'ocean', 'forest');
+        document.body.classList.remove('default', 'light', 'neon', 'midnight', 'sunset', 'ocean', 'forest');
         document.body.classList.add(savedTheme);
         
         // Update select element
