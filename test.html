@@ -1790,76 +1790,71 @@
         }
 
         // Inactivity Timer
-          let inactivityTimer = null;
-          let inactivityLimit = 120000; // default 2 minutes
-          let inactivityEnabled = true;
+        // INACTIVITY TIMER - GLOBAL SCOPE (outside DOMContentLoaded)
+        let inactivityTimer = null;
+        let inactivityLimit = 120000; // default 2 minutes
+        let inactivityEnabled = true;
         
-          const activityEvents = [
-            "mousemove",
-            "keydown",
-            "scroll",
-            "click",
-            "touchstart"
-          ];
+        const activityEvents = [
+          "mousemove",
+          "keydown",
+          "scroll",
+          "click",
+          "touchstart"
+        ];
         
-          function forceRefresh() {
-            // Hard refresh that always works
-            window.location.replace(window.location.href);
-          }
+        function forceRefresh() {
+          window.location.replace(window.location.href);
+        }
         
-          function refreshNow() {
+        window.refreshNow = function() {
+          forceRefresh();
+        }
+        
+        function resetInactivityTimer() {
+          if (!inactivityEnabled) return;
+          
+          clearTimeout(inactivityTimer);
+          
+          inactivityTimer = setTimeout(() => {
             forceRefresh();
-          }
+          }, inactivityLimit);
+        }
         
-          function resetInactivityTimer() {
-            if (!inactivityEnabled) return;
-        
-            clearTimeout(inactivityTimer);
-        
-            inactivityTimer = setTimeout(() => {
-              forceRefresh();
-            }, inactivityLimit);
-          }
-        
-          function startInactivityRefresh() {
-            resetInactivityTimer();
-        
-            activityEvents.forEach(event => {
-              document.addEventListener(event, resetInactivityTimer, { passive: true });
-            });
-          }
-        
-          function stopInactivityRefresh() {
-            clearTimeout(inactivityTimer);
-            inactivityTimer = null;
-        
-            activityEvents.forEach(event => {
-              document.removeEventListener(event, resetInactivityTimer);
-            });
-          }
-        
-          function updateInactivityTimer() {
-            const select = document.getElementById("inactivitySelect");
-            if (!select) return;
-        
-            const value = select.value;
-        
-            stopInactivityRefresh();
-        
-            if (value === "off") {
-              inactivityEnabled = false;
-              return;
-            }
-        
-            inactivityEnabled = true;
-            inactivityLimit = Number(value);
-            startInactivityRefresh();
-          }
-        
-          // Ensure everything is ready before starting
-          document.addEventListener("DOMContentLoaded", () => {
-            updateInactivityTimer();
+        function startInactivityRefresh() {
+          resetInactivityTimer();
+          
+          activityEvents.forEach(event => {
+            document.addEventListener(event, resetInactivityTimer, { passive: true });
           });
+        }
+        
+        function stopInactivityRefresh() {
+          clearTimeout(inactivityTimer);
+          inactivityTimer = null;
+          
+          activityEvents.forEach(event => {
+            document.removeEventListener(event, resetInactivityTimer);
+          });
+        }
+        
+        window.updateInactivityTimer = function() {
+          const select = document.getElementById("inactivitySelect");
+          if (!select) return;
+          
+          const value = select.value;
+          
+          stopInactivityRefresh();
+          
+          if (value === "off") {
+            inactivityEnabled = false;
+            return;
+          }
+          
+          inactivityEnabled = true;
+          inactivityLimit = Number(value);
+          startInactivityRefresh();
+        }
 
 
         // Toggle Favorite Function - Define before using
