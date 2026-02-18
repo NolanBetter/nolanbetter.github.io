@@ -368,6 +368,7 @@
         <button class="vp-btn active" onclick="setViewport('full', this)">Full</button>
         <button class="vp-btn" onclick="setViewport('tablet', this)">Tablet</button>
         <button class="vp-btn" onclick="setViewport('mobile', this)">Mobile</button>
+        <button class="vp-btn" id="fsBtn" onclick="toggleFullscreen()" title="Fullscreen Preview">⛶</button>
       </div>
     </div>
     <div class="preview-wrapper full" id="previewWrapper">
@@ -555,6 +556,30 @@ document.addEventListener('mouseup', () => {
     resizer.classList.remove('dragging');
     document.body.style.cursor = '';
     document.body.style.userSelect = '';
+  }
+});
+
+// Fullscreen
+function toggleFullscreen() {
+  const wrapper = document.getElementById('previewWrapper');
+  const btn = document.getElementById('fsBtn');
+  if (!document.fullscreenElement) {
+    wrapper.requestFullscreen().then(() => {
+      btn.textContent = '✕';
+      btn.title = 'Exit Fullscreen';
+      btn.classList.add('active');
+    }).catch(() => {});
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+document.addEventListener('fullscreenchange', () => {
+  if (!document.fullscreenElement) {
+    const btn = document.getElementById('fsBtn');
+    btn.textContent = '⛶';
+    btn.title = 'Fullscreen Preview';
+    btn.classList.remove('active');
   }
 });
 
