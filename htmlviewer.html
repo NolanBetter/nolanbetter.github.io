@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live HTML Viewer</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0d0f;
+    --panel: #141417;
+    --border: #2a2a30;
+    --accent: #00e5a0;
+    --accent2: #ff4d6d;
+    --text: #e8e8ec;
+    --muted: #5a5a6e;
+    --header-h: 52px;
+  }
+
+  body {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Header */
+  header {
+    height: var(--header-h);
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.5px;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(0,229,160,0.4); }
+    50% { opacity: 0.8; transform: scale(1.2); box-shadow: 0 0 0 6px rgba(0,229,160,0); }
+  }
+
+  .divider { width: 1px; height: 24px; background: var(--border); }
+
+  .status {
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .btn {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+  }
+
+  button {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  button.danger:hover {
+    border-color: var(--accent2);
+    color: var(--accent2);
+  }
+
+  button.primary {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(0,229,160,0.07);
+  }
+
+  /* Main layout */
+  .workspace {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* Editor */
+  .editor-pane {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border);
+    min-width: 200px;
+    position: relative;
+  }
+
+  .pane-header {
+    height: 36px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .pane-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+  }
+
+  .line-count {
+    margin-left: auto;
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  .editor-wrapper {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .line-numbers {
+    width: 44px;
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    padding: 12px 0;
+    overflow: hidden;
+    user-select: none;
+    flex-shrink: 0;
+  }
+
+  .line-numbers span {
+    display: block;
+    text-align: right;
+    padding-right: 10px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--muted);
+    opacity: 0.5;
+  }
+
+  #editor {
+    flex: 1;
+    background: var(--bg);
+    color: var(--text);
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    padding: 12px 14px;
+    tab-size: 2;
+    white-space: pre;
+    overflow: auto;
+    caret-color: var(--accent);
+  }
+
+  #editor::selection {
+    background: rgba(0,229,160,0.2);
+  }
+
+  /* Resizer */
+  .resizer {
+    width: 4px;
+    background: var(--border);
+    cursor: col-resize;
+    transition: background 0.15s;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+  }
+
+  .resizer:hover, .resizer.dragging {
+    background: var(--accent);
+  }
+
+  /* Preview */
+  .preview-pane {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+  }
+
+  .preview-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 14px;
+    height: 36px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .viewport-btns {
+    display: flex;
+    gap: 4px;
+    margin-left: auto;
+  }
+
+  .vp-btn {
+    padding: 4px 8px;
+    font-size: 10px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .vp-btn.active, .vp-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .preview-wrapper {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #111113;
+    position: relative;
+  }
+
+  .preview-wrapper.full iframe {
+    width: 100%;
+    height: 100%;
+  }
+
+  .preview-wrapper.tablet iframe {
+    width: 768px;
+    height: 100%;
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
+  }
+
+  .preview-wrapper.mobile iframe {
+    width: 375px;
+    height: 100%;
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
+  }
+
+  iframe {
+    border: none;
+    background: white;
+    height: 100%;
+    transition: width 0.3s ease;
+  }
+
+  /* Error bar */
+  .error-bar {
+    display: none;
+    padding: 8px 14px;
+    background: rgba(255,77,109,0.1);
+    border-top: 1px solid rgba(255,77,109,0.3);
+    font-size: 11px;
+    color: var(--accent2);
+    flex-shrink: 0;
+  }
+
+  .error-bar.visible { display: block; }
+
+  /* Cursor glow effect */
+  #editor:focus {
+    background: var(--bg);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-dot"></div>
+    HTMLIVE
+  </div>
+  <div class="divider"></div>
+  <div class="status">
+    <div class="status-dot"></div>
+    Live Preview Active
+  </div>
+  <div class="btn">
+    <button onclick="formatCode()">Format</button>
+    <button class="danger" onclick="clearEditor()">Clear</button>
+    <button class="primary" onclick="copyHTML()">Copy</button>
+  </div>
+</header>
+
+<div class="workspace">
+  <div class="editor-pane" id="editorPane">
+    <div class="pane-header">
+      <span class="pane-label">HTML Editor</span>
+      <span class="line-count" id="lineCount">0 lines</span>
+    </div>
+    <div class="editor-wrapper">
+      <div class="line-numbers" id="lineNumbers"></div>
+      <textarea id="editor" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+    </div>
+  </div>
+
+  <div class="resizer" id="resizer"></div>
+
+  <div class="preview-pane">
+    <div class="preview-toolbar">
+      <span class="pane-label">Preview</span>
+      <div class="viewport-btns">
+        <button class="vp-btn active" onclick="setViewport('full', this)">Full</button>
+        <button class="vp-btn" onclick="setViewport('tablet', this)">Tablet</button>
+        <button class="vp-btn" onclick="setViewport('mobile', this)">Mobile</button>
+      </div>
+    </div>
+    <div class="preview-wrapper full" id="previewWrapper">
+      <iframe id="preview" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+    </div>
+    <div class="error-bar" id="errorBar"></div>
+  </div>
+</div>
+
+<script>
+const editor = document.getElementById('editor');
+const preview = document.getElementById('preview');
+const lineNumbers = document.getElementById('lineNumbers');
+const lineCount = document.getElementById('lineCount');
+const errorBar = document.getElementById('errorBar');
+
+const DEFAULT_HTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Page</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+    }
+    p { opacity: 0.85; font-size: 1.1rem; }
+    .card {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      padding: 2.5rem 3.5rem;
+      border-radius: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Hello, World! ✨</h1>
+    <p>Start editing to see live changes</p>
+  </div>
+</body>
+</html>`;
+
+editor.value = DEFAULT_HTML;
+
+// Live update with debounce
+let updateTimer;
+function scheduleUpdate() {
+  clearTimeout(updateTimer);
+  updateTimer = setTimeout(updatePreview, 300);
+}
+
+function updatePreview() {
+  try {
+    const doc = preview.contentDocument || preview.contentWindow.document;
+    doc.open();
+    doc.write(editor.value);
+    doc.close();
+    errorBar.classList.remove('visible');
+  } catch(e) {
+    errorBar.textContent = '⚠ ' + e.message;
+    errorBar.classList.add('visible');
+  }
+  updateLineNumbers();
+}
+
+function updateLineNumbers() {
+  const lines = editor.value.split('\n');
+  lineCount.textContent = lines.length + ' lines';
+  lineNumbers.innerHTML = lines.map((_, i) => `<span>${i + 1}</span>`).join('');
+}
+
+// Sync scroll
+editor.addEventListener('scroll', () => {
+  lineNumbers.scrollTop = editor.scrollTop;
+});
+
+editor.addEventListener('input', scheduleUpdate);
+
+// Tab key support
+editor.addEventListener('keydown', e => {
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    const start = editor.selectionStart;
+    const end = editor.selectionEnd;
+    editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+    editor.selectionStart = editor.selectionEnd = start + 2;
+    scheduleUpdate();
+  }
+});
+
+// Viewport
+function setViewport(mode, btn) {
+  document.getElementById('previewWrapper').className = 'preview-wrapper ' + mode;
+  document.querySelectorAll('.vp-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// Clear
+function clearEditor() {
+  if (confirm('Clear the editor?')) {
+    editor.value = '';
+    updatePreview();
+  }
+}
+
+// Copy
+function copyHTML() {
+  navigator.clipboard.writeText(editor.value).then(() => {
+    const btn = document.querySelector('button.primary');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 1500);
+  });
+}
+
+// Basic format (indent)
+function formatCode() {
+  try {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(editor.value, 'text/html');
+    // Simple serialization with indentation
+    editor.value = formatHTML(editor.value);
+    updatePreview();
+  } catch(e) {}
+}
+
+function formatHTML(html) {
+  let indent = 0;
+  const tab = '  ';
+  return html
+    .replace(/></g, '>\n<')
+    .split('\n')
+    .map(line => {
+      line = line.trim();
+      if (!line) return '';
+      if (line.match(/^<\//)) indent = Math.max(0, indent - 1);
+      const result = tab.repeat(indent) + line;
+      if (line.match(/^<[^\/!][^>]*[^\/]>$/) && !line.match(/^<(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)/i)) {
+        indent++;
+      }
+      return result;
+    })
+    .join('\n');
+}
+
+// Resizer
+const resizer = document.getElementById('resizer');
+const editorPane = document.getElementById('editorPane');
+let isResizing = false;
+
+resizer.addEventListener('mousedown', e => {
+  isResizing = true;
+  resizer.classList.add('dragging');
+  document.body.style.cursor = 'col-resize';
+  document.body.style.userSelect = 'none';
+});
+
+document.addEventListener('mousemove', e => {
+  if (!isResizing) return;
+  const workspace = document.querySelector('.workspace');
+  const rect = workspace.getBoundingClientRect();
+  const pct = ((e.clientX - rect.left) / rect.width) * 100;
+  const clamped = Math.min(Math.max(pct, 20), 80);
+  editorPane.style.width = clamped + '%';
+});
+
+document.addEventListener('mouseup', () => {
+  if (isResizing) {
+    isResizing = false;
+    resizer.classList.remove('dragging');
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+  }
+});
+
+// Initial render
+updatePreview();
+</script>
+</body>
+</html>
