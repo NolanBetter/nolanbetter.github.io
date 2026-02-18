@@ -1,1 +1,2658 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nolan's And Grayson's Games</title>
+    <link rel="icon" href="https://nolangraysongames.com/Logo.png" type="image/x-icon">
+    <style>
+      * {
+        transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+      }
 
+      /* Base body styles */
+      body {
+        text-align: center;
+        background-color: black;
+        color: white;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+
+      /* Default Dark Theme */
+      body.default {
+        background-color: black;
+        color: white;
+      }
+
+      body.default a,
+      body.default #submit-btn {
+        background: black;
+        color: white;
+        border-color: white;
+      }
+
+      body.default #search,
+      body.default #pw,
+      body.default #sort,
+      body.default #categorySelect,
+      body.default #themeSelect {
+        background: black;
+        color: white;
+        border-color: white;
+      }
+
+      body.default .warning-box {
+        background: black;
+        border-color: red;
+        box-shadow: 0 0 20px red;
+      }
+
+      body.default .warning-box button {
+        background: black;
+        color: white;
+        border-color: white;
+      }
+
+      body.default #clear-search {
+        color: white;
+      }
+
+      body.default #clear-search:hover {
+        color: red;
+      }
+
+      body.default .link-container .star {
+        color: gray;
+      }
+
+      body.default .link-container .star.favorited {
+        color: gold;
+      }
+
+      body.default .pageb {
+        color: yellow;
+      }
+
+      body.default .blocked {
+        color: red;
+      }
+
+      body.default .discord {
+        color: blue;
+        border-color: blue;
+      }
+
+      body.default #visitor-count {
+        color: white;
+        border-color: white;
+      }
+
+      body.default .footer-text,
+      body.default h6 {
+        color: white;
+      }
+
+      /* Links */
+      .link-container {
+        display: inline-block;
+        position: relative;
+        margin: 5px;
+        width: calc(100% - 20px);
+        max-width: 400px;
+      }
+
+      a {
+        display: block;
+        width: 100%;
+        padding: 12px 40px 12px 15px;
+        background-color: black;
+        color: white; 
+        border: 2px solid white;
+        text-decoration: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: left;
+        transition: transform 0.2s ease;
+        box-sizing: border-box;
+        font-size: 14px;
+      }
+
+      a:hover {
+        transform: scale(1.02);
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+      }
+
+      a:active {
+        transform: scale(0.98);
+      }
+
+      /* Text Styles */
+      h2 {
+        text-decoration: underline;
+        font-size: 1.5em;
+        margin: 20px 10px 10px 10px;
+      }
+
+      h6 {
+        font-size: 0.9em;
+        margin: 10px;
+      }
+
+      p {
+        font-size: 0.95em;
+        padding: 0 15px;
+        line-height: 1.6;
+      }
+
+      /* Visitor Counter */
+      #visitor-count {
+        font-size: 0.9em;
+        color: white;
+        margin: 15px auto;
+        padding: 10px 20px;
+        border: 2px solid white;
+        border-radius: 15px;
+        display: block;
+        max-width: 300px;
+        text-align: center;
+        transition: all 0.4s ease;
+      }
+
+      /* Footer text */
+      .footer-text {
+        transition: color 0.4s ease;
+      }
+
+      .blocked {
+        color: red;
+        text-decoration: line-through;
+      }
+
+      .pageb {
+        color: yellow;
+      }
+
+      .discord {
+        color: blue; 
+        border-color: blue;
+      }
+
+      .smallimg {
+        width: 40px;
+        float: left;
+        margin: 10px;
+      }
+
+      .wobble {
+        max-width: 90%;
+        height: auto;
+        margin: 20px auto;
+        display: block;
+      }
+
+      /* Content Area */
+      #content {
+        margin-top: 20px;
+        padding: 0 10px;
+        opacity: 0;
+        transition: opacity 1s ease-in;
+        display: none;
+      }
+
+      #content.show {
+        display: block;
+        opacity: 1;
+      }
+
+      /* Wobble Animation */
+      .wobble {
+        display: inline-block;
+        cursor: pointer;
+        animation: wobble 1s infinite;
+        transition: transform 0.3s ease;
+      }   
+
+      .wobble:hover {
+        animation: none;
+        transform: scale(1.1) rotate(5deg);
+      }
+
+      .wobble:active {
+        animation: bounce 1s;
+      }
+
+      @keyframes wobble {
+        0%, 100% { transform: rotate(0deg); }
+        25%, 75% { transform: rotate(-2deg); }
+        50% { transform: rotate(2deg); }
+      }
+
+      @keyframes bounce {
+        0%, 100% { transform: scale(1); }
+        30% { transform: scale(1.2); }
+        50% { transform: scale(0.9); }
+        70% { transform: scale(1.1); }
+      }
+
+      /* Warning Overlay */
+      #unofficial-warning {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .warning-box {
+        background: black;
+        border: 2px solid red;
+        padding: 20px;
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+        border-radius: 15px;
+        box-shadow: 0 0 20px red;
+      }
+
+      .warning-box h2 {
+        color: red;
+        font-size: 1.3em;
+      }
+
+      .official-link {
+        color: yellow;
+        word-break: break-all;
+        font-size: 0.9em;
+      }
+
+      .warning-box button {
+        margin-top: 20px;
+        padding: 12px 25px;
+        font-size: 16px;
+        background: black;
+        color: white;
+        border: 2px solid white;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 100%;
+        max-width: 200px;
+      }
+
+      .warning-box button:hover {
+        transform: scale(1.05);
+      }
+
+      /* W3Spaces Warning */
+      #w3spaces-warning {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .w3spaces-box {
+        background: black;
+        border: 2px solid orange;
+        padding: 20px;
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+        border-radius: 15px;
+        box-shadow: 0 0 20px orange;
+      }
+
+      .w3spaces-box h2 {
+        color: orange;
+        font-size: 1.3em;
+      }
+
+      .w3spaces-box p {
+        color: white;
+      }
+
+      .w3spaces-box button {
+        margin-top: 20px;
+        padding: 12px 25px;
+        font-size: 16px;
+        background: black;
+        color: white;
+        border: 2px solid orange;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 100%;
+        max-width: 200px;
+      }
+
+      .w3spaces-box button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px orange;
+      }
+
+      /* Settings Modal */
+      #settings-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .settings-box {
+        background: black;
+        border: 2px solid white;
+        padding: 30px;
+        max-width: 600px;
+        width: 90%;
+        text-align: center;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        position: relative;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      .settings-box h2 {
+        color: white;
+        font-size: 1.5em;
+        margin-bottom: 20px;
+      }
+
+      .settings-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 28px;
+        cursor: pointer;
+        color: white;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+
+      .settings-close:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: rotate(90deg);
+      }
+
+      .settings-section {
+        margin: 25px 0;
+        padding: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+      }
+
+      .settings-section h3 {
+        color: white;
+        font-size: 1.2em;
+        margin-bottom: 15px;
+      }
+
+      .settings-option {
+        margin: 15px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .settings-option label {
+        color: white;
+        font-size: 1em;
+      }
+
+      .settings-button {
+        padding: 10px 20px;
+        background: black;
+        color: white;
+        border: 2px solid white;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .settings-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      }
+
+      .settings-select {
+        padding: 10px 15px;
+        background: black;
+        color: white;
+        border: 2px solid white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1em;
+        min-width: 150px;
+      }
+
+      /* Theme-specific settings styles */
+      body.light .settings-box {
+        background: white;
+        border-color: black;
+      }
+
+      body.light .settings-box h2,
+      body.light .settings-box h3,
+      body.light .settings-option label {
+        color: black;
+      }
+
+      body.light .settings-close {
+        color: black;
+      }
+
+      body.light .settings-close:hover {
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      body.light .settings-button {
+        background: white;
+        color: black;
+        border-color: black;
+      }
+
+      body.light .settings-section {
+        border-color: rgba(0, 0, 0, 0.3);
+      }
+
+      body.light .settings-select {
+        background: white;
+        color: black;
+        border-color: black;
+      }
+
+      body.neon .settings-box {
+        background: #0f0f1a;
+        border-color: #39ff14;
+        box-shadow: 0 0 20px #39ff14;
+      }
+
+      body.neon .settings-box h2,
+      body.neon .settings-box h3,
+      body.neon .settings-option label {
+        color: #39ff14;
+      }
+
+      body.neon .settings-close {
+        color: #39ff14;
+      }
+
+      body.neon .settings-close:hover {
+        background: rgba(57, 255, 20, 0.2);
+      }
+
+      body.neon .settings-button {
+        background: #0f0f1a;
+        color: #39ff14;
+        border-color: #39ff14;
+      }
+
+      body.neon .settings-section {
+        border-color: rgba(57, 255, 20, 0.3);
+      }
+
+      body.neon .settings-select {
+        background: #0f0f1a;
+        color: #39ff14;
+        border-color: #39ff14;
+      }
+
+      body.midnight .settings-box {
+        background: #020617;
+        border-color: #6366f1;
+        box-shadow: 0 0 20px #6366f1;
+      }
+
+      body.midnight .settings-box h2,
+      body.midnight .settings-box h3,
+      body.midnight .settings-option label {
+        color: #c7d2fe;
+      }
+
+      body.midnight .settings-close {
+        color: #c7d2fe;
+      }
+
+      body.midnight .settings-close:hover {
+        background: rgba(99, 102, 241, 0.2);
+      }
+
+      body.midnight .settings-button {
+        background: #020617;
+        color: #c7d2fe;
+        border-color: #6366f1;
+      }
+
+      body.midnight .settings-section {
+        border-color: rgba(99, 102, 241, 0.3);
+      }
+
+      body.midnight .settings-select {
+        background: #020617;
+        color: #c7d2fe;
+        border-color: #6366f1;
+      }
+
+      body.sunset .settings-box {
+        background: rgba(74, 26, 74, 0.95);
+        border-color: #ff6b6b;
+        box-shadow: 0 0 20px #ff6b6b;
+      }
+
+      body.sunset .settings-box h2,
+      body.sunset .settings-box h3,
+      body.sunset .settings-option label {
+        color: #fff5e1;
+      }
+
+      body.sunset .settings-close {
+        color: #fff5e1;
+      }
+
+      body.sunset .settings-close:hover {
+        background: rgba(255, 107, 107, 0.2);
+      }
+
+      body.sunset .settings-button {
+        background: rgba(74, 26, 74, 0.7);
+        color: #fff5e1;
+        border-color: #ff6b6b;
+      }
+
+      body.sunset .settings-section {
+        border-color: rgba(255, 107, 107, 0.3);
+      }
+
+      body.sunset .settings-select {
+        background: rgba(74, 26, 74, 0.7);
+        color: #fff5e1;
+        border-color: #ff6b6b;
+      }
+
+      body.ocean .settings-box {
+        background: rgba(10, 77, 104, 0.95);
+        border-color: #05bfdb;
+        box-shadow: 0 0 20px #05bfdb;
+      }
+
+      body.ocean .settings-box h2,
+      body.ocean .settings-box h3,
+      body.ocean .settings-option label {
+        color: #e8f9fd;
+      }
+
+      body.ocean .settings-close {
+        color: #e8f9fd;
+      }
+
+      body.ocean .settings-close:hover {
+        background: rgba(5, 191, 219, 0.2);
+      }
+
+      body.ocean .settings-button {
+        background: rgba(10, 77, 104, 0.7);
+        color: #e8f9fd;
+        border-color: #05bfdb;
+      }
+
+      body.ocean .settings-section {
+        border-color: rgba(5, 191, 219, 0.3);
+      }
+
+      body.ocean .settings-select {
+        background: rgba(10, 77, 104, 0.7);
+        color: #e8f9fd;
+        border-color: #05bfdb;
+      }
+
+      body.forest .settings-box {
+        background: rgba(26, 58, 26, 0.95);
+        border-color: #6fb98f;
+        box-shadow: 0 0 20px #6fb98f;
+      }
+
+      body.forest .settings-box h2,
+      body.forest .settings-box h3,
+      body.forest .settings-option label {
+        color: #d4edda;
+      }
+
+      body.forest .settings-close {
+        color: #d4edda;
+      }
+
+      body.forest .settings-close:hover {
+        background: rgba(111, 185, 143, 0.2);
+      }
+
+      body.forest .settings-button {
+        background: rgba(26, 58, 26, 0.7);
+        color: #d4edda;
+        border-color: #6fb98f;
+      }
+
+      body.forest .settings-section {
+        border-color: rgba(111, 185, 143, 0.3);
+      }
+
+      body.forest .settings-select {
+        background: rgba(26, 58, 26, 0.7);
+        color: #d4edda;
+        border-color: #6fb98f;
+      }
+
+      body.default .settings-select {
+        background: black;
+        color: white;
+        border-color: white;
+      }
+
+      /* Background Canvas */
+      #bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: black;
+      }
+
+      /* Search Box */
+      .search-container {
+        position: relative;
+        width: 90%;
+        max-width: 400px;
+        margin: 15px auto;
+        text-align: center;
+      }
+
+      #search {
+        width: 100%;
+        padding: 12px 40px 12px 15px;
+        font-size: 16px;
+        background-color: black;
+        color: white;
+        border: 2px solid white;
+        border-radius: 10px;
+        text-align: center;
+        box-sizing: border-box;
+      }
+
+      #clear-search {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: white;
+        font-size: 22px;
+        user-select: none;
+        padding: 5px;
+      }
+
+      #clear-search:hover {
+        color: red;
+      }
+
+      /* Stars/Favorites */
+      .star {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: gray;
+        font-size: 20px;
+        z-index: 10;
+        transition: all 0.3s ease;
+        padding: 5px;
+      }
+
+      .star:hover {
+        transform: translateY(-50%) scale(1.2);
+      }
+
+      .star.favorited {
+        color: gold;
+      }
+
+      @keyframes starPop {
+        0%, 100% { transform: scale(1); text-shadow: none; }
+        50% { transform: scale(1.6); text-shadow: 0 0 10px gold; }
+      }
+
+      .star.animate {
+        animation: starPop 0.35s ease;
+      }
+
+      /* Fade in animation for content */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .category {
+        animation: fadeInUp 0.5s ease;
+      }
+
+      h2 {
+        animation: fadeInUp 0.6s ease;
+      }
+
+      /* Dropdowns Container */
+      .controls-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin: 15px auto;
+        flex-wrap: wrap;
+        padding: 0 10px;
+      }
+
+      /* Sort, Category, and Theme Selectors */
+      #sort, #categorySelect, #themeSelect {
+        background: black;
+        color: white;
+        border: 2px solid white;
+        padding: 10px 12px;
+        border-radius: 8px;
+        font-size: 14px;
+        cursor: pointer;
+        min-width: 140px;
+        flex: 1;
+        max-width: 200px;
+        transition: all 0.3s ease;
+      }
+
+      #sort:hover, #categorySelect:hover, #themeSelect:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+      }
+
+      #sort:active, #categorySelect:active, #themeSelect:active {
+        transform: translateY(0);
+      }
+
+      /* Theme Styles */
+      
+      /* Light Theme */
+      body.light {
+        background: white;
+        color: black;
+      }
+
+      body.light a,
+      body.light #submit-btn {
+        background: white;
+        color: black;
+        border-color: black;
+      }
+
+      body.light .link-container .star {
+        color: #666;
+      }
+
+      body.light .link-container .star.favorited {
+        color: #ffa500;
+      }
+
+      body.light #search,
+      body.light #pw,
+      body.light #sort,
+      body.light #categorySelect,
+      body.light #themeSelect {
+        background: white;
+        color: black;
+        border-color: black;
+      }
+
+      body.light .warning-box {
+        background: white;
+        color: black;
+        border-color: red;
+      }
+
+      body.light .warning-box h2 {
+        color: red;
+      }
+
+      body.light .warning-box button {
+        background: white;
+        color: black;
+        border-color: black;
+      }
+
+      body.light #clear-search {
+        color: black;
+      }
+
+      body.light .pageb { 
+        color: orange; 
+      }
+      
+      body.light .blocked { 
+        color: darkred; 
+      }
+      
+      body.light .discord { 
+        color: #5865F2; 
+        border-color: #5865F2; 
+      }
+
+      body.light #visitor-count {
+        color: black;
+        border-color: black;
+      }
+
+      body.light .footer-text,
+      body.light h6 {
+        color: black;
+      }
+
+      body.light #bg {
+        background: white;
+      }
+
+      /* Neon Theme */
+      body.neon {
+        background: #0f0f1a;
+        color: #39ff14;
+      }
+
+      body.neon a,
+      body.neon #submit-btn {
+        background: #0f0f1a;
+        color: #39ff14;
+        border-color: #39ff14;
+      }
+
+      body.neon .link-container .star {
+        color: #39ff14;
+      }
+
+      body.neon .link-container .star.favorited {
+        color: #ffd700;
+      }
+
+      body.neon #search,
+      body.neon #pw,
+      body.neon #sort,
+      body.neon #categorySelect,
+      body.neon #themeSelect {
+        background: #0f0f1a;
+        color: #39ff14;
+        border-color: #39ff14;
+      }
+
+      body.neon .warning-box {
+        background: #0f0f1a;
+        border-color: #39ff14;
+        box-shadow: 0 0 20px #39ff14;
+      }
+
+      body.neon .warning-box h2 {
+        color: #39ff14;
+      }
+
+      body.neon .warning-box button {
+        background: #0f0f1a;
+        color: #39ff14;
+        border-color: #39ff14;
+      }
+
+      body.neon #clear-search {
+        color: #39ff14;
+      }
+
+      body.neon #clear-search:hover {
+        color: #00eaff;
+      }
+
+      body.neon .pageb { 
+        color: #00eaff; 
+      }
+
+      body.neon .blocked { 
+        color: #ff1744; 
+      }
+
+      body.neon .discord { 
+        color: #00eaff; 
+        border-color: #00eaff; 
+      }
+
+      body.neon .star {
+        color: #39ff14;
+      }
+
+      body.neon .star.favorited {
+        color: #ffd700;
+      }
+
+      body.neon #visitor-count {
+        color: #39ff14;
+        border-color: #39ff14;
+      }
+
+      body.neon .footer-text,
+      body.neon h6 {
+        color: #39ff14;
+      }
+
+      /* Midnight Theme */
+      body.midnight {
+        background: #020617;
+        color: #c7d2fe;
+      }
+
+      body.midnight a,
+      body.midnight #submit-btn {
+        background: #020617;
+        color: #c7d2fe;
+        border-color: #6366f1;
+      }
+
+      body.midnight .link-container .star {
+        color: #6366f1;
+      }
+
+      body.midnight .link-container .star.favorited {
+        color: #fbbf24;
+      }
+
+      body.midnight #search,
+      body.midnight #pw,
+      body.midnight #sort,
+      body.midnight #categorySelect,
+      body.midnight #themeSelect {
+        background: #020617;
+        color: #c7d2fe;
+        border-color: #6366f1;
+      }
+
+      body.midnight .warning-box {
+        background: #020617;
+        border-color: #6366f1;
+        box-shadow: 0 0 20px #6366f1;
+      }
+
+      body.midnight .warning-box h2 {
+        color: #a5b4fc;
+      }
+
+      body.midnight .warning-box button {
+        background: #020617;
+        color: #c7d2fe;
+        border-color: #6366f1;
+      }
+
+      body.midnight #clear-search {
+        color: #c7d2fe;
+      }
+
+      body.midnight #clear-search:hover {
+        color: #a5b4fc;
+      }
+
+      body.midnight .pageb { 
+        color: #a5b4fc; 
+      }
+
+      body.midnight .blocked { 
+        color: #f87171; 
+      }
+
+      body.midnight .discord { 
+        color: #818cf8; 
+        border-color: #818cf8; 
+      }
+
+      body.midnight .star {
+        color: #6366f1;
+      }
+
+      body.midnight .star.favorited {
+        color: #fbbf24;
+      }
+
+      body.midnight #visitor-count {
+        color: #c7d2fe;
+        border-color: #6366f1;
+      }
+
+      body.midnight .footer-text,
+      body.midnight h6 {
+        color: #c7d2fe;
+      }
+
+      /* Sunset Theme */
+      body.sunset {
+        background: linear-gradient(to bottom, #ff6b6b, #ee5a24, #4a1a4a);
+        color: #fff5e1;
+      }
+
+      body.sunset a,
+      body.sunset #submit-btn {
+        background: rgba(74, 26, 74, 0.7);
+        color: #fff5e1;
+        border-color: #ff6b6b;
+      }
+
+      body.sunset .link-container .star {
+        color: #ff6b6b;
+      }
+
+      body.sunset .link-container .star.favorited {
+        color: #ffd700;
+      }
+
+      body.sunset #search,
+      body.sunset #pw,
+      body.sunset #sort,
+      body.sunset #categorySelect,
+      body.sunset #themeSelect {
+        background: rgba(74, 26, 74, 0.7);
+        color: #fff5e1;
+        border-color: #ff6b6b;
+      }
+
+      body.sunset .warning-box {
+        background: rgba(74, 26, 74, 0.9);
+        border-color: #ff6b6b;
+        box-shadow: 0 0 20px #ff6b6b;
+      }
+
+      body.sunset .warning-box h2 {
+        color: #ff6b6b;
+      }
+
+      body.sunset .warning-box button {
+        background: rgba(74, 26, 74, 0.7);
+        color: #fff5e1;
+        border-color: #ff6b6b;
+      }
+
+      body.sunset #clear-search {
+        color: #fff5e1;
+      }
+
+      body.sunset #clear-search:hover {
+        color: #ff6b6b;
+      }
+
+      body.sunset .pageb {
+        color: #ffd93d;
+      }
+
+      body.sunset .blocked {
+        color: #ff4757;
+      }
+
+      body.sunset .discord {
+        color: #a29bfe;
+        border-color: #a29bfe;
+      }
+
+      body.sunset #visitor-count {
+        color: #fff5e1;
+        border-color: #ff6b6b;
+      }
+
+      body.sunset .footer-text,
+      body.sunset h6 {
+        color: #fff5e1;
+      }
+
+      /* Ocean Theme */
+      body.ocean {
+        background: linear-gradient(to bottom, #0a4d68, #088395, #05bfdb);
+        color: #e8f9fd;
+      }
+
+      body.ocean a,
+      body.ocean #submit-btn {
+        background: rgba(10, 77, 104, 0.7);
+        color: #e8f9fd;
+        border-color: #05bfdb;
+      }
+
+      body.ocean .link-container .star {
+        color: #05bfdb;
+      }
+
+      body.ocean .link-container .star.favorited {
+        color: #ffd93d;
+      }
+
+      body.ocean #search,
+      body.ocean #pw,
+      body.ocean #sort,
+      body.ocean #categorySelect,
+      body.ocean #themeSelect {
+        background: rgba(10, 77, 104, 0.7);
+        color: #e8f9fd;
+        border-color: #05bfdb;
+      }
+
+      body.ocean .warning-box {
+        background: rgba(10, 77, 104, 0.9);
+        border-color: #05bfdb;
+        box-shadow: 0 0 20px #05bfdb;
+      }
+
+      body.ocean .warning-box h2 {
+        color: #05bfdb;
+      }
+
+      body.ocean .warning-box button {
+        background: rgba(10, 77, 104, 0.7);
+        color: #e8f9fd;
+        border-color: #05bfdb;
+      }
+
+      body.ocean #clear-search {
+        color: #e8f9fd;
+      }
+
+      body.ocean #clear-search:hover {
+        color: #05bfdb;
+      }
+
+      body.ocean .pageb {
+        color: #00d9ff;
+      }
+
+      body.ocean .blocked {
+        color: #ff6b9d;
+      }
+
+      body.ocean .discord {
+        color: #4ecdc4;
+        border-color: #4ecdc4;
+      }
+
+      body.ocean #visitor-count {
+        color: #e8f9fd;
+        border-color: #05bfdb;
+      }
+
+      body.ocean .footer-text,
+      body.ocean h6 {
+        color: #e8f9fd;
+      }
+
+      /* Forest Theme */
+      body.forest {
+        background: linear-gradient(to bottom, #1a3a1a, #2d5016, #4a7c59);
+        color: #d4edda;
+      }
+
+      body.forest a,
+      body.forest #submit-btn {
+        background: rgba(26, 58, 26, 0.7);
+        color: #d4edda;
+        border-color: #6fb98f;
+      }
+
+      body.forest .link-container .star {
+        color: #6fb98f;
+      }
+
+      body.forest .link-container .star.favorited {
+        color: #ffd700;
+      }
+
+      body.forest #search,
+      body.forest #pw,
+      body.forest #sort,
+      body.forest #categorySelect,
+      body.forest #themeSelect {
+        background: rgba(26, 58, 26, 0.7);
+        color: #d4edda;
+        border-color: #6fb98f;
+      }
+
+      body.forest .warning-box {
+        background: rgba(26, 58, 26, 0.9);
+        border-color: #6fb98f;
+        box-shadow: 0 0 20px #6fb98f;
+      }
+
+      body.forest .warning-box h2 {
+        color: #6fb98f;
+      }
+
+      body.forest .warning-box button {
+        background: rgba(26, 58, 26, 0.7);
+        color: #d4edda;
+        border-color: #6fb98f;
+      }
+
+      body.forest #clear-search {
+        color: #d4edda;
+      }
+
+      body.forest #clear-search:hover {
+        color: #6fb98f;
+      }
+
+      body.forest .pageb {
+        color: #90ee90;
+      }
+
+      body.forest .blocked {
+        color: #ff6b6b;
+      }
+
+      body.forest .discord {
+        color: #8fbc8f;
+        border-color: #8fbc8f;
+      }
+
+      body.forest #visitor-count {
+        color: #d4edda;
+        border-color: #6fb98f;
+      }
+
+      body.forest .footer-text,
+      body.forest h6 {
+        color: #d4edda;
+      }
+
+      /* Mobile Optimizations */
+      @media screen and (max-width: 768px) {
+        .wobble {
+          max-width: 80%;
+          margin: 10px auto;
+        }
+
+        h2 {
+          font-size: 1.3em;
+        }
+
+        .link-container {
+          max-width: 95%;
+        }
+
+        a {
+          font-size: 13px;
+          padding: 10px 35px 10px 12px;
+        }
+
+        .star {
+          font-size: 18px;
+          right: 8px;
+        }
+
+        #sort, #categorySelect, #themeSelect {
+          font-size: 13px;
+          min-width: 110px;
+          padding: 8px 8px;
+        }
+
+        .controls-container {
+          gap: 5px;
+        }
+
+        .warning-box {
+          padding: 15px;
+        }
+
+        .warning-box h2 {
+          font-size: 1.1em;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .controls-container {
+          flex-direction: column;
+        }
+
+        #sort, #categorySelect, #themeSelect {
+          width: 90%;
+          max-width: 300px;
+        }
+
+        a {
+          font-size: 12px;
+        }
+
+        p {
+          font-size: 0.85em;
+        }
+      }
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9036402205102944" crossorigin="anonymous"></script>
+  </head>
+  <body class="default">
+    <canvas id="bg"></canvas>
+
+    <!-- Warning Overlay -->
+    <div id="unofficial-warning">
+      <div class="warning-box">
+        <h2>⚠ Not an Official Link ⚠</h2>
+        <p>
+          You are viewing an unofficial copy of this website.<br><br>
+          It can contain inappropriate content, Out Dated Versions, Corrupted Link, etc. 
+          PLEASE DO NOT REPORT ANYTHING, AND ONLY CONTINUE IF NECESSARY<br><br>
+          A recommended official site is:
+        </p>
+        <p class="official-link">nolangraysongames.com</p>
+        <button onclick="closeWarning()">Continue Anyway</button>
+      </div>
+    </div>
+
+    <!-- W3Spaces Warning -->
+    <div id="w3spaces-warning">
+      <div class="w3spaces-box">
+        <h2>⚠️ Limited Compatibility Notice</h2>
+        <p>
+          You Are Playing On A Website Where Not All Games Might Work.<br><br>
+          Some games may have compatibility issues on this platform.
+          For the best experience, visit the official site.
+        </p>
+        <button onclick="closeW3SpacesWarning()">I Understand</button>
+      </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal">
+      <div class="settings-box">
+        <span class="settings-close" onclick="closeSettings()">×</span>
+        <h2>⚙️ Settings</h2>
+        
+        <div class="settings-section">
+          <h3>Appearance</h3>
+          <div class="settings-option">
+            <label>Theme</label>
+            <select id="themeSelectModal" class="settings-select" onchange="setTheme(this.value)">
+              <option value="default">🌑 Default/Dark</option>
+              <option value="light">☀️ Light</option>
+              <option value="neon">🌈 Neon</option>
+              <option value="midnight">🌌 Midnight</option>
+              <option value="sunset">🌅 Sunset</option>
+              <option value="ocean">🌊 Ocean</option>
+              <option value="forest">🌲 Forest</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <h3>Page Display</h3>
+          <div class="settings-option">
+            <label>Open in Blob</label>
+            <button class="settings-button" onclick="openInBlob()">Open</button>
+          </div>
+          <div class="settings-option">
+            <label>Open in About:Blank</label>
+            <button class="settings-button" onclick="openInAboutBlank()">Open</button>
+          </div>
+        </div>
+        <!-- Nolan Was Here -->
+        <div class="settings-section">
+          <h3>Inactivity Settings</h3>
+          <div class="settings-option">
+            <div style="display: flex; gap: 10px;">
+              <select id="inactivitySelect" class="settings-select" onchange="updateInactivityTimer()" style="min-width: 120px;">
+                <option value="30000">30 seconds</option>
+                <option value="60000">1 minute</option>
+                <option value="120000" selected>2 minutes</option>
+                <option value="180000">3 minutes</option>
+                <option value="240000">4 minutes</option>
+                <option value="300000">5 minutes</option>
+                <option value="off">Off</option>
+              </select>
+              <button class="settings-button" onclick="refreshNow()">Refresh Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <h3>Data Management</h3>
+          <div class="settings-option">
+            <label>Clear All Favorites</label>
+            <button class="settings-button" onclick="clearFavorites()">Clear</button>
+          </div>
+          <div class="settings-option">
+            <label>Clear All Data</label>
+            <button class="settings-button" onclick="clearAllData()">Clear All</button>
+          </div>
+        </div>
+        
+        <div class="settings-section">
+          <h3>About</h3>
+          <p style="color: inherit; font-size: 0.9em;">
+            <strong>Version:</strong> 1.5.07<br>
+            <strong>Owner:</strong> Nolan Boyer<br>
+            <strong>Last Updated:</strong> 02/09/26<br>
+            <strong>Updated On:</strong> Github
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Title -->
+    <img class="wobble" src="https://nolangraysongames.com/Title.png" alt="Title" onclick="window.location.href='https://www.nolangraysongames.com';" style="cursor:pointer;">
+
+    <!-- Main Content -->
+    <div id="content" class="show">
+      <!-- Search -->
+      <div class="search-container">
+        <input type="text" id="search" placeholder="Search links..." onkeyup="searchLinks()"/>
+        <span id="clear-search" onclick="clearSearch()">×</span>
+      </div>
+
+      <!-- Controls Container -->
+      <div class="controls-container">
+        <select id="categorySelect" onchange="showCategory(this.value)">
+          <option value="all">📂 All Categories</option>
+          <option value="favorites">⭐ Favorites</option>
+          <option value="ourpartnerships">👥 Our Partnerships</option>
+          <option value="games">🎮 Games</option>
+          <option value="websites">🌐 Websites</option>
+          <option value="medievalchronicleslinks">⚔️ Medieval Chronicles Links</option>
+          <option value="eaglercraft">⛏ Eaglercraft</option>
+          <option value="ourlinks">🕹️ Our Links</option>
+          <option value="other">📦 Other</option>
+        </select>
+
+        <select id="sort" onchange="saveAndSort()">
+          <option value="az">🔤 A–Z</option>
+          <option value="za">🔤 Z–A</option>
+          <option value="favorites">⭐ Favorites first</option>
+        </select>
+      </div>
+
+      <!-- Favorites Section -->
+      <h2 id="favorites-title" style="display:none;">⭐ Favorites</h2>
+      <div id="favorites"></div>
+      
+      <!-- Our Partnerships Category -->
+      <div class="category" data-category="ourpartnerships">
+        <h2>Our Partnerships</h2>
+        <a href="https://asdfgrefddgv.chickenkiller.com">Squall Proxy Link #1</a>
+        <a href="https://squall.cc">Squall Proxy Link #2</a>
+        <a href="https://ixl.learnmath.cfd">Squall Proxy Link #3</a>
+        <a href="https://best.learnmath.cfd">Squall Proxy Link #4</a>
+        <a href="https://iready.learnmath.cfd">Squall Proxy Link #5</a>
+        <a href="https://learn.learnmath.cfd/">Squall Proxy Link #6</a>
+        <a href="https://sites.google.com/view/itsbig/home">KamZone Arcade (Google Site)</a>
+        <a href="https://new-sandbox-program-20-18034129.codehs.me/index.html">KamZone Arcade link #1</a>
+        <a href="https://new-sandbox-program-19-18034111.codehs.me/index.html">KamZone Arcade link #2</a>
+        <a href="https://pub-ac397c96ae2647d4a45221e91f4ce5dd.r2.dev/kzWLsjRZDQ.html">KamZone Arcade link #3</a>
+        <a href="https://18035447-s.codehs.io/index.html">KamZone Arcade link #4</a>
+        <a href="https://sites.google.com/view/gdevs-hangout">Galaxydevs's Hangout</a>
+      </div>
+
+      <!-- Games Category -->
+      <div class="category" data-category="games">
+        <h2>Games</h2>
+        <!-- added 01/01/26 -->
+        <a href="Bad Parenting 1.html">Bad Parenting 1</a>
+        <a href="Baldi's Basics Plus.html">Baldi's Basics Plus</a>
+        <a href="Bendy and the Ink Machine.html">Bendy and the Ink Machine</a>
+        <a href="Buckshot Roulette.html">Buckshot Roulette</a>
+        <a href="Celeste.html">Celeste</a>
+        <a href="Cuphead.html">Cuphead</a>
+        <a href="Five Nights at Freddy's_ Pizza Simulator.html">Five Nights at Freddy's Pizza Simulator</a>
+        <a href="Five Nights at Freddy's_ Sister Location.html">Five Nights at Freddy's Sister Location</a>
+        <a href="Half Life.html">Half Life</a>
+        <a href="Hollow Knight.html">Hollow Knight</a>
+        <a href="Hotline Miami.html">Hotline Miami</a>
+        <a href="Jelly Drift.html">Jelly Drift</a>
+        <a href="Karlson.html">Karlson</a>
+        <a href="Kindergarten.html">Kindergarten</a>
+        <a href="Kindergarten 2.html">Kindergarten 2</a>
+        <a href="OMORI.html">OMORI</a>
+        <a href="Oneshot (LEGACY).html">Oneshot (LEGACY)</a>
+        <a href="People Playground.html">People Playground</a>
+        <a href="Pizza Tower.html">Pizza Tower</a>
+        <a href="Quake III Arena.html">Quake III Arena</a>
+        <a href="REPO.html">R.E.P.O</a>
+        <a href="Tattletail.html">Tattletail</a>
+        <a href="Schoolboy Runaway.html">Schoolboy Runaway</a>
+        <a href="Slime Rancher.html">Slime Rancher</a>
+        <a href="Soundboard.html">Soundboard</a>
+        <a href="That's Not My Neighbor.html">That's Not My Neighbor</a>
+        <a href="ULTRAKILL.html">ULTRAKILL</a>
+        <a href="WebFishing.html">WebFishing</a>
+        <a href="Yume Nikki.html">Yume Nikki</a>
+        <a href="1v1LoL.html">1v1.lol</a>
+        <a href="2048.html">2048</a>
+        <a href="2048 Merge Run.html">2048 Merge Run</a>
+        <a href="8 Ball Pool.html">8 Ball Pool</a>
+        <a href="A Bite at Freddy's.html">A Bite at Freddy's</a>
+        <a href="Abandoned.html">Abandoned</a>
+        <a href="Achievement Unlocked.html">Achievement Unlocked</a>
+        <a href="Achievement Unlocked 2.html">Achievement Unlocked 2</a>
+        <a href="Achievement Unlocked 3.html">Achievement Unlocked 3</a>
+        <a href="Adventure Capatalist.html">Adventure Capatalist</a>
+        <a href="Ages of Conflict.html">Ages of Conflict</a>
+        <a href="Angry Birds.html">Angry Birds</a>
+        <a href="Angry Birds Chrome.html">Angry Birds Chrome</a>
+        <a href="Awesome Tanks.html">Awesome Tanks.html</a>
+        <a href="Awesome Tanks 2.html">Awesome Tanks 2</a>
+        <a href="Backrooms.html">Backrooms</a>
+        <a href="Bad Ice Cream.html">Bad Ice Cream</a>
+        <a href="Bad Ice Cream 2.html">Bad Ice Cream 2</a>
+        <a href="Bad Ice Cream 3.html">Bad Ice Cream 3</a>
+        <a href="Basket Random.html">Basket Random</a>
+        <a href="Basketball Stars.html">Basketball Stars</a>
+        <a href="Big Tower Tiny Square.html">Big Tower Tiny Square</a>
+        <a href="Big Tower Tiny Square 2.html">Big Tower Tiny Square 2</a>
+        <a href="BitLife.html">BitLife</a>
+        <a href="BitPlanes.html">BitPlanes</a>
+        <a href="Block Blast.html">Block Blast</a>
+        <a href="BlockPost.html">BlockPost</a>
+        <a href="Bob The Robber 2.html">Bob The Robber 2</a>
+        <a href="Boxing Random.html">Boxing Random</a>
+        <a href="Brawl Guysio.html">Brawl Guys.io</a>
+        <a href="CircloO.html">CircloO</a>
+        <a href="CircloO 2.html">CircloO 2</a>
+        <a href="Cluster Rush.html">Cluster Rush</a>
+        <a href="Cookie Clicker.html">Cookie Clicker</a>
+        <a href="Crazy Cars.html">Crazy Cars</a>
+        <a href="Crossy Road.html">Crossy Road</a>
+        <a href="Cut the Rope.html">Cut the Rope</a>
+        <a href="DOOM.html">Doom</a>
+        <a href="Doom 2.html">Doom 2</a>
+        <a href="Doom 3.html">Doom 3</a>
+        <a href="Drift Boss.html">Drift Boss</a>
+        <a href="Draw Joust.html">Draw Joust</a>
+        <a href="Drift Hunters.html">Drift Hunters</a>
+        <a href="Duck Life.html">Duck Life</a>
+        <a href="Duck Life 2.html">Duck Life 2</a>
+        <a href="Duck Life 3.html">Duck Life 3</a>
+        <a href="Duck Life 4.html">Duck Life 4</a>
+        <a href="Duck Life 5.html">Duck Life 5</a>
+        <a href="Geometry Dash Lite.html">Geometry Dash Lite</a>
+        <a href="Google Feud.html">Google Feud</a>
+        <a href="Jetpack Joyride.html">Jetpack Joyride</a>
+        <a href="Learn to Fly.html">Learn to Fly</a>
+        <a href="Learn to Fly 2.html">Learn to Fly 2</a>
+        <a href="Learn to Fly 3.html">Learn to Fly 3</a>
+        <a href="Learn to Fly Idle.html">Learn to Fly Idle</a>
+        <a href="Line Rider.html">Line Rider</a>
+        <a href="Melon Playground.html">Melon Playground</a>
+        <a href="Moto X3M.html">Moto X3M</a>
+        <a href="OvO.html">OvO</a>
+        <a href="Pixel Gun Survival.html">Pixel Gun Survival</a>
+        <a href="Poly Track.html">Poly Track</a>
+        <a href="Rooftop Snipers.html">Rooftop Snipers</a>
+        <a href="Rooftop Snipers 2.html">Rooftop Snipers 2</a>
+        <a href="Run 1.html">Run</a>
+        <a href="Sandboxels.html">Sandboxels</a>
+        <a href="Sandtris.html">Sandtris</a>
+        <a href="Slope.html">Slope</a>
+        <a href="Slope 2.html">Slope 2</a>
+        <a href="Slowroads.html">Slowroads</a>
+        <a href="Smash Karts.html">Smash Karts</a>
+        <a href="Stone Grass Mowing Simulator.html">Stone Grass Mowing Simulator</a>
+        <a href="Temple Run 2.html">Temple Run 2</a>
+        <a href="The World's Hardest Game.html">The World's Hardest Game</a>
+        <a href="World Box.html">World Box</a>
+        <a href="Crazy Cattle 3D.html">Crazy Cattle 3D</a>
+        <a href="Crazy Chicken 3D.html">Crazy Chicken 3D</a>
+        <a href="Crazy Kitty 3D.html">Crazy Kitty 3D</a>
+        <a href="Fortzone Battle Royale.html">Fortzone Battle Royale</a>
+        <a href="Getting Over It with Bennett Foddy.html">Getting Over It with Bennett Foddy</a>
+        <a href="Google Baseball.html">Google Baseball</a>
+        <a href="Going Balls.html">Going Balls</a>
+        <a href="Gorilla Tag.html">Gorilla Tag</a>
+        <a href="Harvestio.html">Harvest.io</a>
+        <a href="Madalin Stunt Cars 2.html">Madalin Stunt Cars 2</a>
+        <a href="Madalin Stunt Cars 3.html">Madalin Stunt Cars 3</a>
+        <a href="Maze Speedrun.html">Maze Speedrun</a>
+        <a href="Moto X3M 2.html">Moto X3M 2</a>
+        <a href="Moto X3M 3.html">Moto X3M 3</a>
+        <a href="Moto X3M Pool Party.html">Moto X3M Pool Party</a>
+        <a href="Moto X3M Spooky.html">Moto X3M Spooky</a>
+        <a href="Moto X3M Winter.html">Moto X3M Winter</a>
+        <a href="OvO 2.html">OvO 2</a>
+        <a href="OvO 3 Dimensions.html">OvO 3 Dimensions</a>
+        <a href="pingpong.html">Ping Pong</a>
+        <a href="aboutblank.html">HTML About:Blank Launcher</a>
+        <a href="neonrush.html">Neon Rush 3D</a>
+        <a href="gravityshift.html">Gravity Shift</a>
+        <a href="etherealbarrage.html">Ethereal Barrage</a>
+        <a href="realmofechoes.html">Realm of Echoes</a>
+      </div>
+
+      <!-- Websites Category -->
+      <div class="category" data-category="websites">
+        <h2>Websites</h2>
+        <a href="https://helios-browser.vercel.app/?sca_esv=91bd149827a5c7e1&amp;ie=ISO-8859-1&amp;q=duck+the+dick+layer&amp;oq=&amp;aqs=">Helios Browser #1</a>
+        <a href="https://helios-main-4-16277712.codehs.me/">Helios Browser #2</a>
+        <a href="https://secret-14830781.codehs.me/">Helios Browser #3</a>
+        <a href="https://helios-main-1-16003298.codehs.me/">Helios Browser #4</a>
+        <a href="https://helios-main-8-16277735.codehs.me/">Helios Browser #5</a>
+        <a href="https://helios-main-1-17218349.codehs.me/index.html">Helios Browser #6</a>
+        <a href="https://helios-main-2-17218409.codehs.me/index.html">Helios Browser #7</a>
+        <a href="https://helios-main-3-17218419.codehs.me/index.html">Helios Browser #8</a>
+        <a href="https://helios-main-4-17218430.codehs.me/index.html">Helios Browser #9</a>
+        <a href="https://helios-main-5-17218433.codehs.me/index.html">Helios Browser #10</a>
+        <a class="pageb" href="https://math-help-10477068.codehs.me/proxies.html">Math Help</a>
+        <a class="blocked" href="https://falcon-hub-2-14106850.codehs.me/">Falcon Hub</a>
+        <a class="pageb" href="https://web-13738023.codehs.me/">Cool Web Browser</a>
+        <a href="https://new-sandbox-program-8-16195494.codehs.me/">gn-whoknows</a>
+        <a class="pageb" href="https://gamerscorner.codehs.me/">Gamers Corner</a>
+        <a class="pageb" href="https://sigma-drift2-14009523.codehs.me/">Sigma Drift</a>
+        <a class="pageb" href="https://html-6835466.codehs.me/games.html">Max D Games</a>
+        <a class="pageb" href="https://wise-educational-tools-10184503.codehs.me/games.html">Wise Educational tools</a>
+        <a href="https://epicmathgames-11368087.codehs.me/">Epic math games</a>
+        <a class="pageb" href="https://html-2-11096731.codehs.me/">Blox Games</a>
+        <a href="https://s3.amazonaws.com/fernisbest/index.html">Fern #1</a>
+        <a class="pageb" href="https://useful-websites-11384316.codehs.me/fun-games-page.html">Fun Games</a>
+        <a class="pageb" href="https://unlocked-14104483.codehs.me/links.html#">Unblocked Web #1</a>
+        <a class="pageb" href="https://looker-drive-15229361.codehs.me/index.html">Greeni's Unblocked Games (BOOSIE67)</a>
+        <a href="https://talongames-15869241.codehs.me/projects">Talon Games</a>
+        <a class="pageb" href="https://superdupercool.codehs.me/">Otto's Site</a>
+        <a href="https://untitledsite2point02.codehs.me/">Untitled 2.0</a>
+        <a class="pageb" href="https://private-server-v6-maybe-16143815.codehs.me/">Private Server</a>
+        <a href="https://hype-13705391.codehs.me/">Hyper Unblocker</a>
+        <a href="https://gamesite-2-9809323.codehs.me/game.html">Gaming Zone</a>
+        <a class="blocked" href="https://superhardalgebra.codehs.me/">Galactic</a>
+        <a class="blocked" href="https://nexus2-15144648.codehs.me/">Nexus #1</a>
+        <a class="blocked" href="https://nexus-1-16525472.codehs.me/">Nexus #2</a>
+        <a class="blocked" href="https://html-2-16716466.codehs.me/">Nexus #3</a>
+        <a href="https://nexusos-15319152.codehs.me/">TalonOS</a>
+        <a href="https://eliteforever-15439918.codehs.me/index.html">Elite Games</a>
+        <a class="blocked" href="https://green-juce-15899531.codehs.me/">Green Juce</a>
+        <a class="pageb" href="https://funny-cheese-toaster-16543182.codehs.me/">toaster</a>
+        <a class="pageb" href="https://story-network-math-16177875.codehs.me/">Story Network</a>
+        <a href="https://76776-16256340.codehs.me/">Classlink</a>
+        <a href="https://yn-dayton-16219146.codehs.me/">YN-dayton</a>
+        <a href="https://html-14358861.codehs.me/Games/gameindex.html">Unknown</a>
+        <a href="https://html-14358861.codehs.me/index.html">Unknown #2</a>
+        <a class="pageb" href="https://jacobpediacodehsme-11898672.codehs.me/Jacobpedia-games-unblocker.html">Jacobpedia Games unblocker</a>
+        <a class="pageb" href="https://new-sandbox-program-6-6497977.codehs.me/">Login</a>
+        <a class="pageb" href="https://valuabletime-8462876.codehs.me/edutool.html">Google Classroom</a>
+        <a href="https://quiz-math-10.us/">Quiz Math 10</a>
+        <a href="https://www.toplocaltours.com/">Web #1</a>
+        <a href="https://www.candofinance.com/">Web #2</a>
+        <a href="https://smslearning.codehs.me/">Smash karts</a>
+        <a href="https://oregontrail.ws/games/the-oregon-trail-deluxe/play/">Oregon Trail Game</a>
+        <a href="https://warehouse.galaxydve.com/content/5078462/bin/index.html">Subway Surfers</a>
+        <a href="https://s3-eu-west-1.amazonaws.com/apps.playcanvas.com/xMpnwMbu/index.html">Zebawl</a>
+        <a href="https://s3-eu-west-1.amazonaws.com/apps.playcanvas.com/aOZ5lcoo/index.html">Orbital survival</a>
+        <a href="https://www.byronknoll.com/earth.html">Squishy Earth</a>
+        <a class="pageb" href="https://3d-shooter-15153456.com">Fire 3D Shooter</a>
+        <a href="https://mhsdevildogs-12321908.codehs.me/">Error</a>
+        <a href="https://star-13979722.codehs.me/">Xer Unblocked hub</a>
+        <a href="https://new-sandbox-program-11-14372996.codehs.me/index.html">Tiny Fishing</a>
+        <a href="https://playspent.org/">Play Spent</a>
+        <a href="https://eshaanis-16824004.codehs.me/">Srihan Forehead Massive</a>
+        <a href="https://bored-of-class-16692634.codehs.me/">Bored Of Class</a>
+        <a href="https://phanis-cool-house-16638329.codehs.me/">Phani's Cool House</a>
+        <a href="https://rizzabh-games-16509919.codehs.me/">Skadoosh's Hub</a>
+        <a href="https://www.echalk.co.uk/amusements/Games/games.html">eChalk</a>
+        <a href="https://unblocked-websites-main-17218379.codehs.me/index.html">Unblocked Websites</a>
+        <a href="https://eclipzeunbgs.codehs.me">gn-math #1</a>
+        <a href="https://cool-2-15870625.codehs.me/">gn-math #2</a>
+        <a href="https://gn-mathgithubio-main-17215986.codehs.me/index.html">gn-math #3</a>
+        <a href="https://gn-mathgithubio-main-1-17216084.codehs.me/index.html">gn-math #4</a>
+        <a href="https://gn-mathgithubio-main-2-17218440.codehs.me/index.html">gn-math #5</a>
+        <a href="https://gn-mathgithubio-main-3-17236945.codehs.me/index.html">gn-math #6</a>
+        <a href="https://gn-mathgithubio-main-4-17236964.codehs.me/index.html">gn-math #7</a>
+        <a href="https://gn-mathgithubio-main-5-17236997.codehs.me/index.html">gn-math #8</a>
+        <a href="https://gn-mathgithubio-main-6-17237020.codehs.me/index.html">gn-math #9</a>
+        <a href="https://gn-mathgithubio-main-7-17237044.codehs.me/index.html">gn-math #10</a>
+        <a href="https://new-sandbox-program-82-17205112.codehs.me/index.html">Encoder/Decoder</a>
+        <a href="https://new-sandbox-program-83-17227451.codehs.me/index.html">Data URL Converter</a>
+        <a href="https://dogeub-sooty.vercel.app/">Doge</a>
+        <a href="https://course.how.laurengillett.com/">Utopia #1</a>
+        <a href="https://study.info.scallex.net/">Utopia #2</a>
+        <a href="https://yuru.haifu.ipv64.net/">DayDream X</a>
+        <a href="https://stateexams.statetestingstudies.com/">Jordan's Math Work</a>
+        <a href="https://hideout-now.lovable.app/">Hideout</a>
+        <a href="https://tnx.0x0a.ru/">Lunar</a>
+        <a href="https://galaxyv6.freetls.fastly.net/">galaxy</a>
+        <a href="https://horizon-wearesoback.my.canva.site/hub">horizon hub</a>
+        <a href="https://instructure.com.bizzbooks.co.za/">Endis #1</a>
+        <a href="https://lesson-plans2.vapor.my.cdn.cloudflare.net">Vapor #1</a>
+        <a href="https://lesson-plans3.vapor.my.cdn.cloudflare.net">Vapor #2</a>
+        <a href="https://lesson-plans4.vapor.my.cdn.cloudflare.net">Vapor #2</a>
+        <a href="https://learns-the-ways-of-aryan.netlify.app/">TR OS</a>
+        <a href="https://nike.global.ssl.fastly.net/">NettleWeb #1</a>
+        <a href="https://nettleweb.freetls.fastly.net/">NettleWeb #2</a>
+        <a href="https://nike.freetls.fastly.net">NettleWeb #3</a>
+        <a href="https://edu.freetls.fastly.net/">Duck #1</a>
+        <a href="https://duck-math.global.ssl.fastly.net">Duck #2</a>
+        <a href="https://classslink.comsjfjdj.taskavonad.com/">Void #1</a>
+        <a href="https://voidnetwork.seminaire-school.v6.rocks/">Void #2</a>
+        <a href="https://vault.global.ssl.fastly.net/home/">Vault</a>
+        <a href="https://aj.freetls.fastly.net/">Endis #2</a>
+        <a href="https://vortexos.net.cdn.cloudflare.net/login">Vortex #1</a>
+        <a href="https://vtx.chat.cdn.cloudflare.net/">Vortex #2</a>
+        <a href="https://vtx-cdn.edu-cdn.workers.dev/">Vortex #3</a>
+        <a href="https://fern.global.ssl.fastly.net/">Fern #2</a>
+        <a href="https://fern.freetls.fastly.net/">Fern #3</a>
+        <a href="https://2i4b3tzs.webauth.win.cdn.cloudflare.net/">Endis #3</a>
+        <a href="https://2cool.ajh.academy.cdn.cloudflare.net/">Endis #4</a>
+        <a href="https://045wwgoi.webauth.win.cdn.cloudflare.net/">Endis #5</a>
+        <a href="https://apstats.eminescusm.ro/">Selenite</a>
+        <a href="https://media.kpcompass.com/embeds/c56b1f1e15fe667c724ca6c9c21bdd904b8ccc478395e126f140c4f1e2eedb63.html">Minecraft 1.8</a>
+        <a href="https://objectstorage.us-ashburn-1.oraclecloud.com/n/idzgyfi7awwr/b/bucket-20231001-1518-rb1.0/o/index.html">Retro Bowl</a>
+        <a href="https://games.newstargeted.com/FullScreenMario/">Super Mario Bros</a>
+        <a href="https://new.express.adobe.com/webpage/7pKXYnkZbfSaO">Mars Unblocked Games</a>
+        <a href="https://teks.mathgames.com/arcade">Math Games</a>
+        <a href="https://altar.azureedge.net/">Air Mash</a>
+        <a href="https://www.nddb.coop/ccnddb/games/Hexagon%20Twist/">Hextris</a>
+        <a href="https://research.google.com/semantris/">Semantris</a>
+        <a href="https://ehmorris.com/lander/">Lander</a>
+        <a href="https://script.google.com/macros/s/AKfycbwAoTmRTzE6ydvLBsbUcwDvlzS36xbr263_ttMmz8pBgmf0ih3RHJNeYFe3-evGMeMF/exec">Stickman Fighting Game</a>
+        <a href="https://www.photopea.com/games/">Games from creators of Photopea</a>
+        <a href="https://s3-eu-west-1.amazonaws.com/apps.playcanvas.com/R2axJfsc/index.html">Swooop</a>
+        <a href="https://s3-eu-west-1.amazonaws.com/apps.playcanvas.com/LDm4dGNm/index.html">Dungeon Fury</a>
+        <a href="https://multiplayer.golf/">multiplayer golf</a>
+        <a href="https://s3-eu-west-1.amazonaws.com/apps.playcanvas.com/HEoGi1Mb/index.html">Marbleous</a>
+        <a href="https://s3-eu-west-1.amazonaws.com/apps.playcanvas.com/TAhlQLDa/index.html">Flappy Bird</a>
+        <a href="https://therace.montblancexplorer.com/en-nl">Montblanc Explorer Platinum</a>
+        <a href="https://geography-test-20.live/#google_vignette">geography-test-20.live</a>
+        <a href="https://script.google.com/macros/s/AKfycbwK_YDMKEccZyVOz_fpe66G4Je4VyFPdT10OdaKpM699Utzbq41n2m6OXqAzpX0oqrLTA/exec">Random Fake grow a Garden game</a>
+        <a href="https://script.google.com/macros/s/AKfycbxQuqMuGYqOJSyYwUL5vYn1E3xCTjM7DAQZnhnKyYVmhH_2mNQS7INnwJkwr7l7T9GC/exec">Temu Smashkarts</a>
+        <a href="https://a6936-19424025.cluster7.canvas-user-content.com/courses/6936~1014013/files/6936~19424025/course%20files/cookie%20clicker/index.html?context_id=6936~1014013&context_type=CourseDownload=1&id=69360000019424025&inline=1">Cookie Click</a>
+        <a href="https://6nilllqpgkm6o.h5games.usercontent.goog/v/7d3689i7s5gfo/">Tiletopia</a>
+        <a href="https://atom-clicker.ayfri.com/">Atom Clicker</a>
+        <a href="https://3411367406589369055.playables.usercontent.goog/v/assets/index.html">Angry birds</a>
+        <a href="https://www.3dtuning.com/en-US/">3D Tuning</a>
+        <a href="http://ez-ub.anjumanallana.in/">Euphoria #1</a>
+        <a href="http://gov.eminescusm.ro/">Euphoria #2</a>
+        <a class="pageb" href="https://securly.com.mtomtech.co.kr/">Study.com (Roblox)</a>
+        <a class="pageb" href="https://rblx-7918337.codehs.me/">Roblox</a>
+      </div>
+      <div class="category" data-category="medievalchronicleslinks">
+        <h2>Links By Medieval Chronicles</h2>
+        <a class="discord" href="https://discord.gg/sfkPgsE2Fb">Medieval Chronicles' Discord</a>
+        <a href="https://docs.google.com/document/d/1jl3FJtYW4jrLHuhoh9lRbpVeY2Vsd07pyh-JqNcgIAg/edit?tab=t.0">Medieval Chronicles' Google Doc</a>
+        <a href="https://www.tiktok.com/@historicalbutler">Medieval Chronicles' Tiktok</a>
+        <a href="https://hi.raisingpro.com">Imp Games</a>
+        <a href="https://hi1.raisingpro.com">Imp Games</a>
+        <a href="https://hi2.raisingpro.com">Imp Games</a>
+        <a href="https://hi3.raisingpro.com">Imp Games</a>
+        <a href="https://hi4.raisingpro.com">Imp Games</a>
+        <a href="https://sir.raisingpro.com">Imp Games</a>
+        <a href="https://sir1.raisingpro.com">Imp Games</a>
+        <a href="https://sir2.raisingpro.com">Imp Games</a>
+        <a href="https://sir3.raisingpro.com">Imp Games</a>
+        <a href="https://sir4.raisingpro.com">Imp Games</a>
+        <a href="https://mouse.shitteacher.com">Imp Games</a>
+        <a href="https://mouse1.shitteacher.com">Imp Games</a>
+        <a href="https://mouse2.shitteacher.com">Imp Games</a>
+        <a href="https://mouse3.shitteacher.com">Imp Games</a>
+        <a href="https://mouse4.shitteacher.com">Imp Games</a>
+        <a href="https://worldy.shitteacher.com">Imp Games</a>
+        <a href="https://worldy1.shitteacher.com">Imp Games</a>
+        <a href="https://worldy2.shitteacher.com">Imp Games</a>
+        <a href="https://worldy3.shitteacher.com">Imp Games</a>
+        <a href="https://worldy4.shitteacher.com">Imp Games</a>
+        <a href="https://water.hjshop.net">Imp Games</a>
+        <a href="https://water1.hjshop.net">Imp Games</a>
+        <a href="https://water2.hjshop.net">Imp Games</a>
+        <a href="https://water3.hjshop.net">Imp Games</a>
+        <a href="https://water4.hjshop.net">Imp Games</a>
+        <a href="http://d4kiiihr.Ploteando.com">Infamous</a>
+        <a href="http://aq6ndb89.Ploteando.com">Infamous</a>
+        <a href="http://5ztbtxdd.Ploteando.com">Infamous</a>
+        <a href="http://stsx78b6.Ploteando.com">Infamous</a>
+        <a href="http://ngjk9xti.Ploteando.com">Infamous</a>
+        <a href="http://y4ltzuyc.ploteando.com">Infamous</a>
+        <a href="http://uprnjujv.ploteando.com">Infamous</a>
+        <a href="http://aj45xgoo.ploteando.com">Infamous</a>
+        <a href="http://8w1cbpsu.ploteando.com">Infamous</a>
+        <a href="http://h1p848o8.acgcotton.com">Infamous</a>
+        <a href="http://li6kdarf.acgcotton.com">Infamous</a>
+        <a href="http://8v4rlxnn.acgcotton.com">Infamous</a>
+        <a href="http://bjto3f1l.acgcotton.com">Infamous</a>
+        <a href="http://q7zdgi1i.acgcotton.com">Infamous</a>
+        <a href="https://edu.waterloomath.com/">Truffled</a>
+        <a href="http://info.stoke-park.co.uk/">Truffled</a>
+        <a href="https://newcovumc.org/">Quasar</a>
+        <a href="https://education.4e4a.org/">ROSIN</a>
+        <a href="https://canvasbackpackstore.com/">Fern</a>
+        <a href="https://mrge.global.ssl.fastly.net">4simpleproblems</a>
+        <a href="https://mr-ge.global.ssl.fastly.net">Neo</a>
+        <a href="https://mr-ge-laoshi.global.ssl.fastly.net">Z-Kit</a>
+        <a href="https://mrge-laoshi.global.ssl.fastly.net">Butter Dog Games</a>
+        <a href="https://mister-ge.global.ssl.fastly.net">Medieval Chronicles Link</a>
+        <a href="https://Misterge.global.ssl.fastly.net">Medieval Chronicles Link</a>
+        <a href="https://Mister-ge-Lao-shi.global.ssl.fastly.net">Medieval Chronicles Link</a>
+        <a href="https://Mister-gelao-shi.global.ssl.fastly.net">Medieval Chronicles Link</a>
+        <a href="https://Mister-gelaoshi.global.ssl.fastly.net">Medieval Chronicles Link</a>
+        <a href="https://MisterGe-laoshi.global.ssl.fastly.net">Medieval Chronicles Link</a>
+        <a href="https://Mistergelao-shi.global.ssl.fastly.net">Medieval Chronicles Link</a>
+        <a href="https://Mr-gelaoshi.global.ssl.fastly.net">Medieval Chronicles Link</a>
+        <a href="https://mrgelaoshi.global.ssl.fastly.net">Medieval Chronicles Link</a>
+        <a href="https://mrgelao-shi.global.ssl.fastly.net">Medieval Chronicles Link</a>
+        <a href="https://mr-gelao-shi.global.ssl.fastly.net">Medieval Chronicles Link</a>
+        <a href="https://Mr-Ge-Is-So-COOL.global.ssl.fastly.net">Medieval Chronicles Link</a>
+        <a href="https://MrGeIsSoCool.global.ssl.fastly.net">Medieval Chronicles Link</a>
+        <a href="https://We-Love-Mr-Ge.global.ssl.fastly.net">Medieval Chronicles Link</a>
+        <a href="https://WeLoveMrGe.global.ssl.fastly.net">Medieval Chronicles Link</a>
+        <a href="https://Mr-Ge-Tuff.global.ssl.fastly.net">Medieval Chronicles Link</a>
+        <a href="https://play1.coolmathgames.eu.org.cdn.cloudflare.net/">Medieval Chronicles Link</a>
+        <a href="https://info.videnom.com/">Medieval Chronicles Link</a>
+        <a href="https://moneynow.cc/">Medieval Chronicles Link</a>
+        <a href="https://info.quiz-me.org/">Medieval Chronicles Link</a>
+        <a href="https://crypto-college.cc/">Medieval Chronicles Link</a>
+        <a href="https://sciencenews.cc/">Medieval Chronicles Link</a>
+        <a href="https://homeworkhelp.cc/">Medieval Chronicles Link</a>
+        <a href="https://businessschool.cc/">Medieval Chronicles Link</a>
+        <a href="https://fulcrumtheatreinc.com/">Medieval Chronicles Link</a>
+        <a href="https://bigmoney.cc/">Medieval Chronicles Link</a>
+        <a href="https://velara.turbo-education.com/">Medieval Chronicles Link</a>
+        <a href="https://classroom-22826.kxcdn.com/">Medieval Chronicles Link</a>
+        <a href="https://contentkeeperplzspeed.turbo-education.com/">Medieval Chronicles Link</a>
+        <a href="https://veryhardenglishproblems.weebly.com/">Medieval Chronicles Link</a>
+        <a href="https://overcloaked.okay.lat/">Medieval Chronicles Link</a>
+        <a href="https://clever.com.hal.se/">Medieval Chronicles Link</a>
+        <a href="https://fire-procedures.eminescusm.ro/">Medieval Chronicles Link</a>
+        <a href="https://authors.odoobooks.com/">Medieval Chronicles Link</a>
+        <a href="https://key-98476.firebaseapp.com/">Medieval Chronicles Link</a>
+        <a href="http://welearn.fin-tech.com/">Medieval Chronicles Link</a>
+        <a href="https://daydreaming.is-a.software.cdn.cloudflare.ne">Medieval Chronicles Link</a>
+        <a href="https://unpkg.com/valoq-math-work@1.0.17/index.html">Medieval Chronicles Link</a>
+        <a href="https://r4yne-z-kit-67.suwal.com.np/9222dfb2e504537">Medieval Chronicles Link</a>
+        <a href="https://khan-assets.b-cdn.net/">Medieval Chronicles Link</a>
+        <a href="https://housing.bentnailfarms.com/web/">Medieval Chronicles Link</a>
+        <a href="https://d9by6xfdi9c2r.cloudfront.net/web/">Medieval Chronicles Link</a>
+        <a href="https://jimscience9912.firebaseapp.com/">Medieval Chronicles Link</a>
+        <a href="https://3lbqa4f8nx.litesa.com/">Medieval Chronicles Link</a>
+        <a href="https://6qpi3vpu.litesa.com/">Medieval Chronicles Link</a>
+        <a href="https://ar8u9trec.litesa.com/">Medieval Chronicles Link</a>
+        <a href="https://bk6z52hc6e.litesa.com/">Medieval Chronicles Link</a>
+        <a href="https://lksjvvjkzu.litesa.com/">Medieval Chronicles Link</a>
+        <a href="https://4nq7u2pe.liceolastarria.cl/">Medieval Chronicles Link</a>
+        <a href="https://9f2kqa7m.liceolastarria.cl/">Medieval Chronicles Link</a>
+        <a href="https://b8r3xvta.liceolastarria.cl/">Medieval Chronicles Link</a>
+        <a href="https://k3f9a8rx.liceolastarria.cl/">Medieval Chronicles Link</a>
+        <a href="https://u2m7q9b4.liceolastarria.cl/">Medieval Chronicles Link</a>
+        <a href="https://6q9m2b7f.liceolastarria.cl/">Medieval Chronicles Link</a>
+        <a href="https://8r4u9pqa.liceolastarria.cl/">Medieval Chronicles Link</a>
+        <a href="https://a9x3u7r4.liceolastarria.cl/">Medieval Chronicles Link</a>
+        <a href="https://m2f7k9b3.liceolastarria.cl/">Medieval Chronicles Link</a>
+        <a href="https://q7a9m3x2.liceolastarria.cl/">Medieval Chronicles Link</a>
+        <a href="https://infamous-scram-test.firebaseapp.com/">Medieval Chronicles Link</a>
+        <a href="https://sciencehistoryovertime.firebaseapp.com/">Medieval Chronicles Link</a>
+        <a href="https://jimlovesyou.cencopro.cl/">Medieval Chronicles Link</a>
+        <a href="https://jimhatesyou.cencopro.cl/">Medieval Chronicles Link</a>
+        <a href="https://jimgoonstoyou.cencopro.cl/">Medieval Chronicles Link</a>
+        <a href="https://jimcrushesonyou.cencopro.cl/">Medieval Chronicles Link</a>
+        <a href="https://canceroutbreaks.screenclip.net/">Medieval Chronicles Link</a>
+        <a href="https://coronaoutbreaks.screenclip.net/">Medieval Chronicles Link</a>
+        <a href="https://fluoutbreaks.screenclip.net/">Medieval Chronicles Link</a>
+        <a href="https://recentviruses.screenclip.net/">Medieval Chronicles Link</a>
+        <a href="https://prisonoutbreaks.screenclip.net/">Medieval Chronicles Link</a>
+        <a href="https://famous.screenclip.net/">Medieval Chronicles Link</a>
+        <a href="https://famousin.screenclip.net/">Medieval Chronicles Link</a>
+        <a href="https://suomafni.screenclip.net/">Medieval Chronicles Link</a>
+        <a href="https://inmousfa.screenclip.net/">Medieval Chronicles Link</a>
+        <a href="https://ot75fwr.screenclip.net/">Medieval Chronicles Link</a>
+        <a href="https://dqqb1hl.screenclip.net/">Medieval Chronicles Link</a>
+        <a href="https://xmyqaas.screenclip.net/">Medieval Chronicles Link</a>
+        <a href="https://xli7uh9.screenclip.net/">Medieval Chronicles Link</a>
+        <a href="https://39hqpg3g8h.autonomousresponse.co">Medieval Chronicles Link</a>
+        <a href="https://b3jm69e9x5.autonomousresponse.co">Medieval Chronicles Link</a>
+        <a href="https://qckdqhvnsa.autonomousresponse.co">Medieval Chronicles Link</a>
+        <a href="https://qiwlimqe2q.autonomousresponse.co">Medieval Chronicles Link</a>
+        <a href="https://tr0f6s47jj.autonomousresponse.co">Medieval Chronicles Link</a>
+        <a href="https://jimscat.firebaseapp.com/">Medieval Chronicles Link</a>
+        <a href="https://famousin.infotechnology.com/">Medieval Chronicles Link</a>
+        <a href="https://about.hotelconsuladoinn.com/">Medieval Chronicles Link</a>
+        <a href="https://buy.hotelconsuladoinn.com/">Medieval Chronicles Link</a>
+        <a href="https://locations.hotelconsuladoinn.com/">Medieval Chronicles Link</a>
+        <a href="https://pricing.hotelconsuladoinn.com/">Medieval Chronicles Link</a>
+        <a href="https://rent.hotelconsuladoinn.com/">Medieval Chronicles Link</a>
+        <a href="https://businessclass.hotelconsuladoinn.">Medieval Chronicles Link</a>
+        <a href="https://firstclass.hotelconsuladoinn.com">Medieval Chronicles Link</a>
+        <a href="https://freeclass.hotelconsuladoinn.com/">Medieval Chronicles Link</a>
+        <a href="https://secondclass.hotelconsuladoinn.co">Medieval Chronicles Link</a>
+        <a href="https://thirdclass.hotelconsuladoinn.com">Medieval Chronicles Link</a>
+        <a href="https://pickadrink.hotelconsuladoinn.com">Medieval Chronicles Link</a>
+        <a href="https://pickaroom.hotelconsuladoinn.com/">Medieval Chronicles Link</a>
+        <a href="https://pickasnack.hotelconsuladoinn.com">Medieval Chronicles Link</a>
+        <a href="https://pickyourbeds.hotelconsuladoinn.c">Medieval Chronicles Link</a>
+        <a href="https://pickyourfood.hotelconsuladoinn.c">Medieval Chronicles Link</a>
+        <a href="https://average.hotelconsuladoinn.com/">Medieval Chronicles Link</a>
+        <a href="https://homeless.hotelconsuladoinn.com/">Medieval Chronicles Link</a>
+        <a href="https://orphan.hotelconsuladoinn.com/">Medieval Chronicles Link</a>
+        <a href="https://poor.hotelconsuladoinn.com/">Medieval Chronicles Link</a>
+        <a href="https://premium.hotelconsuladoinn.com/">Medieval Chronicles Link</a>
+        <a href="https://mycollorblueandmyneckisred.7hub.ro/">Medieval Chronicles Link</a>
+        <a href="https://splash.nahidontneed.help/">Medieval Chronicles Link</a>
+        <a href="https://splash.rhw.one/">Medieval Chronicles Link</a>
+        <a href="https://splash.best/">Medieval Chronicles Link</a>
+        <a href="https://splash.goadeddev.dpdns.org/">Medieval Chronicles Link</a>
+        <a href="https://94.16.31.161.nip.io/">Medieval Chronicles Link</a>
+        <a href="https://apple.94.16.31.161.nip.io/">Medieval Chronicles Link</a>
+        <a href="https://splash.dax-srl.com/">Medieval Chronicles Link</a>
+        <a href="https://splash.nahidontneed.help/">Medieval Chronicles Link</a>
+        <a href="https://splash-nik-o-lai-education.infotechnology.com">Medieval Chronicles Link</a>
+        <a href="https://www.vekkbqvc.94.16.31.161.nip.io">Medieval Chronicles Link</a>
+        <a href="https://splash-chris-education.infotechnology.com">Medieval Chronicles Link</a>
+        <a href="https://www.wyywsucr.94.16.31.161.nip.io">Medieval Chronicles Link</a>
+        <a href="https://splash.goadeddev.dpdns.org">Medieval Chronicles Link</a>
+        <a href="https://www.xxodpkzj.94.16.31.161.nip.io">Medieval Chronicles Link</a>
+        <a href="https://splash-luke-education.infotechnology.com">Medieval Chronicles Link</a>
+        <a href="https://splash.dax-srl.com">Medieval Chronicles Link</a>
+        <a href="https://splash-sebster-education.infotechnology.com">Medieval Chronicles Link</a>
+        <a href="https://vekkbqvc.94.16.31.161.nip.io">Medieval Chronicles Link</a>
+        <a href="https://splash-dommy-education.infotechnology.com">Medieval Chronicles Link</a>
+        <a href="https://eat.excel.help4bali.org">Medieval Chronicles Link</a>
+        <a href="https://scholarships.snwy.dev">Medieval Chronicles Link</a>
+        <a href="https://wyywsucr.94.16.31.161.nip.io">Medieval Chronicles Link</a>
+        <a href="https://xxodpkzj.94.16.31.161.nip.io">Medieval Chronicles Link</a>
+        <a href="https://bpqdyrlp.94.16.31.161.nip.io">Medieval Chronicles Link</a>
+        <a href="https://www.v2202507255165361992.bestsrv.de">Medieval Chronicles Link</a>
+        <a href="https://v2202507255165361992.bestsrv.de">Medieval Chronicles Link</a>
+        <a href="https://www.www.aizo.freeddns.org">Medieval Chronicles Link</a>
+        <a href="https://qyuynyah.94.16.31.161.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://calm-nougat-8de690.netlify.app">Medieval Chronicles Link</a>
+        <a href="https://apple.94.16.31.161.nip.io">Medieval Chronicles Link</a>
+        <a href="https://nlommyqh.94.16.31.161.nip.io">Medieval Chronicles Link</a>
+        <a href="https://vqottjnf.94.16.31.161.nip.io">Medieval Chronicles Link</a>
+        <a href="https://floral-surf-738d.xvineplayer16.workers.dev">Medieval Chronicles Link</a>
+        <a href="https://waterdroplets.sevecom.com">Medieval Chronicles Link</a>
+        <a href="https://mycollorblueandmyneckisred.7hub.ro">Medieval Chronicles Link</a>
+        <a href="https://splash-lukey.misem.or.id">Medieval Chronicles Link</a>
+        <a href="https://94.16.31.161.nip.io">Medieval Chronicles Link</a>
+        <a href="https://stienish-schools.eminescusm.ro">Medieval Chronicles Link</a>
+        <a href="https://bdxwthdv.94.16.31.161.nip.io">Medieval Chronicles Link</a>
+        <a href="https://node.ubg.lat">Medieval Chronicles Link</a>
+        <a href="https://panel.ubg.lat">Medieval Chronicles Link</a>
+        <a href="https://duck.classroomcommunity.com">Medieval Chronicles Link</a>
+        <a href="https://duck.classroom-community.com">Medieval Chronicles Link</a>
+        <a href="https://duck.classroom.onl">Medieval Chronicles Link</a>
+        <a href="https://classroom.community">Medieval Chronicles Link</a>
+        <a href="https://gratis.ro">Medieval Chronicles Link</a>
+        <a href="https://duck.classroomgeometry.com">Medieval Chronicles Link</a>
+        <a href="https://gamesforpi.com">Medieval Chronicles Link</a>
+        <a href="https://duck.gameacademy.ro">Medieval Chronicles Link</a>
+        <a href="https://povesti.ro">Medieval Chronicles Link</a>
+        <a href="https://steam.gift">Medieval Chronicles Link</a>
+        <a href="https://edysgames.com">Medieval Chronicles Link</a>
+        <a href="https://creatii.ro">Medieval Chronicles Link</a>
+        <a href="https://friv-2023.com">Medieval Chronicles Link</a>
+        <a href="https://duck.freezenova.ai">Medieval Chronicles Link</a>
+        <a href="https://freezenova.ro">Medieval Chronicles Link</a>
+        <a href="https://gametube.io">Medieval Chronicles Link</a>
+        <a href="https://freegames.onl">Medieval Chronicles Link</a>
+        <a href="https://freemathstudy.com">Medieval Chronicles Link</a>
+        <a href="https://duck.freezenova.chat">Medieval Chronicles Link</a>
+        <a href="https://duck.forcez.io">Medieval Chronicles Link</a>
+        <a href="https://duckmath.games">Medieval Chronicles Link</a>
+        <a href="https://duckmathgames.com">Medieval Chronicles Link</a>
+        <a href="https://duck.adoluxgames.com">Medieval Chronicles Link</a>
+        <a href="https://duck.freezenova.blog">Medieval Chronicles Link</a>
+        <a href="https://jocuripentrucopii.ro">Medieval Chronicles Link</a>
+        <a href="https://lich.com">Medieval Chronicles Link</a>
+        <a href="https://onlinegames.ro">Medieval Chronicles Link</a>
+        <a href="https://duck.scienceunblocked.com">Medieval Chronicles Link</a>
+        <a href="https://freezenova.net">Medieval Chronicles Link</a>
+        <a href="https://duck.revenuegames.com">Medieval Chronicles Link</a>
+        <a href="https://math.study.cadou.ro.cdn.cloudflare.net">Medieval Chronicles Link</a>
+        <a href="https://duck.classroom.community.cdn.cloudflare.net">Medieval Chronicles Link</a>
+        <a href="https://math.classroom.onl.cdn.cloudflare.net">Medieval Chronicles Link</a>
+        <a href="https://mathlessons.b-cdn.net">Medieval Chronicles Link</a>
+        <a href="https://esxszoig.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://oviwxbmu.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://eixkrfwr.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://vzkdyqaf.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://limzndch.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://jglznqjh.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://lmhubcsv.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://mdqrfqua.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://kxagwxom.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://ezpdgtwd.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://bgsziiwn.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://ddgzmdzx.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://azpnncgf.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://pkuafqvn.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://mzrczklf.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://fcnigsex.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://vhjzwawo.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://jnxhghmf.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://vaqjjgbr.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://pbmfzrfw.163.123.192.252.sslip.io">Medieval Chronicles Link</a>
+        <a href="https://nnzzcfbp.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://aurzblwa.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://qaqwppzg.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://apwqqmvk.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://efpcckfj.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://pstcjgtm.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://hnnljzxh.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://fljaefon.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://dsjjkzwc.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://mqmlfbhd.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://drqzxuzj.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://nqjeckvq.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://uwjzmqzd.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://zsbkmive.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://blztpvqi.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://cjcthtjc.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://aopfrmth.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://vurjcemj.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://hduouybx.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://nzimwicr.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://gvxslqhf.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+        <a href="https://nlmjllbj.108.181.32.77.nip.io">Medieval Chronicles Link</a>
+      </div>
+
+      <div id="frame" style="width: 1000px;margin: auto;z-index: 99998;height: auto"><iframe data-aa='2425796' src='//ad.a-ads.com/2425796/?size=468x60' style='border:0; padding:0; width:468px; height:60px; overflow:hidden;display: block;margin: auto'></iframe></div>
+
+      <!-- Eaglercraft Category -->
+      <div class="category" data-category="eaglercraft">
+        <h2>Eaglercraft</h2>
+        <a href="https://new-sandbox-program-43-16834996.codehs.me/index.html">Eaglercraft Indev</a>
+        <a href="https://new-sandbox-program-42-16834902.codehs.me/index.html">Eaglercraft Beta 1.2.6</a>
+        <a href="https://new-sandbox-program-41-16834838.codehs.me/index.html">Eaglercraft Beta 1.3</a>
+        <a href="https://new-sandbox-program-40-16834750.codehs.me/index.html">Eaglercraft Beta 1.7.3</a>
+        <a href="https://new-sandbox-program-38-16834232.codehs.me/index.html">Eaglercraft 1.5.2</a>
+        <a href="https://codehs.com/uploads/d88866b9c3eb083b43dac1a94e54d179">EaglercraftX 1.8</a>
+        <a href="https://codehs.com/uploads/1134b7177ae8e97986729eb34a6ce245">EaglercraftL 1.9.4</a>
+        <a href="https://codehs.com/uploads/37053412754d02c9f1a17740fc92a7c8">EaglercraftX 1.11.2</a>
+        <a href="https://new-sandbox-program-37-16834106.codehs.me/index.html">EaglercraftX 1.12.2</a>
+        <a class="blocked" href="https://new-sandbox-program-39-16834383.codehs.me/index.html">EaglercraftL 1.21.4</a>
+      </div>
+
+      <!-- Our Links Category -->
+      <div class="category" data-category="ourlinks">
+        <h2>Our Links</h2>
+        <a href="https://www.nolangraysongames.com/">Official Portal #1</a>
+        <a href="https://nolansandgraysonsgames.w3spaces.com/index.html">Official Portal #2</a>
+        <a href="https://nolanbetter.github.io/">Official Portal #3</a>
+        <a href="https://nolanbetter-github-io.vercel.app/">Official Portal #4</a>
+        <a href="https://mathisfun-lilac.vercel.app/">Official Portal #5</a>
+        <a href="https://clevercom-iota.vercel.app/">Official Portal #6</a>
+        <a href="https://www.nolansproxy.com/">Official Proxy #1</a>
+        <a href="https://nolansproxygithubio.vercel.app/">Official Proxy #2</a>
+        <a href="https://toolsforlearning.vercel.app/">Official Proxy #3</a>
+      </div>
+
+      <!-- Other Category -->
+      <div class="category" data-category="other">
+        <h2>Other</h2>
+        <a href="https://drive.google.com/file/d/1nidsUc8iekU_k7Myid8rveo9-cUK0g0h/view?usp=drive_open">Rules</a>
+        <a href="https://forms.gle/cJcDpLaSAm1NNVsR8">Report Form</a>
+        <a href="https://drive.google.com/file/d/1tYhAuR_AHav3PDdVl0CYvyrqd-3iEM1j/view">Summary Of The Rules</a>
+        <a href="test.html">Beta Page</a>
+        <a href="https://github.com/NolanBetter/nolanbetter.github.io">Fork On Github</a>
+        <a href="https://www.nolangraysongames.com/">Official Link</a>
+        <a class="discord" href="https://discord.gg/nNCWgRJZ7v">Discord</a>
+        <a href="#" onclick="openSettings(); return false;">Settings</a>
+      </div>
+
+      <!-- Footer -->
+      <p class="footer-text">💥🎮🚀🔥 FAST • SIMPLE • BROWSER-BASED GAMING 🔥🚀🎮💥</p>
+      <div style="text-align: center;">
+        <img src="https://counter1.optistats.ovh/private/freecounterstat.php?c=jfbqmdx33y4ktrzgprl6y6u45yy611p8" border="0" title="free web counter" alt="free web counter"/>
+        <p id="visitor-count">👤 Your Views: <span id="count">Loading...</span></p>
+      </div>
+      <img onclick="window.location.href='https://discord.gg/nNCWgRJZ7v';" class="smallimg" src="https://www.nolangraysongames.com/Logo.png" alt="NGG Logo">
+      <img onclick="window.location.href='https://discord.gg/RvRPeeFgus';" class="smallimg" src="https://www.nolangraysongames.com/SquallLogo.png" alt="Squall Logo">
+      <img onclick="window.location.href='https://discord.gg/rsQNtmttvN';" class="smallimg" src="" alt="𝗴𝗮𝗹𝗮𝘅𝘆𝗱𝗲𝘃𝘀 𝗵𝗮𝗻𝗴𝗼𝘂𝘁 Logo">
+      <img onclick="window.location.href='https://discord.gg/ZRRwJTYMQB';" class="smallimg" src="" alt="Medieval Chronicles Logo">
+      <img onclick="window.location.href='https://discord.gg/QnDsahS3cd';" class="smallimg" src="" alt="KamZone Logo">
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        
+        // Visitor Counter
+        const visitorKey = "totalVisitors";
+        
+        function getVisitorCount() {
+          return parseInt(localStorage.getItem(visitorKey)) || 0;
+        }
+        
+        function incrementVisitorCount() {
+          const sessionKey = "hasVisitedThisSession";
+          
+          // Only increment if this is a new session
+          if (!sessionStorage.getItem(sessionKey)) {
+            let count = getVisitorCount();
+            count++;
+            localStorage.setItem(visitorKey, count);
+            sessionStorage.setItem(sessionKey, "true");
+          }
+          
+          return getVisitorCount();
+        }
+        
+        // Display and update visitor count
+        const count = incrementVisitorCount();
+        const countElement = document.getElementById("count");
+        if (countElement) {
+          countElement.textContent = count.toLocaleString();
+        }
+        
+        // Favorites System - Define at the top
+        const favoritesKey = "favoriteLinks";
+
+        function getFavorites() {
+          return JSON.parse(localStorage.getItem(favoritesKey)) || [];
+        }
+
+        function saveFavorites(favs) {
+          localStorage.setItem(favoritesKey, JSON.stringify(favs));
+        }
+
+        // Inactivity Timer
+        // INACTIVITY TIMER - GLOBAL SCOPE (outside DOMContentLoaded)
+        let inactivityTimer = null;
+        let inactivityLimit = 120000; // default 2 minutes
+        let inactivityEnabled = true;
+        
+        const activityEvents = [
+          "mousemove",
+          "keydown",
+          "scroll",
+          "click",
+          "touchstart"
+        ];
+        
+        function forceRefresh() {
+          window.location.replace(window.location.href);
+        }
+        
+        window.refreshNow = function() {
+          forceRefresh();
+        }
+        
+        function resetInactivityTimer() {
+          if (!inactivityEnabled) return;
+          
+          clearTimeout(inactivityTimer);
+          
+          inactivityTimer = setTimeout(() => {
+            forceRefresh();
+          }, inactivityLimit);
+        }
+        
+        function startInactivityRefresh() {
+          resetInactivityTimer();
+          
+          activityEvents.forEach(event => {
+            document.addEventListener(event, resetInactivityTimer, { passive: true });
+          });
+        }
+        
+        function stopInactivityRefresh() {
+          clearTimeout(inactivityTimer);
+          inactivityTimer = null;
+          
+          activityEvents.forEach(event => {
+            document.removeEventListener(event, resetInactivityTimer);
+          });
+        }
+        
+        window.updateInactivityTimer = function() {
+          const select = document.getElementById("inactivitySelect");
+          if (!select) return;
+          
+          const value = select.value;
+          
+          // Save to localStorage
+          localStorage.setItem("inactivitySetting", value);
+          
+          stopInactivityRefresh();
+          
+          if (value === "off") {
+            inactivityEnabled = false;
+            return;
+          }
+          
+          inactivityEnabled = true;
+          inactivityLimit = Number(value);
+          startInactivityRefresh();
+        }
+        
+        // Load saved inactivity setting
+        function loadInactivitySetting() {
+          const saved = localStorage.getItem("inactivitySetting");
+          const select = document.getElementById("inactivitySelect");
+          
+          if (saved && select) {
+            select.value = saved;
+          }
+          
+          loadInactivitySetting();
+        }
+
+        // Toggle Favorite Function - Define before using
+        window.toggleFavorite = function(link) {
+          const href = link.href;
+          let favs = getFavorites();
+          const container = link.closest('.link-container');
+          const star = container ? container.querySelector('.star') : null;
+
+          if (favs.includes(href)) {
+            favs = favs.filter(f => f !== href);
+          } else {
+            favs.push(href);
+            if (star) {
+              star.classList.add("animate");
+              setTimeout(() => star.classList.remove("animate"), 350);
+            }
+          }
+
+          saveFavorites(favs);
+          renderFavorites();
+          updateStars();
+        };
+
+        function renderFavorites() {
+          const favs = getFavorites();
+          const favContainer = document.getElementById("favorites");
+          const title = document.getElementById("favorites-title");
+
+          if (!favContainer || !title) return;
+          favContainer.innerHTML = "";
+
+          if (favs.length === 0) {
+            title.style.display = "none";
+            return;
+          }
+
+          title.style.display = "block";
+          favs.forEach(href => {
+            const original = document.querySelector(`a[href="${href}"]`);
+            if (original) {
+              const clone = original.cloneNode(true);
+              const wrapper = document.createElement("div");
+              wrapper.className = "link-container";
+              wrapper.appendChild(clone);
+              
+              // Add functional star to favorite
+              const star = document.createElement("span");
+              star.textContent = "★";
+              star.className = "star favorited";
+              star.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                // Find the original link by href to toggle it
+                const originalLink = document.querySelector(`.category a[href="${href}"]`);
+                if (originalLink) {
+                  toggleFavorite(originalLink);
+                }
+              };
+              wrapper.appendChild(star);
+              
+              favContainer.appendChild(wrapper);
+            }
+          });
+        }
+
+        function updateStars() {
+          const favs = getFavorites();
+          document.querySelectorAll(".star").forEach(star => {
+            const container = star.closest('.link-container');
+            if (container) {
+              const link = container.querySelector("a");
+              if (link && favs.includes(link.href)) {
+                star.classList.add("favorited");
+              } else {
+                star.classList.remove("favorited");
+              }
+            }
+          });
+        }
+
+        function addStarsToLinks() {
+          document.querySelectorAll("#content a").forEach(link => {
+            // Skip if already wrapped
+            if (link.parentElement.classList.contains('link-container')) return;
+
+            // Create wrapper
+            const wrapper = document.createElement("div");
+            wrapper.className = "link-container";
+            
+            // Insert wrapper before link
+            link.parentNode.insertBefore(wrapper, link);
+            
+            // Move link into wrapper
+            wrapper.appendChild(link);
+
+            // Create and add star
+            const star = document.createElement("span");
+            star.textContent = "★";
+            star.className = "star";
+            star.onclick = (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              toggleFavorite(link);
+            };
+            wrapper.appendChild(star);
+          });
+          updateStars();
+        }
+
+        // Initialize Features
+        document.querySelectorAll('a').forEach(a => {
+          a.target = '_blank';
+        });
+        
+        addStarsToLinks();
+        renderFavorites();
+        updateStars();
+
+        // Unofficial Warning Check
+        const officialOrigins = [
+          "https://www.nolangraysongames.com",
+          "https://nolansandgraysonsgames.w3spaces.com",
+          "https://nolanbetter.github.io",
+          "https://nolanbetter-github-io.vercel.app",
+          "https://mathisfun-lilac.vercel.app",
+          "https://clevercom-iota.vercel.app",
+          "about:blank"
+        ];
+        
+        if (!officialOrigins.includes(window.location.origin)) {
+          const warning = document.getElementById("unofficial-warning");
+          if (warning) warning.style.display = "flex";
+        }
+
+        window.closeWarning = function() {
+          const warning = document.getElementById("unofficial-warning");
+          if (warning) warning.style.display = "none";
+        };
+
+        // W3Spaces Warning Check
+        if (window.location.origin === "https://nolansandgraysonsgames.w3spaces.com") {
+          const w3warning = document.getElementById("w3spaces-warning");
+          if (w3warning) w3warning.style.display = "flex";
+        }
+
+        window.closeW3SpacesWarning = function() {
+          const w3warning = document.getElementById("w3spaces-warning");
+          if (w3warning) w3warning.style.display = "none";
+        };
+
+        // Settings Modal Functions
+        window.openSettings = function() {
+          const modal = document.getElementById("settings-modal");
+          if (modal) modal.style.display = "flex";
+          
+          // Sync theme selector in modal with current theme
+          const currentTheme = document.body.className;
+          const themeSelectModal = document.getElementById("themeSelectModal");
+          if (themeSelectModal) {
+            themeSelectModal.value = currentTheme;
+          }
+        };
+
+        window.closeSettings = function() {
+          const modal = document.getElementById("settings-modal");
+          if (modal) modal.style.display = "none";
+        };
+
+        window.clearFavorites = function() {
+          if (confirm("Are you sure you want to clear all favorites?")) {
+            localStorage.removeItem(favoritesKey);
+            renderFavorites();
+            updateStars();
+            alert("Favorites cleared!");
+          }
+        };
+
+        window.clearAllData = function() {
+          if (confirm("Are you sure you want to clear ALL data? This will reset favorites, visitor count, theme, and sorting preferences.")) {
+            localStorage.clear();
+            sessionStorage.clear();
+            alert("All data cleared! The page will now reload.");
+            location.reload();
+          }
+        };
+
+        window.openInBlob = function() {
+          const htmlContent = document.documentElement.outerHTML;
+          const blob = new Blob([htmlContent], { type: 'text/html' });
+          const blobUrl = URL.createObjectURL(blob);
+          window.open(blobUrl, '_blank');
+        };
+
+        window.openInAboutBlank = function() {
+          const htmlContent = document.documentElement.outerHTML;
+          const win = window.open('about:blank', '_blank');
+          if (win) {
+            win.document.open();
+            win.document.write(htmlContent);
+            win.document.close();
+          }
+        };
+
+        // Canvas Star Animation
+        const canvas = document.getElementById("bg");
+        if (canvas) {
+          const ctx = canvas.getContext("2d");
+
+          function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+          }
+          window.addEventListener("resize", resize);
+          resize();
+
+          const stars = Array.from({ length: 120 }, () => ({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 1.5 + 0.5,
+            s: Math.random() * 0.3 + 0.1
+          }));
+
+          function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Change star color based on theme
+            const theme = document.body.className;
+            if (theme === 'light') {
+              ctx.fillStyle = "black";
+            } else {
+              ctx.fillStyle = "white";
+            }
+
+            stars.forEach(star => {
+              star.y += star.s;
+              if (star.y > canvas.height) star.y = 0;
+              ctx.beginPath();
+              ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+              ctx.fill();
+            });
+            requestAnimationFrame(animate);
+          }
+          animate();
+        }
+
+        // Search Functionality
+        window.searchLinks = function() {
+          const input = document.getElementById("search");
+          if (!input) return;
+          
+          const value = input.value.toLowerCase();
+          const linkContainers = document.querySelectorAll("#content .link-container");
+          const headers = document.querySelectorAll("#content h2, #content h5, #content h6, #content p");
+          
+          linkContainers.forEach(container => {
+            const link = container.querySelector("a");
+            if (link) {
+              const text = link.textContent.toLowerCase();
+              container.style.display = text.includes(value) ? "inline-block" : "none";
+            }
+          });
+          
+          headers.forEach(h => h.style.display = value ? "none" : "block");
+        };
+
+        // Clear Search
+        window.clearSearch = function() {
+          const search = document.getElementById("search");
+          if (search) {
+            search.value = "";
+            searchLinks();
+            search.focus();
+          }
+        };
+
+        // Escape Key to Clear Search
+        document.addEventListener("keydown", function(e) {
+          if (e.key === "Escape") clearSearch();
+        });
+
+        // Category Filtering
+        window.showCategory = function(category) {
+          const categories = document.querySelectorAll(".category");
+          const favTitle = document.getElementById("favorites-title");
+          const favs = document.getElementById("favorites");
+
+          if (!favTitle || !favs) return;
+          categories.forEach(cat => cat.style.display = "none");
+          favTitle.style.display = "none";
+          favs.style.display = "none";
+
+          if (category === "all") {
+            categories.forEach(cat => cat.style.display = "block");
+            if (favs.children.length > 0) {
+              favTitle.style.display = "block";
+              favs.style.display = "block";
+            }
+          } else if (category === "favorites") {
+            favTitle.style.display = "block";
+            favs.style.display = "block";
+          } else {
+            const cat = document.querySelector(`.category[data-category="${category}"]`);
+            if (cat) cat.style.display = "block";
+          }
+        };
+
+        // Sorting
+        window.sortLinks = function() {
+          const sortSelect = document.getElementById("sort");
+          if (!sortSelect) return;
+
+          const sortType = sortSelect.value;
+          const categories = document.querySelectorAll(".category");
+
+          categories.forEach(category => {
+            const containers = Array.from(category.querySelectorAll(".link-container"));
+
+            containers.sort((a, b) => {
+              const linkA = a.querySelector("a");
+              const linkB = b.querySelector("a");
+              if (!linkA || !linkB) return 0;
+
+              const textA = linkA.textContent.toLowerCase();
+              const textB = linkB.textContent.toLowerCase();
+
+              if (sortType === "az") return textA.localeCompare(textB);
+              if (sortType === "za") return textB.localeCompare(textA);
+
+              if (sortType === "favorites") {
+                const favs = getFavorites();
+                const aFav = favs.includes(linkA.href);
+                const bFav = favs.includes(linkB.href);
+                if (aFav === bFav) return textA.localeCompare(textB);
+                return aFav ? -1 : 1;
+              }
+            });
+
+            containers.forEach(container => {
+              category.appendChild(container);
+            });
+          });
+        };
+
+        window.saveAndSort = function() {
+          const sortSelect = document.getElementById("sort");
+          if (!sortSelect) return;
+          localStorage.setItem("sortOption", sortSelect.value);
+          sortLinks();
+        };
+
+        // Load Saved Sort
+        const savedSort = localStorage.getItem("sortOption");
+        if (savedSort) {
+          const sortSelect = document.getElementById("sort");
+          if (sortSelect) {
+            sortSelect.value = savedSort;
+            sortLinks();
+          }
+        }
+
+        // Theme System
+        window.setTheme = function(theme) {
+          // Remove all theme classes first
+          document.body.classList.remove('default', 'light', 'neon', 'midnight', 'sunset', 'ocean', 'forest');
+          
+          // Add the selected theme class
+          document.body.classList.add(theme);
+          
+          // Save to localStorage
+          localStorage.setItem("theme", theme);
+          
+          // Force update of select element
+          const themeSelect = document.getElementById("themeSelect");
+          if (themeSelect) {
+            themeSelect.value = theme;
+          }
+        };
+
+        // Load Saved Theme
+        const savedTheme = localStorage.getItem("theme") || "default";
+        
+        // Apply theme immediately
+        document.body.classList.remove('default', 'light', 'neon', 'midnight', 'sunset', 'ocean', 'forest');
+        document.body.classList.add(savedTheme);
+        
+        // Update select element
+        const themeSelect = document.getElementById("themeSelect");
+        if (themeSelect) {
+          themeSelect.value = savedTheme;
+        }
+
+      });
+    </script>
+  </body>
+</html>
