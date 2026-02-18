@@ -563,7 +563,6 @@
     <main id="main">
       <!-- HOME PAGE -->
       <div id="page-home" class="page">
-        <!-- Announcement Banner (home page only — edit ANNOUNCEMENT_MESSAGE in the JS to change) -->
         <div id="announcement-banner">
           <span id="announcement-text"></span>
           <span id="banner-close" onclick="closeBanner()">✕</span>
@@ -702,7 +701,18 @@
             <h3>Changelog</h3>
             <div class="cl-item">
               <div class="cl-version">
-                v1.7.0 <span class="cl-badge new">NEW</span>
+                v1.7.1 <span class="cl-badge new">NEW</span>
+              </div>
+              <div class="cl-date">02/18/26</div>
+              <div class="cl-entry">
+                Recently played tracker with timestamps
+              </div>
+              <div class="cl-entry">Bug fixing</div>
+              <div class="cl-entry">1 New game added</div>
+            </div>
+            <div class="cl-item">
+              <div class="cl-version">
+                v1.7.0 <span class="cl-badge new">UPDATE</span>
               </div>
               <div class="cl-date">02/18/26</div>
               <div class="cl-entry">
@@ -715,9 +725,6 @@
               <div class="cl-entry">Filter bar on Games page</div>
               <div class="cl-entry">
                 Announcement banner (configurable in settings)
-              </div>
-              <div class="cl-entry">Right-click context menu on cards</div>
-              <div class="cl-entry">Site-style cards on all link pages</div>
             </div>
             <div class="cl-item">
               <div class="cl-version">
@@ -730,15 +737,6 @@
               <div class="cl-entry">Interactive background effects</div>
               <div class="cl-entry">Game & website card grid view</div>
               <div class="cl-entry">Import / Export data feature</div>
-            </div>
-            <div class="cl-item">
-              <div class="cl-version">
-                v1.5.0 <span class="cl-badge update">UPDATE</span>
-              </div>
-              <div class="cl-date">01/01/26</div>
-              <div class="cl-entry">
-                Added 25+ new games including OMORI, Celeste, Cuphead
-              </div>
             </div>
           </div>
         </div>
@@ -1193,13 +1191,13 @@
       // DATA
       // ============================================================
       const GAMES = [
-      { name:"Bad Parenting 1",href:"Bad Parenting 1.html",icon:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/166.png",tags:["action"] },
-      { name:"Baldi's Basics Plus",href:"Baldi's Basics Plus.html",icon:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/467.png",tags:["horror"] },
-      { name:"Bendy and the Ink Machine",href:"Bendy and the Ink Machine.html",icon:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/215.png",tags:["horror"] },
-      { name:"Buckshot Roulette",href:"Buckshot Roulette.html",icon:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/205.png",tags:["horror"] },
-      { name:"Celeste",href:"Celeste.html",icon:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/623.png",tags:["platformer"] },
-      { name:"Cuphead",href:"Cuphead.html",icon:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/465.png",tags:["action","platformer"] },
-      { name:"Five Nights at Epstein's",href:"Five Nights at Epstein's.html",icon:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/710.png",tags:["horror"] },
+      { name:"Bad Parenting 1",href:"Bad Parenting 1.html",icon:"",tags:["action"] },
+      { name:"Baldi's Basics Plus",href:"Baldi's Basics Plus.html",icon:"",tags:["horror"] },
+      { name:"Bendy and the Ink Machine",href:"Bendy and the Ink Machine.html",icon:"",tags:["horror"] },
+      { name:"Buckshot Roulette",href:"Buckshot Roulette.html",icon:"",tags:["horror"] },
+      { name:"Celeste",href:"Celeste.html",icon:"",tags:["platformer"] },
+      { name:"Cuphead",href:"Cuphead.html",icon:"",tags:["action","platformer"] },
+      { name:"Five Nights at Epstein's",href:"Five Nights at Epstein's.html",icon:"",tags:["horror"] },
       { name:"Five Nights at Freddy's Pizza Simulator",href:"Five Nights at Freddy's_ Pizza Simulator.html",icon:"",tags:["horror"] },
       { name:"Five Nights at Freddy's Sister Location",href:"Five Nights at Freddy's_ Sister Location.html",icon:"",tags:["horror"] },
       { name:"Half Life",href:"Half Life.html",icon:"",tags:["shooter","action"] },
@@ -1621,7 +1619,7 @@
       // ANNOUNCEMENT BANNER — edit the message here in the code
       // ============================================================
       // ↓↓↓ CHANGE THIS LINE TO UPDATE THE ANNOUNCEMENT ↓↓↓
-      const ANNOUNCEMENT_MESSAGE = ' Welcome to NGG v1.7.0 — Check out all the new features!';
+      const ANNOUNCEMENT_MESSAGE = ' Welcome to Nolans And Graysons Games v1.7.1 — I added a fun new game to play on are website and in real life its: Five Nights at Epsteins😶';
       // ↑↑↑ Set to empty string "" to hide the banner entirely ↑↑↑
 
       function initAnnouncement() {
