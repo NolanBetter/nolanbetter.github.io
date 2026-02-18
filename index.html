@@ -2287,7 +2287,7 @@
       // DATA IMPORT / EXPORT
       // ============================================================
       function exportData() {
-      const data={version:'1.7.0',exported:new Date().toISOString(),favorites,ratings,recentlyPlayed,searchHistory,theme:currentTheme,bg:currentBg,inactivity:localStorage.getItem('ngg_inactivity'),interactive:isInteractive,perf:isPerfMode};
+      const data={version:'1.7.1',exported:new Date().toISOString(),favorites,ratings,recentlyPlayed,searchHistory,theme:currentTheme,bg:currentBg,inactivity:localStorage.getItem('ngg_inactivity'),interactive:isInteractive,perf:isPerfMode};
       const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
       const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='ngg-data.json'; a.click();
       showToast(' Data exported!','success');
