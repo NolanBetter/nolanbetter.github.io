@@ -287,12 +287,46 @@ body.perf-mode .bg-overlay { display: none; }
   min-height: 100vh;
 }
 
+#announcement-banner {
+  margin: 12px 24px 0;
+  padding: 10px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 12%, transparent), color-mix(in srgb, var(--accent2) 12%, transparent));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.announcement-text { font-size: 13px; color: var(--text); }
+.announcement-close {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 /* ===== PAGES ===== */
-.page { display: none !important; }
-.page.active { display: block !important; }
+.page {
+  display: none !important;
+  opacity: 0;
+  transform: translateY(8px) scale(0.995);
+}
+.page.active {
+  display: block !important;
+  animation: pageIn 0.35s ease forwards;
+}
 #page-home.active { display: grid !important; }
 #page-proxy.active { display: flex !important; }
 #page-favorites.active { display: block !important; }
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.995); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
 
 /* ===== HOME PAGE ===== */
 #page-home {
@@ -556,6 +590,42 @@ body.perf-mode .bg-overlay { display: none; }
   letter-spacing: 0.5px; margin-top: 6px;
 }
 
+.card-rating {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.rating-star {
+  cursor: pointer;
+  color: var(--text-dim);
+  font-size: 14px;
+  transition: transform 0.2s, color 0.2s;
+}
+.rating-star:hover { transform: scale(1.15); }
+.rating-star.active { color: var(--gold); }
+
+.games-filter-bar {
+  padding: 0 24px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.games-filter-btn {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.games-filter-btn.active {
+  color: var(--bg);
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
 /* ===== WEBSITE CARD ===== */
 .site-card {
   background: var(--surface);
@@ -618,6 +688,15 @@ body.perf-mode .bg-overlay { display: none; }
   overflow: hidden; transition: all 0.25s;
   position: relative;
 }
+.link-thumb {
+  width: 28px;
+  height: 28px;
+  margin-left: 10px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+}
 .link-row:hover {
   border-color: var(--accent);
   background: var(--surface2);
@@ -650,6 +729,21 @@ body.perf-mode .bg-overlay { display: none; }
   border-bottom: 1px solid var(--border);
 }
 #search-results.visible { display: block; }
+.search-history {
+  margin-bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.search-chip {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 11px;
+  cursor: pointer;
+}
 #search-results h4 {
   font-family: 'Rajdhani', sans-serif;
   font-size: 14px; font-weight: 600;
@@ -838,6 +932,29 @@ body.perf-mode .bg-overlay { display: none; }
 }
 .toast.success { border-color: var(--accent2); }
 .toast.error { border-color: var(--danger); }
+
+#context-menu {
+  position: fixed;
+  z-index: 1600;
+  min-width: 170px;
+  display: none;
+  background: rgba(10,10,15,0.98);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+  padding: 6px;
+}
+.context-item {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  border-radius: 6px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.context-item:hover { background: var(--surface2); }
 @keyframes toastIn {
   from { opacity: 0; transform: translateX(20px); }
   to { opacity: 1; transform: translateX(0); }
@@ -929,6 +1046,7 @@ body.perf-mode .bg-overlay { display: none; }
 
 <!-- Toast Container -->
 <div id="toast-container"></div>
+<div id="context-menu"></div>
 
 <!-- NAVBAR -->
 <nav id="navbar">
@@ -967,6 +1085,10 @@ body.perf-mode .bg-overlay { display: none; }
 
 <!-- MAIN CONTENT -->
 <main id="main">
+<div id="announcement-banner">
+  <div class="announcement-text">📢 <strong>Announcement:</strong> New QoL update: ratings, recent plays, search history, and smoother transitions are live on this test page.</div>
+  <button class="announcement-close" onclick="dismissAnnouncement()">×</button>
+</div>
 
 <!-- ===== HOME PAGE ===== -->
 <div id="page-home" class="page">
@@ -990,6 +1112,11 @@ body.perf-mode .bg-overlay { display: none; }
   </div>
 
   <div class="home-center">
+    <div class="home-featured" style="margin-bottom:14px">
+      <h3>🕘 Recently Played</h3>
+      <div class="link-list" id="recently-played-list" style="padding:8px 0 0"></div>
+    </div>
+
     <div class="home-featured">
       <h3>⚡ Quick Access</h3>
       <div class="featured-grid" id="featured-grid">
@@ -1061,6 +1188,12 @@ body.perf-mode .bg-overlay { display: none; }
 <div id="page-games" class="page">
   <div class="section-header">
     <div class="section-title">🎮 Games <span id="games-count"></span></div>
+  </div>
+  <div class="games-filter-bar" id="games-filter-bar">
+    <button class="games-filter-btn active" data-filter="all" onclick="setGameFilter('all')">All</button>
+    <button class="games-filter-btn" data-filter="favorites" onclick="setGameFilter('favorites')">Favorites</button>
+    <button class="games-filter-btn" data-filter="rated" onclick="setGameFilter('rated')">Rated 4★+</button>
+    <button class="games-filter-btn" data-filter="recent" onclick="setGameFilter('recent')">Recently Played</button>
   </div>
   <div class="card-grid" id="games-grid"></div>
   <div class="page-footer"><div class="footer-text">Click a game to play · ⭐ to favorite</div></div>
@@ -1650,6 +1783,10 @@ let isInteractive = localStorage.getItem('ngg_interactive') === 'true';
 let inactivityTimer = null;
 let inactivityLimit = parseInt(localStorage.getItem('ngg_inactivity') || '120000');
 let inactivityEnabled = localStorage.getItem('ngg_inactivity') !== 'off';
+let gameRatings = JSON.parse(localStorage.getItem('ngg_ratings') || '{}');
+let recentlyPlayed = JSON.parse(localStorage.getItem('ngg_recent') || '[]');
+let searchHistory = JSON.parse(localStorage.getItem('ngg_search_history') || '[]');
+let currentGameFilter = localStorage.getItem('ngg_game_filter') || 'all';
 
 // ============================================================
 // INIT
@@ -1662,9 +1799,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initBg(currentBg);
   if (isInteractive) enableInteractive();
   updateVisitorCount();
+  animateHomeStats();
   loadSettings();
   startInactivity();
   checkOfficialSite();
+  initSearchHistory();
+  applyAnnouncementState();
+  initContextMenu();
 });
 
 // ============================================================
@@ -1718,16 +1859,20 @@ function buildAllPages() {
   buildLinkList('medieval-list', MEDIEVAL, true);
   buildLinkList('ourlinks-list', OURLINKS, false);
   buildLinkList('other-list', OTHER, true);
+  renderRecentlyPlayed();
   renderFavorites();
   document.getElementById('games-count').innerHTML = `<span>${GAMES.length}</span>`;
   document.getElementById('websites-count').innerHTML = `<span>${WEBSITES.length}</span>`;
+  setGameFilter(currentGameFilter, false);
 }
 
 function buildGames() {
   const grid = document.getElementById('games-grid');
   grid.innerHTML = '';
-  GAMES.forEach((g, i) => {
+  const filtered = getFilteredGames();
+  filtered.forEach((g, i) => {
     const isFav = favorites.includes('game:' + g.href);
+    const rating = gameRatings[g.href] || 0;
     const card = document.createElement('a');
     card.className = 'game-card';
     card.href = g.href;
@@ -1735,7 +1880,10 @@ function buildGames() {
     card.dataset.id = 'game:' + g.href;
     card.dataset.name = g.name;
     card.dataset.category = 'Games';
+    card.dataset.href = g.href;
+    card.dataset.type = 'game';
     card.style.setProperty('--i', i);
+    card.onclick = () => trackRecentlyPlayed(g);
     card.innerHTML = `
       <div class="card-thumb">
         ${g.img ? `<img src="${g.img}" alt="${g.name}" onerror="this.parentElement.innerHTML='<div class=card-thumb-placeholder>${g.icon}</div>'">` : `<div class="card-thumb-placeholder">${g.icon}</div>`}
@@ -1745,6 +1893,9 @@ function buildGames() {
       <div class="card-info">
         <div class="card-name">${g.name}</div>
         <span class="card-tag">Game</span>
+        <div class="card-rating">
+          ${[1,2,3,4,5].map(star => `<span class="rating-star ${star <= rating ? 'active' : ''}" onclick="setGameRating(event, '${g.href}', ${star}, this)">★</span>`).join('')}
+        </div>
       </div>`;
     grid.appendChild(card);
   });
@@ -1765,6 +1916,8 @@ function buildWebsites() {
     card.dataset.id = 'site:' + w.href;
     card.dataset.name = w.name;
     card.dataset.category = 'Websites';
+    card.dataset.href = w.href;
+    card.dataset.type = 'site';
     card.style.setProperty('--i', i);
     card.innerHTML = `
       <div class="site-preview">
@@ -1790,12 +1943,59 @@ function buildLinkList(containerId, data, hasCls) {
     row.className = 'link-row';
     row.dataset.name = item.name;
     row.dataset.href = item.href;
+    row.dataset.type = 'link';
     const cls = hasCls && item.cls ? item.cls : '';
+    let domain = '';
+    try { domain = new URL(item.href).hostname; } catch (e) { domain = ''; }
+    const faviconUrl = domain ? `https://www.google.com/s2/favicons?domain=${domain}&sz=64` : 'https://nolangraysongames.com/Logo.png';
     row.innerHTML = `
+      <img class="link-thumb" src="${faviconUrl}" alt="${item.name}" onerror="this.src='https://nolangraysongames.com/Logo.png'">
       <a href="${item.href}" target="_blank" class="${cls}">${item.name}</a>
       <span class="link-row-fav ${isFav?'active':''}" onclick="toggleFav(event,'${id}',this)">★</span>`;
     list.appendChild(row);
   });
+}
+
+function getFilteredGames() {
+  if (currentGameFilter === 'favorites') return GAMES.filter(g => favorites.includes('game:' + g.href));
+  if (currentGameFilter === 'rated') return GAMES.filter(g => (gameRatings[g.href] || 0) >= 4);
+  if (currentGameFilter === 'recent') {
+    const recentSet = new Set(recentlyPlayed.map(x => x.href));
+    return GAMES.filter(g => recentSet.has(g.href));
+  }
+  return GAMES;
+}
+
+function setGameFilter(filter, rebuild = true) {
+  currentGameFilter = filter;
+  localStorage.setItem('ngg_game_filter', filter);
+  document.querySelectorAll('.games-filter-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.filter === filter));
+  if (rebuild) buildGames();
+}
+
+function setGameRating(e, href, stars, el) {
+  e.preventDefault();
+  e.stopPropagation();
+  gameRatings[href] = stars;
+  localStorage.setItem('ngg_ratings', JSON.stringify(gameRatings));
+  el.parentElement.querySelectorAll('.rating-star').forEach((s, i) => s.classList.toggle('active', i < stars));
+  showToast(`Rated ${stars}★`, 'success');
+}
+
+function trackRecentlyPlayed(game) {
+  recentlyPlayed = [{ name: game.name, href: game.href }, ...recentlyPlayed.filter(x => x.href !== game.href)].slice(0, 8);
+  localStorage.setItem('ngg_recent', JSON.stringify(recentlyPlayed));
+  renderRecentlyPlayed();
+}
+
+function renderRecentlyPlayed() {
+  const list = document.getElementById('recently-played-list');
+  if (!list) return;
+  if (recentlyPlayed.length === 0) {
+    list.innerHTML = '<div style="color:var(--text-muted);font-size:13px;padding:8px 0">No recently played games yet.</div>';
+    return;
+  }
+  list.innerHTML = recentlyPlayed.map(item => `<div class="link-row"><img class="link-thumb" src="https://nolangraysongames.com/Logo.png" alt="${item.name}"><a href="${item.href}" target="_blank">${item.name}</a></div>`).join('');
 }
 
 // ============================================================
@@ -1814,6 +2014,7 @@ function toggleFav(e, id, starEl) {
     showToast('⭐ Added to favorites!', 'success');
   }
   saveFavorites();
+  buildGames();
   renderFavorites();
 }
 
@@ -1868,6 +2069,7 @@ function removeFav(e, id, el) {
   // Update star in the actual page if visible
   document.querySelectorAll(`[data-id="${id}"] .card-fav, [data-id="${id}"] .site-fav`).forEach(s => s.classList.remove('active'));
   renderFavorites();
+  buildGames();
   showToast('Removed from favorites', '');
 }
 
@@ -1877,6 +2079,7 @@ function clearFavorites() {
   saveFavorites();
   // Clear all stars
   document.querySelectorAll('.card-fav.active, .site-fav.active, .link-row-fav.active').forEach(s => s.classList.remove('active'));
+  buildGames();
   renderFavorites();
   showToast('Favorites cleared', '');
 }
@@ -1887,7 +2090,10 @@ function clearFavorites() {
 function handleSearch(val) {
   const q = val.trim().toLowerCase();
   const sr = document.getElementById('search-results');
-  if (!q) { sr.classList.remove('visible'); return; }
+  if (!q) {
+    renderSearchHistory();
+    return;
+  }
   sr.classList.add('visible');
   const allItems = [
     ...GAMES.map(g => ({ name: g.name, href: g.href, icon: g.icon, cat: 'Games', id: 'game:'+g.href })),
@@ -1902,6 +2108,7 @@ function handleSearch(val) {
   if (results.length === 0) {
     sr.innerHTML += `<div style="color:var(--text-muted);font-size:14px;padding:10px 0">No results found</div>`;
   } else {
+    saveSearchHistory(val);
     results.forEach(r => {
       const div = document.createElement('a');
       div.className = 'sr-item'; div.href = r.href; div.target = '_blank';
@@ -1914,6 +2121,40 @@ function handleSearch(val) {
 function clearSearch() {
   document.getElementById('search').value = '';
   document.getElementById('search-results').classList.remove('visible');
+}
+
+function initSearchHistory() {
+  const searchEl = document.getElementById('search');
+  searchEl.addEventListener('focus', () => {
+    if (!searchEl.value.trim()) renderSearchHistory();
+  });
+}
+
+function saveSearchHistory(query) {
+  const q = query.trim();
+  if (!q) return;
+  searchHistory = [q, ...searchHistory.filter(x => x.toLowerCase() !== q.toLowerCase())].slice(0, 8);
+  localStorage.setItem('ngg_search_history', JSON.stringify(searchHistory));
+}
+
+function renderSearchHistory() {
+  const sr = document.getElementById('search-results');
+  if (!searchHistory.length) {
+    sr.classList.remove('visible');
+    return;
+  }
+  sr.classList.add('visible');
+  sr.innerHTML = '<h4>🕘 Search History</h4><div class="search-history"></div>';
+  const chips = sr.querySelector('.search-history');
+  searchHistory.forEach(item => {
+    chips.innerHTML += `<button class="search-chip" onclick="useSearchHistory('${item.replace(/'/g, "\\'")}')">${item}</button>`;
+  });
+}
+
+function useSearchHistory(query) {
+  const searchEl = document.getElementById('search');
+  searchEl.value = query;
+  handleSearch(query);
 }
 
 // Close search results on outside click
@@ -2325,6 +2566,65 @@ function updateVisitorCount() {
   if (el) el.textContent = count.toLocaleString();
 }
 
+function animateHomeStats() {
+  const counters = [
+    { id: 'stat-games', target: GAMES.length, suffix: '+' },
+    { id: 'stat-sites', target: WEBSITES.length, suffix: '+' },
+    { id: 'stat-views', target: parseInt(localStorage.getItem('ngg_views') || '1'), suffix: '' }
+  ];
+  counters.forEach(({ id, target, suffix }) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const start = performance.now();
+    const duration = 900;
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      const value = Math.floor(target * (1 - Math.pow(1 - t, 3)));
+      el.textContent = `${value.toLocaleString()}${suffix}`;
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+}
+
+function dismissAnnouncement() {
+  const banner = document.getElementById('announcement-banner');
+  if (banner) banner.style.display = 'none';
+  localStorage.setItem('ngg_announcement_dismissed', 'true');
+}
+
+function applyAnnouncementState() {
+  if (localStorage.getItem('ngg_announcement_dismissed') === 'true') {
+    const banner = document.getElementById('announcement-banner');
+    if (banner) banner.style.display = 'none';
+  }
+}
+
+function initContextMenu() {
+  const menu = document.getElementById('context-menu');
+  if (!menu) return;
+  document.addEventListener('contextmenu', (e) => {
+    const card = e.target.closest('.game-card, .site-card, .link-row');
+    if (!card) return;
+    e.preventDefault();
+    const href = card.dataset.href || card.getAttribute('href') || card.querySelector('a')?.href;
+    const safeHref = (href || '').replace(/'/g, "\\'");
+    menu.style.left = `${e.clientX}px`;
+    menu.style.top = `${e.clientY}px`;
+    menu.style.display = 'block';
+    menu.innerHTML = `
+      <button class="context-item" onclick="window.open('${safeHref}','_blank');hideContextMenu()">↗ Open link</button>
+      <button class="context-item" onclick="navigator.clipboard.writeText('${safeHref}');showToast('Link copied','success');hideContextMenu()">📋 Copy link</button>`;
+  });
+  document.addEventListener('click', hideContextMenu);
+  document.addEventListener('scroll', hideContextMenu, { passive: true });
+}
+
+function hideContextMenu() {
+  const menu = document.getElementById('context-menu');
+  if (menu) menu.style.display = 'none';
+}
+
 // ============================================================
 // DATA IMPORT / EXPORT
 // ============================================================
@@ -2333,6 +2633,9 @@ function exportData() {
     version: '1.6.0',
     exported: new Date().toISOString(),
     favorites: favorites,
+    ratings: gameRatings,
+    recent: recentlyPlayed,
+    searchHistory: searchHistory,
     theme: currentTheme,
     bg: currentBg,
     inactivity: localStorage.getItem('ngg_inactivity'),
@@ -2355,11 +2658,16 @@ function importData(input) {
     try {
       const data = JSON.parse(e.target.result);
       if (data.favorites) { favorites = data.favorites; saveFavorites(); }
+      if (data.ratings) { gameRatings = data.ratings; localStorage.setItem('ngg_ratings', JSON.stringify(gameRatings)); }
+      if (data.recent) { recentlyPlayed = data.recent; localStorage.setItem('ngg_recent', JSON.stringify(recentlyPlayed)); }
+      if (data.searchHistory) { searchHistory = data.searchHistory; localStorage.setItem('ngg_search_history', JSON.stringify(searchHistory)); }
       if (data.theme) { applyTheme(data.theme, true); }
       if (data.bg) { setBgEffect(data.bg); }
       if (data.inactivity) { localStorage.setItem('ngg_inactivity', data.inactivity); }
       if (data.interactive !== undefined) { toggleInteractive(data.interactive); }
       loadSettings();
+      renderRecentlyPlayed();
+      buildGames();
       renderFavorites();
       showToast('📥 Data imported!', 'success');
     } catch(err) {
