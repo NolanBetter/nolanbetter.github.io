@@ -897,7 +897,7 @@ const GAMES = [
 { name:"R.E.P.O",href:"REPO.html",img:"",tags:["horror"] },
 { name:"Tattletail",href:"Tattletail.html",img:"",tags:["horror"] },
 { name:"Schoolboy Runaway",href:"Schoolboy Runaway.html",img:"",tags:["action","platformer"] },
-{ name:"Slime Rancher",href:"Slime Rancher.html",icon:"[o]",tags:["action","idle"] },
+{ name:"Slime Rancher",href:"Slime Rancher.html",img:"",tags:["action","idle"] },
 { name:"Soundboard",href:"Soundboard.html",img:"",tags:[] },
 { name:"That's Not My Neighbor",href:"That's Not My Neighbor.html",img:"",tags:["horror","puzzle"] },
 { name:"ULTRAKILL",href:"ULTRAKILL.html",img:"",tags:["shooter","action"] },
@@ -924,8 +924,8 @@ const GAMES = [
 { name:"Bad Ice Cream 3",href:"Bad Ice Cream 3.html",img:"",tags:["puzzle","action"] },
 { name:"Basket Random",href:"Basket Random.html",img:"",tags:["sport"] },
 { name:"Basketball Stars",href:"Basketball Stars.html",img:"",tags:["sport"] },
-{ name:"Big Tower Tiny Square",href:"Big Tower Tiny Square.html",icon:"[sq]",tags:["platformer"] },
-{ name:"Big Tower Tiny Square 2",href:"Big Tower Tiny Square 2.html",icon:"[sq]",tags:["platformer"] },
+{ name:"Big Tower Tiny Square",href:"Big Tower Tiny Square.html",img:"",tags:["platformer"] },
+{ name:"Big Tower Tiny Square 2",href:"Big Tower Tiny Square 2.html",img:"",tags:["platformer"] },
 { name:"BitLife",href:"BitLife.html",img:"",tags:["idle"] },
 { name:"BitPlanes",href:"BitPlanes.html",img:"",tags:["action"] },
 { name:"Block Blast",href:"Block Blast.html",img:"",tags:["puzzle"] },
@@ -2046,7 +2046,7 @@ function loadSettings() {
 const inactSel=document.getElementById('inactivity-select');
 const saved=localStorage.getItem('ngg_inactivity');
 if(saved&&inactSel)inactSel.value=saved;
-const intTog=document.getElementById('interactive-toggle'); if(intTog)intTog.checked=isInteractive;
+/*const intTog=document.getElementById('interactive-toggle'); if(intTog)intTog.checked=isInteractive;*/
 const perfTog=document.getElementById('perf-toggle'); if(perfTog)perfTog.checked=isPerfMode;
 document.querySelectorAll('.bg-chip').forEach(c=>c.classList.toggle('active',c.dataset.bg===currentBg));
 document.querySelectorAll('.theme-chip').forEach(c=>c.classList.toggle('active',c.dataset.theme===currentTheme));
@@ -2179,7 +2179,7 @@ battEl.textContent = `${icon} ${pct}%`;
 }
 setInterval(updateNavbarInfo, 10000);
 // call once immediately
-document.addEventListener('DOMContentLoaded', () => { updateNavbarInfo(); buildChangelog(); });
+/*document.addEventListener('DOMContentLoaded', () => { updateNavbarInfo(); buildChangelog(); });*/
 
 // ============================================================
 // CLICK EFFECTS
