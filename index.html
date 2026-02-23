@@ -188,7 +188,7 @@ text-transform:uppercase;letter-spacing:0.8px;flex-shrink:0;position:relative;ou
 .page{display:none!important}
 .page.active{display:block!important;animation:pageFadeIn 0.35s ease both}
 #page-home.active{display:grid!important;animation:pageFadeIn 0.35s ease both}
-#page-proxy.active{display:flex!important;animation:pageFadeIn 0.35s ease both}
+#page-proxy.active{display:block!important;animation:pageFadeIn 0.35s ease both}
 #page-favorites.active{display:block!important;animation:pageFadeIn 0.35s ease both}
 @keyframes pageFadeIn{
 from{opacity:0;transform:translateY(12px)}
@@ -391,7 +391,7 @@ body.perf-mode .page.active{animation:none}
 .announcement-btns{display:flex;gap:8px}
 
 /* ===== PROXY PAGE ===== */
-#page-proxy{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - var(--nav-h));padding:40px}
+
 .coming-soon-box{text-align:center;max-width:500px}
 .cs-icon{font-size:80px;margin-bottom:20px}
 .cs-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:48px;color:var(--text);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
@@ -437,6 +437,47 @@ body.perf-mode .page.active{animation:none}
 .game-card:hover .card-thumb-img{transform:scale(1.05)}
 .card-thumb-placeholder{font-size:48px;opacity:0.3;position:relative;z-index:1}
 .card-thumb-placeholder.hidden{display:none}
+
+
+/* ===== PROXY PAGE ===== */
+#page-proxy{padding:24px}
+.proxy-wrapper{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:0}
+.proxy-header{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius) var(--radius) 0 0;padding:20px 20px 14px}
+.proxy-title-row{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.proxy-icon{font-size:28px}
+.proxy-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;color:var(--text)}
+.proxy-subtitle{font-size:12px;color:var(--text-muted)}
+.proxy-badge{margin-left:auto;background:var(--accent);color:var(--bg);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;padding:3px 8px;border-radius:4px;letter-spacing:1px}
+.proxy-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.proxy-url-bar{flex:1;display:flex;align-items:center;background:var(--bg2);border:1.5px solid var(--border);border-radius:999px;padding:0 6px 0 14px;transition:border-color 0.2s;overflow:hidden}
+.proxy-url-bar:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 20%,transparent)}
+.proxy-url-icon{font-size:14px;margin-right:8px;flex-shrink:0}
+#proxy-input{flex:1;background:none;border:none;color:var(--text);font-family:'Exo 2',sans-serif;font-size:13px;outline:none;padding:8px 0}
+#proxy-input::placeholder{color:var(--text-dim)}
+.proxy-go-btn{background:var(--accent);color:var(--bg);border:none;border-radius:999px;padding:6px 18px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;cursor:pointer;transition:all 0.2s;flex-shrink:0;margin:4px}
+.proxy-go-btn:hover{filter:brightness(1.15)}
+.proxy-btn{width:34px;height:34px;border-radius:var(--radius-sm);background:var(--surface2);border:1px solid var(--border);color:var(--text-muted);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;flex-shrink:0}
+.proxy-btn:hover{border-color:var(--accent);color:var(--accent)}
+.proxy-quick-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.proxy-quick-label{font-size:11px;color:var(--text-dim);font-family:'Rajdhani',sans-serif;text-transform:uppercase;letter-spacing:1px;flex-shrink:0}
+.proxy-quick-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text-muted);border-radius:999px;padding:4px 12px;font-size:12px;font-family:'Rajdhani',sans-serif;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.proxy-quick-btn:hover{border-color:var(--accent);color:var(--accent)}
+.proxy-frame-wrap{position:relative;background:var(--bg2);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);overflow:hidden;min-height:520px}
+.proxy-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;text-align:center;min-height:520px}
+.proxy-ph-icon{font-size:64px;margin-bottom:16px;opacity:0.5}
+.proxy-ph-title{font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700;color:var(--text);margin-bottom:8px}
+.proxy-ph-sub{font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:16px}
+.proxy-ph-note{font-size:12px;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);border-radius:var(--radius-sm);padding:8px 16px}
+.proxy-iframe{width:100%;height:600px;border:none;display:block}
+
+/* ===== NAVBAR TAB DRAG REORDER ===== */
+.nav-tab.drag-over{border-color:transparent!important;background:transparent!important}
+.nav-tab.dragging{opacity:1}
+
+/* ===== WIDGET SETTINGS ===== */
+.widget-preview{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;display:flex;flex-direction:column;align-items:flex-end;gap:2px;margin-bottom:12px;min-width:90px;width:fit-content}
+.widget-preview span{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:var(--accent)}
+.widget-preview small{font-size:11px;color:var(--text-muted)}
 
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar{width:6px;height:6px}
@@ -515,7 +556,7 @@ body.perf-mode .page.active{animation:none}
 <input type="text" id="search" placeholder="Search games, sites..." autocomplete="off" oninput="handleSearch(this.value)" onfocus="showSearchHistory()">
 <span id="search-clear" onclick="clearSearch()">×</span>
 </div>
-<div id="navbar-info"><span id="info-time">--:--</span><span id="info-battery">🔋--</span></div>
+<div id="navbar-info"><span id="info-time">--:--</span><span id="info-date" style="display:none;font-size:10px;color:var(--text-muted)"></span><span id="info-battery">🔋--</span><span id="info-custom" style="display:none;font-size:10px;color:var(--text-muted)"></span></div>
 </div>
 <div id="navbar-tabs">
 <button class="nav-tab" data-page="home" onclick="navigate('home')"><span class="tab-icon">🏠</span> Home</button>
@@ -556,7 +597,6 @@ body.perf-mode .page.active{animation:none}
 <button class="home-nav-btn" onclick="navigate('medieval')"><span class="btn-icon"></span> ⚔️ Medieval</button>
 <button class="home-nav-btn" onclick="navigate('ourlinks')"><span class="btn-icon"></span> 🕹️ Our Links</button>
 <div class="home-nav-divider"></div>
-<button class="home-nav-btn" onclick="navigate('proxy')"><span class="btn-icon"></span> 🔒 Proxy</button>
 <button class="home-nav-btn" onclick="navigate('favorites')"><span class="btn-icon"></span> ⭐ Favorites</button>
 <button class="home-nav-btn" onclick="navigate('settings')"><span class="btn-icon"></span> ⚙️ Settings</button>
 </div>
@@ -665,12 +705,43 @@ body.perf-mode .page.active{animation:none}
 
 <!-- PROXY PAGE -->
 <div id="page-proxy" class="page">
-<div class="coming-soon-box">
-<div class="cs-icon"></div>
-<div class="cs-title">Proxy</div>
-<div class="cs-sub">We're working on something special.<br>A built-in proxy experience is coming soon to NGG.</div>
-<div class="cs-bar"><div class="cs-bar-fill"></div></div>
-<div style="font-size:13px;color:var(--text-dim)">Check back for updates!</div>
+<div class="proxy-wrapper">
+  <div class="proxy-header">
+    <div class="proxy-title-row">
+      <span class="proxy-icon">🔒</span>
+      <div>
+        <div class="proxy-title">NGG Proxy</div>
+        <div class="proxy-subtitle">Enter a URL to browse privately</div>
+      </div>
+      <div class="proxy-badge">BETA</div>
+    </div>
+    <div class="proxy-bar-row">
+      <div class="proxy-url-bar">
+        <span class="proxy-url-icon">🌐</span>
+        <input type="text" id="proxy-input" placeholder="https://example.com" autocomplete="off" onkeydown="if(event.key==='Enter')loadProxy()">
+        <button class="proxy-go-btn" onclick="loadProxy()">Go</button>
+      </div>
+      <button class="proxy-btn" onclick="proxyNavBack()" title="Back">◀</button>
+      <button class="proxy-btn" onclick="proxyNavRefresh()" title="Refresh">↻</button>
+      <button class="proxy-btn" onclick="proxyOpenBlank()" title="Open in about:blank">⬡</button>
+    </div>
+    <div class="proxy-quick-row" id="proxy-quick-sites">
+      <span class="proxy-quick-label">Quick:</span>
+      <button class="proxy-quick-btn" onclick="proxyLoad('https://67-blue.vercel.app/api/proxy?url=' + encodeURIComponent('https://www.google.com'))">🔍 Google</button>
+      <button class="proxy-quick-btn" onclick="proxyLoad('https://67-blue.vercel.app/api/proxy?url=' + encodeURIComponent('https://www.wikipedia.org'))">📖 Wikipedia</button>
+      <button class="proxy-quick-btn" onclick="proxyLoad('https://67-blue.vercel.app/api/proxy?url=' + encodeURIComponent('https://scratch.mit.edu'))">🐱 Scratch</button>
+      <button class="proxy-quick-btn" onclick="proxyLoad('https://67-blue.vercel.app/api/proxy?url=' + encodeURIComponent('https://www.coolmathgames.com'))">🧮 CoolMath</button>
+    </div>
+  </div>
+  <div class="proxy-frame-wrap" id="proxy-frame-wrap">
+    <div class="proxy-placeholder" id="proxy-placeholder">
+      <div class="proxy-ph-icon">🔒</div>
+      <div class="proxy-ph-title">Ready to Browse</div>
+      <div class="proxy-ph-sub">Enter a URL above or pick a quick site to get started.<br>Note: some sites block iframe embedding.</div>
+      <div class="proxy-ph-note">⚠️ Proxy functionality coming soon — this is a preview shell.</div>
+    </div>
+    <iframe id="proxy-frame" class="proxy-iframe" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" style="display:none"></iframe>
+  </div>
 </div>
 </div>
 
@@ -739,6 +810,44 @@ body.perf-mode .page.active{animation:none}
 <div class="bg-chip" onclick="setClickEffectStyle('stars')" data-ce="stars"><span class="bc-icon">⭐</span>Stars</div>
 </div>
 </div>
+
+<div class="settings-card">
+<h3>🕐 Navbar Widget</h3>
+<div class="setting-desc" style="margin-bottom:10px;font-size:12px;color:var(--text-muted)">Pick up to <strong style="color:var(--accent)">2 items</strong> to show in the navbar widget.</div>
+<div class="setting-row">
+<div><div class="setting-label">Show Time</div></div>
+<label class="s-toggle"><input type="checkbox" id="widget-time-toggle" checked onchange="saveWidgetSettings('widget-time-toggle')"><span class="s-toggle-track"></span></label>
+</div>
+<div class="setting-row">
+<div><div class="setting-label">Show Date</div></div>
+<label class="s-toggle"><input type="checkbox" id="widget-date-toggle" onchange="saveWidgetSettings('widget-date-toggle')"><span class="s-toggle-track"></span></label>
+</div>
+<div class="setting-row" id="widget-batt-row">
+<div><div class="setting-label">Show Battery <span id="widget-batt-lock-icon" style="display:none;font-size:12px;color:var(--text-dim)">🔒</span></div><div class="setting-desc" id="widget-batt-desc"></div></div>
+<label class="s-toggle"><input type="checkbox" id="widget-batt-toggle" onchange="handleBattToggle(this)"><span class="s-toggle-track"></span></label>
+</div>
+<div class="setting-row">
+<div><div class="setting-label">Custom Label</div><div class="setting-desc">Optional text shown below time</div></div>
+<label class="s-toggle"><input type="checkbox" id="widget-custom-toggle" onchange="saveWidgetSettings('widget-custom-toggle')"><span class="s-toggle-track"></span></label>
+</div>
+<div class="setting-row" id="widget-custom-row" style="display:none">
+<input type="text" id="widget-custom-input" class="s-select" style="width:100%;max-width:200px" placeholder="e.g. Study Mode 📚" oninput="saveWidgetSettings()" maxlength="24">
+</div>
+<div class="setting-row">
+<div><div class="setting-label">Hide Widget Entirely</div></div>
+<label class="s-toggle"><input type="checkbox" id="widget-hide-toggle" onchange="saveWidgetSettings('widget-hide-toggle')"><span class="s-toggle-track"></span></label>
+</div>
+</div>
+
+<div class="settings-card">
+<h3>🗂️ Tab Order</h3>
+<div class="setting-desc" style="margin-bottom:12px;font-size:12px;color:var(--text-muted)">Drag tabs to reorder. Home and Settings are always pinned.</div>
+<div id="tab-order-list" style="display:flex;flex-direction:column;gap:6px"></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+<button class="s-btn" onclick="resetTabOrder()">↺ Reset Order</button>
+</div>
+</div>
+
 <div class="settings-card">
 <h3>⚡ Performance</h3>
 <div class="setting-row">
@@ -810,9 +919,9 @@ body.perf-mode .page.active{animation:none}
 </div>
 <div class="settings-card">
 <h3>ℹ About</h3>
-<div class="setting-row"><div class="setting-label">Version</div><div style="color:var(--accent);font-weight:600">1.7.3</div></div>
+<div class="setting-row"><div class="setting-label">Version</div><div style="color:var(--accent);font-weight:600">1.7.6</div></div>
 <div class="setting-row"><div class="setting-label">Owner</div><div style="color:var(--text-muted)">Nolan Boyer</div></div>
-<div class="setting-row"><div class="setting-label">Last Updated</div><div style="color:var(--text-muted)">02/18/26</div></div>
+<div class="setting-row"><div class="setting-label">Last Updated</div><div style="color:var(--text-muted)">02/23/25</div></div>
 <div class="setting-row"><div class="setting-label">Hosted On</div><div style="color:var(--text-muted)">Github</div></div>
 <div style="margin-top:12px">
 <a href="https://github.com/NolanBetter/nolanbetter.github.io" target="_blank" class="s-btn" style="display:inline-block;text-decoration:none"> Fork on GitHub</a>
@@ -830,14 +939,13 @@ body.perf-mode .page.active{animation:none}
 // badge options: 'new', 'fix', 'update'  (or '' for none)
 const CHANGELOG = [
   {
-    version: '1.7.3',
+    version: '1.7.6',
     badge: 'new',
     date: '02/20/26',
     entries: [
-      'img field added to GAMES array',
-      'Changelog config block',
-      'Click Effects settings card',
-      'and more',
+      'added some more links',
+      'Made some Eaglercraft versions use nolan and grayson games rather then another site',
+      'bug fixes',
     ]
   },
   {
@@ -1298,6 +1406,9 @@ initContextMenu();
 animateStats();
 renderRecentlyPlayed();
 updateNavbarInfo();
+applyTabOrder();
+buildTabOrderList();
+loadWidgetSettings();
 });
 
 // ============================================================
@@ -2046,7 +2157,7 @@ function loadSettings() {
 const inactSel=document.getElementById('inactivity-select');
 const saved=localStorage.getItem('ngg_inactivity');
 if(saved&&inactSel)inactSel.value=saved;
-/*const intTog=document.getElementById('interactive-toggle'); if(intTog)intTog.checked=isInteractive;*/
+
 const perfTog=document.getElementById('perf-toggle'); if(perfTog)perfTog.checked=isPerfMode;
 document.querySelectorAll('.bg-chip').forEach(c=>c.classList.toggle('active',c.dataset.bg===currentBg));
 document.querySelectorAll('.theme-chip').forEach(c=>c.classList.toggle('active',c.dataset.theme===currentTheme));
@@ -2092,7 +2203,7 @@ const el=document.getElementById('stat-views'); if(el){const target=count; el.te
 // DATA IMPORT / EXPORT
 // ============================================================
 function exportData() {
-const data={version:'1.7.3',exported:new Date().toISOString(),favorites,ratings,recentlyPlayed,searchHistory,theme:currentTheme,bg:currentBg,inactivity:localStorage.getItem('ngg_inactivity'),perf:isPerfMode,clickEffects:clickEffectsEnabled,clickStyle:clickEffectStyle,autoPerf:autoPerfEnabled,tabPerf:tabPerfEnabled};
+const data={version:'1.7.6',exported:new Date().toISOString(),favorites,ratings,recentlyPlayed,searchHistory,theme:currentTheme,bg:currentBg,inactivity:localStorage.getItem('ngg_inactivity'),perf:isPerfMode,clickEffects:clickEffectsEnabled,clickStyle:clickEffectStyle,autoPerf:autoPerfEnabled,tabPerf:tabPerfEnabled,tabOrder,widgetSettings};
 const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
 const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='ngg-data.json'; a.click();
 showToast(' Data exported!','success');
@@ -2114,7 +2225,7 @@ if(data.clickEffects!==undefined){clickEffectsEnabled=data.clickEffects;localSto
 if(data.clickStyle){setClickEffectStyle(data.clickStyle);}
 if(data.autoPerf!==undefined){autoPerfEnabled=data.autoPerf;localStorage.setItem('ngg_auto_perf',data.autoPerf);}
 if(data.tabPerf!==undefined){tabPerfEnabled=data.tabPerf;localStorage.setItem('ngg_tab_perf',data.tabPerf);}
-loadSettings(); renderFavorites(); renderRecentlyPlayed(); buildGames();
+if(data.tabOrder){tabOrder=data.tabOrder;saveTabOrder();} if(data.widgetSettings){widgetSettings=data.widgetSettings;localStorage.setItem('ngg_widget',JSON.stringify(widgetSettings));} loadSettings(); renderFavorites(); renderRecentlyPlayed(); buildGames(); applyTabOrder(); buildTabOrderList();
 showToast(' Data imported!','success');
 } catch(err){showToast(' Invalid file','error');}
 };
@@ -2158,27 +2269,145 @@ ${c.entries.map(e => `<div class="cl-entry">${e}</div>`).join('')}
 }
 
 // ============================================================
-// NAVBAR INFO (TIME + BATTERY)
+// NAVBAR WIDGET (TIME + DATE + BATTERY + CUSTOM)
 // ============================================================
-function updateNavbarInfo() {
-const timeEl = document.getElementById('info-time');
-const battEl = document.getElementById('info-battery');
-if (timeEl) {
-const now = new Date();
-const h = now.getHours(), m = now.getMinutes().toString().padStart(2,'0');
-const ampm = h >= 12 ? 'PM' : 'AM';
-timeEl.textContent = `${h % 12 || 12}:${m} ${ampm}`;
+let widgetSettings = JSON.parse(localStorage.getItem('ngg_widget') || '{"time":true,"date":false,"batt":true,"custom":false,"customText":"","hide":false}');
+
+function saveWidgetSettings(changedId) {
+  const timeTog = document.getElementById('widget-time-toggle');
+  const dateTog = document.getElementById('widget-date-toggle');
+  const battTog = document.getElementById('widget-batt-toggle');
+  const customTog = document.getElementById('widget-custom-toggle');
+  const customInput = document.getElementById('widget-custom-input');
+  const hideTog = document.getElementById('widget-hide-toggle');
+  const customRow = document.getElementById('widget-custom-row');
+
+  // Enforce max 2 content items (time, date, battery, custom)
+  const contentToggles = [timeTog, dateTog, battTog, customTog];
+  const contentKeys = ['time', 'date', 'batt', 'custom'];
+  const checkedCount = contentToggles.filter(t => t && t.checked).length;
+  if (checkedCount > 2 && changedId) {
+    // The one just turned on is changedId — find and uncheck it
+    const el = document.getElementById(changedId);
+    if (el) { el.checked = false; showToast('Widget max 2 items — uncheck one first', 'error'); return; }
+  }
+
+  if (timeTog) widgetSettings.time = timeTog.checked;
+  if (dateTog) widgetSettings.date = dateTog.checked;
+  if (battTog) widgetSettings.batt = battTog.checked;
+  if (customTog) widgetSettings.custom = customTog.checked;
+  if (customInput) widgetSettings.customText = customInput.value;
+  if (hideTog) widgetSettings.hide = hideTog.checked;
+  if (customRow) customRow.style.display = widgetSettings.custom ? '' : 'none';
+  localStorage.setItem('ngg_widget', JSON.stringify(widgetSettings));
+  updateNavbarInfo();
 }
-if (battEl && navigator.getBattery) {
-navigator.getBattery().then(b => {
-const pct = Math.round(b.level * 100);
-const icon = b.charging ? '⚡' : pct > 70 ? '🔋' : pct > 30 ? '🪫' : '🔴';
-battEl.textContent = `${icon} ${pct}%`;
-}).catch(() => { battEl.textContent = '🔋 N/A'; });
-} else if (battEl) { battEl.textContent = ''; }
+
+const IS_MOBILE = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+let battWarningCount = 0;
+
+function handleBattToggle(el) {
+  if (IS_MOBILE) {
+    el.checked = false; // always revert first
+    battWarningCount++;
+    if (battWarningCount >= 2) {
+      battWarningCount = 0;
+      if (confirm('⚠️ Battery API is not supported on most mobile devices and may show incorrect data. Enable anyway?')) {
+        el.checked = true;
+        el.disabled = false;
+        saveWidgetSettings('widget-batt-toggle');
+      }
+    } else {
+      showToast('🔒 Battery not supported on mobile — tap again to override', 'error');
+    }
+    return;
+  }
+  saveWidgetSettings('widget-batt-toggle');
+}
+
+function loadWidgetSettings() {
+  const timeTog = document.getElementById('widget-time-toggle');
+  const dateTog = document.getElementById('widget-date-toggle');
+  const battTog = document.getElementById('widget-batt-toggle');
+  const customTog = document.getElementById('widget-custom-toggle');
+  const customInput = document.getElementById('widget-custom-input');
+  const hideTog = document.getElementById('widget-hide-toggle');
+  const customRow = document.getElementById('widget-custom-row');
+  const battLock = document.getElementById('widget-batt-lock-icon');
+  const battDesc = document.getElementById('widget-batt-desc');
+
+  if (timeTog) timeTog.checked = widgetSettings.time !== false;
+  if (dateTog) dateTog.checked = !!widgetSettings.date;
+  if (customTog) customTog.checked = !!widgetSettings.custom;
+  if (customInput) customInput.value = widgetSettings.customText || '';
+  if (hideTog) hideTog.checked = !!widgetSettings.hide;
+  if (customRow) customRow.style.display = widgetSettings.custom ? '' : 'none';
+
+  // Battery: lock on mobile
+  if (battTog) {
+    if (IS_MOBILE) {
+      battTog.checked = false;
+      battTog.disabled = true;
+      widgetSettings.batt = false;
+      if (battLock) battLock.style.display = 'inline';
+      if (battDesc) battDesc.textContent = 'Not available on mobile — tap toggle twice to override';
+    } else {
+      battTog.checked = widgetSettings.batt !== false;
+      battTog.disabled = false;
+      if (battLock) battLock.style.display = 'none';
+      if (battDesc) battDesc.textContent = '';
+    }
+  }
+}
+
+function updateNavbarInfo() {
+  const widget = document.getElementById('navbar-info');
+  const timeEl = document.getElementById('info-time');
+  const dateEl = document.getElementById('info-date');
+  const battEl = document.getElementById('info-battery');
+  const customEl = document.getElementById('info-custom');
+  const ws = widgetSettings;
+
+  // Hide entire widget if toggled
+  if (widget) widget.style.display = ws.hide ? 'none' : '';
+  if (ws.hide) return;
+
+  const now = new Date();
+  const h = now.getHours(), m = now.getMinutes().toString().padStart(2,'0');
+  const ampm = h >= 12 ? 'PM' : 'AM';
+
+  if (timeEl) {
+    timeEl.style.display = ws.time !== false ? '' : 'none';
+    timeEl.textContent = `${h % 12 || 12}:${m} ${ampm}`;
+  }
+  if (dateEl) {
+    const show = !!ws.date;
+    dateEl.style.display = show ? '' : 'none';
+    if (show) {
+      const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      dateEl.textContent = `${days[now.getDay()]} ${months[now.getMonth()]} ${now.getDate()}`;
+    }
+  }
+  if (customEl) {
+    const show = !!ws.custom && ws.customText;
+    customEl.style.display = show ? '' : 'none';
+    if (show) customEl.textContent = ws.customText;
+  }
+  if (battEl) {
+    battEl.style.display = ws.batt !== false ? '' : 'none';
+    if (ws.batt !== false && navigator.getBattery) {
+      navigator.getBattery().then(b => {
+        const pct = Math.round(b.level * 100);
+        const icon = b.charging ? '⚡' : pct > 70 ? '🔋' : pct > 30 ? '🪫' : '🔴';
+        battEl.textContent = `${icon} ${pct}%`;
+      }).catch(() => { battEl.textContent = '🔋 N/A'; });
+    } else if (battEl && ws.batt === false) { battEl.textContent = ''; }
+  }
+
+  // (preview removed)
 }
 setInterval(updateNavbarInfo, 10000);
-// call once immediately
 /*document.addEventListener('DOMContentLoaded', () => { updateNavbarInfo(); buildChangelog(); });*/
 
 // ============================================================
@@ -2338,6 +2567,258 @@ tabs.addEventListener('mouseleave',()=>{scrollSpeed=0;});
 function loop(){if(scrollSpeed!==0)tabs.scrollLeft+=scrollSpeed;scrollRAF=requestAnimationFrame(loop);}
 scrollRAF=requestAnimationFrame(loop);
 })();
+
+
+// ============================================================
+// TAB DRAG REORDER
+// ============================================================
+// Locked tabs that can never be moved
+const LOCKED_TABS = ['home', 'settings'];
+// Default order of moveable tabs
+const DEFAULT_TAB_ORDER = ['games','websites','eaglercraft','partnerships','medieval','ourlinks','proxy','other','favorites'];
+
+let tabOrder = JSON.parse(localStorage.getItem('ngg_tab_order') || 'null') || [...DEFAULT_TAB_ORDER];
+
+function applyTabOrder() {
+  const container = document.getElementById('navbar-tabs');
+  if (!container) return;
+  const settingsBtn = container.querySelector('[data-page="settings"]');
+  // Re-insert each tab in order before settings (home stays first naturally)
+  tabOrder.forEach(page => {
+    const btn = container.querySelector(`[data-page="${page}"]`);
+    if (btn) container.insertBefore(btn, settingsBtn);
+  });
+  // Make moveable tabs draggable directly in navbar
+  initNavbarTabDrag();
+}
+
+function initNavbarTabDrag() {
+  const container = document.getElementById('navbar-tabs');
+  if (!container) return;
+  let dragSrc = null;
+
+  // Drop indicator line
+  let indicator = document.getElementById('tab-drop-indicator');
+  if (!indicator) {
+    indicator = document.createElement('div');
+    indicator.id = 'tab-drop-indicator';
+    indicator.style.cssText = 'position:absolute;top:6px;bottom:6px;width:3px;border-radius:2px;background:var(--accent);box-shadow:0 0 8px var(--accent);pointer-events:none;display:none;z-index:100';
+    container.style.position = 'relative';
+    container.appendChild(indicator);
+  }
+
+  function showIndicator(targetTab, after) {
+    const containerRect = container.getBoundingClientRect();
+    const tabRect = targetTab.getBoundingClientRect();
+    const x = after
+      ? tabRect.right - containerRect.left + container.scrollLeft + 2
+      : tabRect.left - containerRect.left + container.scrollLeft - 4;
+    indicator.style.left = x + 'px';
+    indicator.style.display = 'block';
+  }
+  function hideIndicator() { indicator.style.display = 'none'; }
+
+  container.querySelectorAll('.nav-tab').forEach(tab => {
+    const page = tab.dataset.page;
+    if (LOCKED_TABS.includes(page)) { tab.draggable = false; return; }
+    tab.draggable = true;
+    const clone = tab.cloneNode(true);
+    tab.parentNode.replaceChild(clone, tab);
+    clone.draggable = true;
+
+    clone.addEventListener('dragstart', e => {
+      dragSrc = page;
+      clone.classList.add('dragging');
+      e.dataTransfer.setData('text/plain', page);
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    clone.addEventListener('dragend', () => {
+      dragSrc = null;
+      clone.classList.remove('dragging');
+      hideIndicator();
+    });
+    clone.addEventListener('dragover', e => {
+      // Only allow drop if hovering over another .nav-tab, not the navbar itself
+      if (!e.target.closest('.nav-tab')) { e.dataTransfer.dropEffect = 'none'; return; }
+      e.preventDefault();
+      if (!dragSrc || dragSrc === page || LOCKED_TABS.includes(page)) return;
+      const rect = clone.getBoundingClientRect();
+      showIndicator(clone, e.clientX > rect.left + rect.width / 2);
+    });
+    clone.addEventListener('drop', e => {
+      // Reject drops onto non-tab areas
+      if (!e.target.closest('.nav-tab')) return;
+      e.preventDefault();
+      hideIndicator();
+      const fromPage = e.dataTransfer.getData('text/plain');
+      if (!fromPage || fromPage === page || LOCKED_TABS.includes(page)) return;
+      const fromIdx = tabOrder.indexOf(fromPage);
+      if (fromIdx === -1 || tabOrder.indexOf(page) === -1) return;
+      const rect = clone.getBoundingClientRect();
+      const after = e.clientX > rect.left + rect.width / 2;
+      tabOrder.splice(fromIdx, 1);
+      const toIdx = tabOrder.indexOf(page);
+      tabOrder.splice(after ? toIdx + 1 : toIdx, 0, fromPage);
+      saveTabOrder();
+      buildTabOrderList();
+    });
+  });
+
+  container.addEventListener('dragleave', e => {
+    if (!container.contains(e.relatedTarget)) hideIndicator();
+  });
+  // Prevent drop on the container background (non-tab areas)
+  container.addEventListener('dragover', e => {
+    if (!e.target.closest('.nav-tab')) e.dataTransfer.dropEffect = 'none';
+  });
+}
+
+function buildTabOrderList() {
+  const list = document.getElementById('tab-order-list');
+  if (!list) return;
+  list.innerHTML = '';
+  let dragSrcRow = null;
+
+  tabOrder.forEach((page, idx) => {
+    const btn = document.querySelector(`[data-page="${page}"]`);
+    if (!btn) return;
+    const label = btn.textContent.trim();
+    const icon = btn.querySelector('.tab-icon')?.textContent || '';
+
+    // Wrapper with indicator
+    const wrapper = document.createElement('div');
+    wrapper.style.cssText = 'position:relative';
+
+    // Drop indicator line for settings list
+    const lineIndicator = document.createElement('div');
+    lineIndicator.style.cssText = 'height:2px;border-radius:2px;background:var(--accent);box-shadow:0 0 6px var(--accent);display:none;margin:0 4px;transition:opacity 0.1s';
+
+    const row = document.createElement('div');
+    row.className = 'setting-row';
+    row.style.cssText = 'cursor:grab;user-select:none;padding:8px 12px;border-radius:var(--radius-sm);transition:background 0.15s;border:1.5px solid transparent';
+    row.draggable = true;
+    row.dataset.page = page;
+    row.innerHTML = `<div style="display:flex;align-items:center;gap:10px;flex:1"><span style="font-size:18px;opacity:0.4">⠿</span><span style="font-size:15px">${icon}</span><span style="font-size:14px;color:var(--text)">${label.replace(icon,'').trim()}</span></div><div style="display:flex;gap:4px"><button class="s-btn" style="padding:4px 8px;font-size:12px" onclick="moveTab('${page}',-1)">▲</button><button class="s-btn" style="padding:4px 8px;font-size:12px" onclick="moveTab('${page}',1)">▼</button></div>`;
+
+    lineIndicator.dataset.indicator = '1';
+
+    row.addEventListener('dragstart', e => {
+      dragSrcRow = page;
+      e.dataTransfer.setData('text/plain', page);
+      
+    });
+    row.addEventListener('dragend', () => {
+      
+      dragSrcRow = null;
+      list.querySelectorAll('[data-indicator]').forEach(el => el.style.display = 'none');
+    });
+    row.addEventListener('dragover', e => {
+      e.preventDefault();
+      if (!dragSrcRow || dragSrcRow === page) return;
+      list.querySelectorAll('[data-indicator]').forEach(el => el.style.display = 'none');
+      const rect = row.getBoundingClientRect();
+      const after = e.clientY > rect.top + rect.height / 2;
+      if (after) { wrapper.appendChild(lineIndicator); } else { wrapper.insertBefore(lineIndicator, row); }
+      lineIndicator.style.display = 'block';
+    });
+    row.addEventListener('dragleave', e => {
+      if (!wrapper.contains(e.relatedTarget)) lineIndicator.style.display = 'none';
+    });
+    row.addEventListener('drop', e => {
+      e.preventDefault();
+      list.querySelectorAll('[data-indicator]').forEach(el => el.style.display = 'none');
+      const fromPage = e.dataTransfer.getData('text/plain');
+      const toPage = page;
+      if (fromPage === toPage) return;
+      const fromIdx = tabOrder.indexOf(fromPage);
+      const after = e.clientY > row.getBoundingClientRect().top + row.getBoundingClientRect().height / 2;
+      tabOrder.splice(fromIdx, 1);
+      const toIdx = tabOrder.indexOf(toPage);
+      tabOrder.splice(after ? toIdx + 1 : toIdx, 0, fromPage);
+      saveTabOrder();
+      buildTabOrderList();
+    });
+
+    wrapper.appendChild(row);
+    list.appendChild(wrapper);
+  });
+}
+
+function moveTab(page, dir) {
+  const idx = tabOrder.indexOf(page);
+  const newIdx = idx + dir;
+  if (newIdx < 0 || newIdx >= tabOrder.length) return;
+  tabOrder.splice(idx, 1);
+  tabOrder.splice(newIdx, 0, page);
+  saveTabOrder();
+  buildTabOrderList();
+}
+
+function saveTabOrder() {
+  localStorage.setItem('ngg_tab_order', JSON.stringify(tabOrder));
+  applyTabOrder();
+}
+
+function resetTabOrder() {
+  tabOrder = [...DEFAULT_TAB_ORDER];
+  localStorage.removeItem('ngg_tab_order');
+  applyTabOrder();
+  buildTabOrderList();
+  showToast('Tab order reset','success');
+}
+
+// ============================================================
+// PROXY FUNCTIONS
+// ============================================================
+const PROXY_BASE = 'https://67-blue.vercel.app/api/proxy?url=';
+
+function loadProxy() {
+  const input = document.getElementById('proxy-input');
+  if (!input) return;
+  let url = input.value.trim();
+  if (!url) return;
+  // Strip the proxy base if user somehow has it in the bar already
+  if (url.startsWith(PROXY_BASE)) url = decodeURIComponent(url.slice(PROXY_BASE.length));
+  if (!url.startsWith('http://') && !url.startsWith('https://')) url = 'https://' + url;
+  // Show clean URL in the bar, load through proxy internally
+  input.value = url;
+  proxyLoad(PROXY_BASE + encodeURIComponent(url));
+}
+
+function proxyLoad(proxyUrl) {
+  const frame = document.getElementById('proxy-frame');
+  const placeholder = document.getElementById('proxy-placeholder');
+  if (!frame) return;
+  // Load iframe with the proxy URL but don't show it in the input bar
+  frame.src = proxyUrl;
+  frame.style.display = 'block';
+  if (placeholder) placeholder.style.display = 'none';
+  showToast('Loading... (some sites block embedding)','');
+}
+
+function proxyNavBack() {
+  const frame = document.getElementById('proxy-frame');
+  if (frame) try { frame.contentWindow.history.back(); } catch(e) { showToast('Cannot navigate (cross-origin)','error'); }
+}
+
+function proxyNavRefresh() {
+  const frame = document.getElementById('proxy-frame');
+  if (frame && frame.src && frame.src !== 'about:blank') {
+    frame.src = frame.src;
+  }
+}
+
+function proxyOpenBlank() {
+  const frame = document.getElementById('proxy-frame');
+  const url = frame?.src;
+  if (!url || url === 'about:blank') { showToast('Load a page first','error'); return; }
+  const w = window.open('about:blank','_blank');
+  if (w) {
+    w.document.open();
+    w.document.write(`<iframe src="${url}" style="width:100%;height:100%;border:none;position:fixed;inset:0"></iframe>`);
+    w.document.close();
+  }
+}
 
 // ============================================================
 // KEYBOARD SHORTCUTS
