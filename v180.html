@@ -815,7 +815,7 @@ body.perf-mode .page.active{animation:none}
 
     <div class="settings-card">
       <h3>ℹ️ About</h3>
-      <div class="setting-row"><div class="setting-label">Version</div><div style="color:var(--accent);font-weight:600">1.9.0</div></div>
+      <div class="setting-row"><div class="setting-label">Version</div><div style="color:var(--accent);font-weight:600">1.8.0</div></div>
       <div class="setting-row"><div class="setting-label">Owner</div><div style="color:var(--text-muted)">Nolan Boyer</div></div>
       <div class="setting-row"><div class="setting-label">Hosted On</div><div style="color:var(--text-muted)">GitHub</div></div>
       <div style="margin-top:12px"><a href="https://github.com/NolanBetter/nolanbetter.github.io" target="_blank" class="s-btn" style="display:inline-block;text-decoration:none">🍴 Fork on GitHub</a></div>
@@ -828,8 +828,8 @@ body.perf-mode .page.active{animation:none}
 <script>
 // ===== CHANGELOG =====
 const CHANGELOG = [
-  { version:'1.9.0', badge:'new', date:'2026', entries:['Version tab added (customisable archive section)','Open Behavior setting — games: popup/new tab/about:blank; sites: new tab/iframe','Grid density toggle on Games page (Normal / Compact / List)','Fullscreen button on modal (F key shortcut)','Site iframe modal — open any link in an in-page overlay','Settings Save button with sticky save bar','Back-to-top button appears when scrolling'] },
-  { version:'1.8.0', badge:'new', date:'2026', entries:['Games open in popup modal instead of new tab','Download any game as an HTML file','Share game links via Web Share API','Custom CSS editor in Settings with live preview','Import your own HTML game files (up to 5 MB)','Enhanced right-click menu: play, download, share, rate, star, remove'] },
+  { version:'1.8.0 release 2', badge:'new', date:'2026', entries:['Version tab added (customisable archive section)','Open Behavior setting — games: popup/new tab/about:blank; sites: new tab/iframe','Grid density toggle on Games page (Normal / Compact / List)','Fullscreen button on modal (F key shortcut)','Site iframe modal — open any link in an in-page overlay','Settings Save button with sticky save bar','Back-to-top button appears when scrolling'] },
+  { version:'1.8.0 release 1', badge:'new', date:'2026', entries:['Games open in popup modal instead of new tab','Download any game as an HTML file','Share game links via Web Share API','Custom CSS editor in Settings with live preview','Import your own HTML game files (up to 5 MB)','Enhanced right-click menu: play, download, share, rate, star, remove'] },
   { version:'1.7.6', badge:'update', date:'02/20/26', entries:['Added more links','Made Eaglercraft versions use NGG','Bug fixes'] },
   { version:'1.7.0', badge:'update', date:'02/18/26', entries:['Recently played tracker','5-star rating system','Page fade transitions','Search history','Filter bar on Games page','Announcement banner','Right-click context menu'] }
 ];
@@ -1662,7 +1662,7 @@ setInterval(updateNavbarInfo,10000);
 // EXPORT / IMPORT DATA
 // ============================================================
 function exportData(){
-  const data={version:'1.9.0',exported:new Date().toISOString(),favorites,ratings,recentlyPlayed,searchHistory,theme:currentTheme,bg:currentBg,inactivity:localStorage.getItem('ngg_inactivity'),perf:isPerfMode,clickEffects:clickEffectsEnabled,clickStyle:clickEffectStyle,autoPerf:autoPerfEnabled,tabPerf:tabPerfEnabled,tabOrder,widgetSettings,customCSS,openBehavior,gridDensity};
+  const data={version:'1.8.0',exported:new Date().toISOString(),favorites,ratings,recentlyPlayed,searchHistory,theme:currentTheme,bg:currentBg,inactivity:localStorage.getItem('ngg_inactivity'),perf:isPerfMode,clickEffects:clickEffectsEnabled,clickStyle:clickEffectStyle,autoPerf:autoPerfEnabled,tabPerf:tabPerfEnabled,tabOrder,widgetSettings,customCSS,openBehavior,gridDensity};
   const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ngg-data.json';a.click();showToast('⬇ Data exported!','success');
 }
 function importData(input){
