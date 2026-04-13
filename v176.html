@@ -62,6 +62,42 @@ body.theme-forest {
 --glow:0 0 20px rgba(111,185,143,0.35);
 }
 
+body.theme-candy {
+--bg:#1a0520;--bg2:#2a0a35;--surface:rgba(255,100,200,0.06);--surface2:rgba(255,100,200,0.12);
+--border:rgba(255,100,200,0.2);--border-strong:rgba(255,100,200,0.45);--accent:#ff64c8;--accent2:#ffb3e6;
+--accent3:#c084fc;--text:#ffe8f8;--text-muted:#ff9de0;--text-dim:#7a2a6a;--gold:#ffd700;
+--glow:0 0 20px rgba(255,100,200,0.4);
+}
+body.theme-lava {
+--bg:#100500;--bg2:#1e0a00;--surface:rgba(255,80,0,0.06);--surface2:rgba(255,80,0,0.12);
+--border:rgba(255,80,0,0.2);--border-strong:rgba(255,140,0,0.5);--accent:#ff5000;--accent2:#ffaa00;
+--accent3:#ff2200;--text:#fff0e8;--text-muted:#ff9966;--text-dim:#7a2500;--gold:#ffcc00;
+--glow:0 0 24px rgba(255,80,0,0.5);
+}
+body.theme-arctic {
+--bg:#020a14;--bg2:#04111f;--surface:rgba(180,230,255,0.05);--surface2:rgba(180,230,255,0.1);
+--border:rgba(180,230,255,0.15);--border-strong:rgba(180,230,255,0.4);--accent:#b4e6ff;--accent2:#ffffff;
+--accent3:#80d0ff;--text:#eaf6ff;--text-muted:#9fcfec;--text-dim:#2a5a7a;--gold:#ffe9a0;
+--glow:0 0 20px rgba(180,230,255,0.3);
+}
+body.theme-gold {
+--bg:#0f0a00;--bg2:#1a1200;--surface:rgba(255,200,0,0.06);--surface2:rgba(255,200,0,0.12);
+--border:rgba(255,200,0,0.2);--border-strong:rgba(255,200,0,0.45);--accent:#ffc800;--accent2:#ffe566;
+--accent3:#ff9f00;--text:#fff8e0;--text-muted:#ffd966;--text-dim:#7a5a00;--gold:#ffc800;
+--glow:0 0 24px rgba(255,200,0,0.4);
+}
+body.theme-toxic {
+--bg:#030d00;--bg2:#061500;--surface:rgba(100,255,0,0.05);--surface2:rgba(100,255,0,0.1);
+--border:rgba(100,255,0,0.18);--border-strong:rgba(100,255,0,0.45);--accent:#64ff00;--accent2:#aaff55;
+--accent3:#00ffaa;--text:#edffd4;--text-muted:#88ee44;--text-dim:#2e6600;--gold:#ffe000;
+--glow:0 0 22px rgba(100,255,0,0.4);
+}
+body.theme-blood {
+--bg:#0d0000;--bg2:#1a0000;--surface:rgba(200,0,0,0.06);--surface2:rgba(200,0,0,0.12);
+--border:rgba(200,0,0,0.2);--border-strong:rgba(220,0,0,0.45);--accent:#cc0000;--accent2:#ff4444;
+--accent3:#ff0066;--text:#ffe0e0;--text-muted:#dd8888;--text-dim:#660000;--gold:#ff6600;
+--glow:0 0 22px rgba(200,0,0,0.5);
+}
 /* ===== RESET & BASE ===== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;font-weight:400;min-height:100vh;overflow-x:hidden;transition:background 0.5s ease,color 0.5s ease}
@@ -152,7 +188,7 @@ text-transform:uppercase;letter-spacing:0.8px;flex-shrink:0;position:relative;ou
 .page{display:none!important}
 .page.active{display:block!important;animation:pageFadeIn 0.35s ease both}
 #page-home.active{display:grid!important;animation:pageFadeIn 0.35s ease both}
-#page-proxy.active{display:flex!important;animation:pageFadeIn 0.35s ease both}
+#page-proxy.active{display:block!important;animation:pageFadeIn 0.35s ease both}
 #page-favorites.active{display:block!important;animation:pageFadeIn 0.35s ease both}
 @keyframes pageFadeIn{
 from{opacity:0;transform:translateY(12px)}
@@ -196,7 +232,6 @@ body.perf-mode .page.active{animation:none}
 .recently-empty{font-size:12px;color:var(--text-dim);padding:8px;text-align:center}
 
 /* ===== CHANGELOG ===== */
-.home-right{}
 .changelog-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;height:100%}
 .changelog-panel h3{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
 .cl-item{padding:12px 0;border-bottom:1px solid var(--border)}
@@ -355,7 +390,7 @@ body.perf-mode .page.active{animation:none}
 .announcement-btns{display:flex;gap:8px}
 
 /* ===== PROXY PAGE ===== */
-#page-proxy{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - var(--nav-h));padding:40px}
+
 .coming-soon-box{text-align:center;max-width:500px}
 .cs-icon{font-size:80px;margin-bottom:20px}
 .cs-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:48px;color:var(--text);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
@@ -384,6 +419,64 @@ body.perf-mode .page.active{animation:none}
 .footer-logos{display:flex;justify-content:center;gap:12px;margin-top:12px}
 .footer-logos img{width:32px;height:32px;border-radius:6px;cursor:pointer;transition:all 0.2s;opacity:0.7}
 .footer-logos img:hover{opacity:1;transform:scale(1.1)}
+
+/* ===== NAVBAR INFO WIDGET (time + battery) ===== */
+#navbar-info{display:flex;flex-direction:column;align-items:flex-end;gap:1px;flex-shrink:0;padding:4px 10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);min-width:72px}
+#info-time{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:var(--accent);letter-spacing:0.5px;line-height:1.2}
+#info-battery{font-size:11px;color:var(--text-muted);line-height:1.2}
+
+/* ===== CLICK EFFECTS ===== */
+.click-particle{position:fixed;pointer-events:none;z-index:9999;border-radius:50%;animation:clickPop var(--dur,0.6s) ease-out forwards}
+@keyframes clickPop{0%{opacity:1;transform:scale(1) translate(0,0)}100%{opacity:0;transform:scale(0) translate(var(--tx),var(--ty))}}
+.click-ripple{position:fixed;pointer-events:none;z-index:9998;border-radius:50%;border:2px solid var(--accent);animation:rippleOut 0.5s ease-out forwards}
+@keyframes rippleOut{0%{opacity:0.8;transform:scale(0)}100%{opacity:0;transform:scale(3)}}
+
+/* ===== CARD THUMB IMAGE ===== */
+.card-thumb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease}
+.game-card:hover .card-thumb-img{transform:scale(1.05)}
+.card-thumb-placeholder{font-size:48px;opacity:0.3;position:relative;z-index:1}
+.card-thumb-placeholder.hidden{display:none}
+
+
+/* ===== PROXY PAGE ===== */
+#page-proxy{padding:24px}
+.proxy-wrapper{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:0}
+.proxy-header{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius) var(--radius) 0 0;padding:20px 20px 14px}
+.proxy-title-row{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.proxy-icon{font-size:28px}
+.proxy-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;color:var(--text)}
+.proxy-subtitle{font-size:12px;color:var(--text-muted)}
+.proxy-badge{margin-left:auto;background:var(--accent);color:var(--bg);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;padding:3px 8px;border-radius:4px;letter-spacing:1px}
+.proxy-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.proxy-url-bar{flex:1;display:flex;align-items:center;background:var(--bg2);border:1.5px solid var(--border);border-radius:999px;padding:0 6px 0 14px;transition:border-color 0.2s;overflow:hidden}
+.proxy-url-bar:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 20%,transparent)}
+.proxy-url-icon{font-size:14px;margin-right:8px;flex-shrink:0}
+#proxy-input{flex:1;background:none;border:none;color:var(--text);font-family:'Exo 2',sans-serif;font-size:13px;outline:none;padding:8px 0}
+#proxy-input::placeholder{color:var(--text-dim)}
+.proxy-go-btn{background:var(--accent);color:var(--bg);border:none;border-radius:999px;padding:6px 18px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;cursor:pointer;transition:all 0.2s;flex-shrink:0;margin:4px}
+.proxy-go-btn:hover{filter:brightness(1.15)}
+.proxy-btn{width:34px;height:34px;border-radius:var(--radius-sm);background:var(--surface2);border:1px solid var(--border);color:var(--text-muted);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;flex-shrink:0}
+.proxy-btn:hover{border-color:var(--accent);color:var(--accent)}
+.proxy-quick-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.proxy-quick-label{font-size:11px;color:var(--text-dim);font-family:'Rajdhani',sans-serif;text-transform:uppercase;letter-spacing:1px;flex-shrink:0}
+.proxy-quick-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text-muted);border-radius:999px;padding:4px 12px;font-size:12px;font-family:'Rajdhani',sans-serif;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.proxy-quick-btn:hover{border-color:var(--accent);color:var(--accent)}
+.proxy-frame-wrap{position:relative;background:var(--bg2);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);overflow:hidden;min-height:520px}
+.proxy-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;text-align:center;min-height:520px}
+.proxy-ph-icon{font-size:64px;margin-bottom:16px;opacity:0.5}
+.proxy-ph-title{font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700;color:var(--text);margin-bottom:8px}
+.proxy-ph-sub{font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:16px}
+.proxy-ph-note{font-size:12px;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);border-radius:var(--radius-sm);padding:8px 16px}
+.proxy-iframe{width:100%;height:600px;border:none;display:block}
+
+/* ===== NAVBAR TAB DRAG REORDER ===== */
+.nav-tab.drag-over{border-color:transparent!important;background:transparent!important}
+.nav-tab.dragging{opacity:1}
+
+/* ===== WIDGET SETTINGS ===== */
+.widget-preview{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;display:flex;flex-direction:column;align-items:flex-end;gap:2px;margin-bottom:12px;min-width:90px;width:fit-content}
+.widget-preview span{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:var(--accent)}
+.widget-preview small{font-size:11px;color:var(--text-muted)}
 
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar{width:6px;height:6px}
@@ -455,14 +548,14 @@ body.perf-mode .page.active{animation:none}
 <div id="navbar-top">
 <a id="navbar-logo" onclick="navigate('home')">
 <img src="https://nolangraysongames.com/Logo.png" alt="NGG Logo">
-<span id="navbar-logo-text">Nolan's And Grayson's Games</span>
+<span id="navbar-logo-text">NGG</span>
 </a>
 <div id="navbar-search">
 <span id="search-icon">🔍</span>
 <input type="text" id="search" placeholder="Search games, sites..." autocomplete="off" oninput="handleSearch(this.value)" onfocus="showSearchHistory()">
 <span id="search-clear" onclick="clearSearch()">×</span>
 </div>
-<button id="perf-btn" onclick="togglePerfMode()" title="Toggle Performance Mode">⚡</button>
+<div id="navbar-info"><span id="info-time">--:--</span><span id="info-date" style="display:none;font-size:10px;color:var(--text-muted)"></span><span id="info-battery">🔋--</span><span id="info-custom" style="display:none;font-size:10px;color:var(--text-muted)"></span></div>
 </div>
 <div id="navbar-tabs">
 <button class="nav-tab" data-page="home" onclick="navigate('home')"><span class="tab-icon">🏠</span> Home</button>
@@ -503,7 +596,6 @@ body.perf-mode .page.active{animation:none}
 <button class="home-nav-btn" onclick="navigate('medieval')"><span class="btn-icon"></span> ⚔️ Medieval</button>
 <button class="home-nav-btn" onclick="navigate('ourlinks')"><span class="btn-icon"></span> 🕹️ Our Links</button>
 <div class="home-nav-divider"></div>
-<button class="home-nav-btn" onclick="navigate('proxy')"><span class="btn-icon"></span> 🔒 Proxy</button>
 <button class="home-nav-btn" onclick="navigate('favorites')"><span class="btn-icon"></span> ⭐ Favorites</button>
 <button class="home-nav-btn" onclick="navigate('settings')"><span class="btn-icon"></span> ⚙️ Settings</button>
 </div>
@@ -533,34 +625,9 @@ body.perf-mode .page.active{animation:none}
 </div>
 </div>
 <div class="home-right">
-<div class="changelog-panel">
-<h3> Changelog</h3>
-<div class="cl-item">
-<div class="cl-version">v1.7.0 <span class="cl-badge new">NEW</span></div>
-<div class="cl-date">02/18/26</div>
-<div class="cl-entry">Recently played tracker with timestamps</div>
-<div class="cl-entry">5-star game rating system</div>
-<div class="cl-entry">Smooth page transition animations</div>
-<div class="cl-entry">Animated number counters on stats</div>
-<div class="cl-entry">Search history with quick-replay tags</div>
-<div class="cl-entry">Filter bar on Games page</div>
-<div class="cl-entry">Announcement banner (configurable in settings)</div>
-<div class="cl-entry">Right-click context menu on cards</div>
-<div class="cl-entry">Site-style cards on all link pages</div>
-</div>
-<div class="cl-item">
-<div class="cl-version">v1.6.0 <span class="cl-badge update">UPDATE</span></div>
-<div class="cl-date">02/17/26</div>
-<div class="cl-entry">Full site redesign with multi-page navigation</div>
-<div class="cl-entry">Interactive background effects</div>
-<div class="cl-entry">Game & website card grid view</div>
-<div class="cl-entry">Import / Export data feature</div>
-</div>
-<div class="cl-item">
-<div class="cl-version">v1.5.0 <span class="cl-badge update">UPDATE</span></div>
-<div class="cl-date">01/01/26</div>
-<div class="cl-entry">Added 25+ new games including OMORI, Celeste, Cuphead</div>
-</div>
+<div class="changelog-panel" id="changelog-panel">
+<h3>📋 Changelog</h3>
+<div id="changelog-list"></div>
 </div>
 </div>
 <div style="grid-column:1/-1">
@@ -568,7 +635,6 @@ body.perf-mode .page.active{animation:none}
 <div class="footer-text"> FAST • SIMPLE • BROWSER-BASED GAMING </div>
 <div class="footer-logos">
 <img src="https://www.nolangraysongames.com/Logo.png" alt="NGG" title="NGG Discord" onclick="window.open('https://discord.gg/nNCWgRJZ7v','_blank')">
-<img src="https://www.nolangraysongames.com/SquallLogo.png" alt="Squall" title="Squall Discord" onclick="window.open('https://discord.gg/RvRPeeFgus','_blank')">
 </div>
 </div>
 </div>
@@ -637,12 +703,43 @@ body.perf-mode .page.active{animation:none}
 
 <!-- PROXY PAGE -->
 <div id="page-proxy" class="page">
-<div class="coming-soon-box">
-<div class="cs-icon"></div>
-<div class="cs-title">Proxy</div>
-<div class="cs-sub">Nolan's Proxy is coming!<br>A built-in version is coming soon to Nolan's And Grayson's Games Portal.</div>
-<div class="cs-bar"><div class="cs-bar-fill"></div></div>
-<div style="font-size:13px;color:var(--text-dim)">Check back for updates!</div>
+<div class="proxy-wrapper">
+  <div class="proxy-header">
+    <div class="proxy-title-row">
+      <span class="proxy-icon">🔒</span>
+      <div>
+        <div class="proxy-title">NGG Proxy</div>
+        <div class="proxy-subtitle">Enter a URL to browse privately</div>
+      </div>
+      <div class="proxy-badge">BETA</div>
+    </div>
+    <div class="proxy-bar-row">
+      <div class="proxy-url-bar">
+        <span class="proxy-url-icon">🌐</span>
+        <input type="text" id="proxy-input" placeholder="https://example.com" autocomplete="off" onkeydown="if(event.key==='Enter')loadProxy()">
+        <button class="proxy-go-btn" onclick="loadProxy()">Go</button>
+      </div>
+      <button class="proxy-btn" onclick="proxyNavBack()" title="Back">◀</button>
+      <button class="proxy-btn" onclick="proxyNavRefresh()" title="Refresh">↻</button>
+      <button class="proxy-btn" onclick="proxyOpenBlank()" title="Open in about:blank">⬡</button>
+    </div>
+    <div class="proxy-quick-row" id="proxy-quick-sites">
+      <span class="proxy-quick-label">Quick:</span>
+      <button class="proxy-quick-btn" onclick="proxyLoad('https://67-blue.vercel.app/api/proxy?url=' + encodeURIComponent('https://www.google.com'))">🔍 Google</button>
+      <button class="proxy-quick-btn" onclick="proxyLoad('https://67-blue.vercel.app/api/proxy?url=' + encodeURIComponent('https://www.wikipedia.org'))">📖 Wikipedia</button>
+      <button class="proxy-quick-btn" onclick="proxyLoad('https://67-blue.vercel.app/api/proxy?url=' + encodeURIComponent('https://scratch.mit.edu'))">🐱 Scratch</button>
+      <button class="proxy-quick-btn" onclick="proxyLoad('https://67-blue.vercel.app/api/proxy?url=' + encodeURIComponent('https://www.coolmathgames.com'))">🧮 CoolMath</button>
+    </div>
+  </div>
+  <div class="proxy-frame-wrap" id="proxy-frame-wrap">
+    <div class="proxy-placeholder" id="proxy-placeholder">
+      <div class="proxy-ph-icon">🔒</div>
+      <div class="proxy-ph-title">Ready to Browse</div>
+      <div class="proxy-ph-sub">Enter a URL above or pick a quick site to get started.<br>Note: some sites block iframe embedding.</div>
+      <div class="proxy-ph-note">⚠️ Proxy functionality coming soon — this is a preview shell.</div>
+    </div>
+    <iframe id="proxy-frame" class="proxy-iframe" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" style="display:none"></iframe>
+  </div>
 </div>
 </div>
 
@@ -665,37 +762,103 @@ body.perf-mode .page.active{animation:none}
 <div class="settings-card">
 <h3> Theme</h3>
 <div class="theme-grid" id="theme-grid">
-<div class="theme-chip active" style="background:linear-gradient(135deg,#0a0a0f,#1a1a2e);border-color:#7c5cfc;color:#e2e8f0" onclick="setTheme('theme-default')" data-theme="theme-default"> Default</div>
-<div class="theme-chip" style="background:linear-gradient(135deg,#050510,#0a0a1a);color:#39ff14" onclick="setTheme('theme-neon')" data-theme="theme-neon"> Neon</div>
-<div class="theme-chip" style="background:linear-gradient(135deg,#020617,#050c23);color:#818cf8" onclick="setTheme('theme-midnight')" data-theme="theme-midnight"> Midnight</div>
-<div class="theme-chip" style="background:linear-gradient(135deg,#1a0a0a,#2a1010);color:#ff6b6b" onclick="setTheme('theme-sunset')" data-theme="theme-sunset"> Sunset</div>
-<div class="theme-chip" style="background:linear-gradient(135deg,#020d1a,#041524);color:#05bfdb" onclick="setTheme('theme-ocean')" data-theme="theme-ocean"> Ocean</div>
-<div class="theme-chip" style="background:linear-gradient(135deg,#020f02,#041804);color:#6fb98f" onclick="setTheme('theme-forest')" data-theme="theme-forest"> Forest</div>
+<div class="theme-chip active" style="background:linear-gradient(135deg,#0a0a0f,#1a1a2e);border-color:#7c5cfc;color:#e2e8f0" onclick="setTheme('theme-default')" data-theme="theme-default">🌌 Default</div>
+<div class="theme-chip" style="background:linear-gradient(135deg,#050510,#0a0a1a);color:#39ff14" onclick="setTheme('theme-neon')" data-theme="theme-neon">⚡ Neon</div>
+<div class="theme-chip" style="background:linear-gradient(135deg,#020617,#050c23);color:#818cf8" onclick="setTheme('theme-midnight')" data-theme="theme-midnight">🌙 Midnight</div>
+<div class="theme-chip" style="background:linear-gradient(135deg,#1a0a0a,#2a1010);color:#ff6b6b" onclick="setTheme('theme-sunset')" data-theme="theme-sunset">🌅 Sunset</div>
+<div class="theme-chip" style="background:linear-gradient(135deg,#020d1a,#041524);color:#05bfdb" onclick="setTheme('theme-ocean')" data-theme="theme-ocean">🌊 Ocean</div>
+<div class="theme-chip" style="background:linear-gradient(135deg,#020f02,#041804);color:#6fb98f" onclick="setTheme('theme-forest')" data-theme="theme-forest">🌲 Forest</div>
+<div class="theme-chip" style="background:linear-gradient(135deg,#1a0520,#2a0a35);color:#ff64c8" onclick="setTheme('theme-candy')" data-theme="theme-candy">🍭 Candy</div>
+<div class="theme-chip" style="background:linear-gradient(135deg,#100500,#2a0f00);color:#ff5000" onclick="setTheme('theme-lava')" data-theme="theme-lava">🌋 Lava</div>
+<div class="theme-chip" style="background:linear-gradient(135deg,#020a14,#04111f);color:#b4e6ff" onclick="setTheme('theme-arctic')" data-theme="theme-arctic">❄️ Arctic</div>
+<div class="theme-chip" style="background:linear-gradient(135deg,#0f0a00,#1a1200);color:#ffc800" onclick="setTheme('theme-gold')" data-theme="theme-gold">👑 Gold</div>
+<div class="theme-chip" style="background:linear-gradient(135deg,#030d00,#061500);color:#64ff00" onclick="setTheme('theme-toxic')" data-theme="theme-toxic">☢️ Toxic</div>
+<div class="theme-chip" style="background:linear-gradient(135deg,#0d0000,#1a0000);color:#cc0000" onclick="setTheme('theme-blood')" data-theme="theme-blood">🩸 Blood</div>
 </div>
 </div>
 <div class="settings-card">
 <h3> Background Effect</h3>
 <div class="bg-grid" id="bg-grid">
-<div class="bg-chip active" onclick="setBgEffect('stars')" data-bg="stars"><span class="bc-icon"></span>Stars</div>
-<div class="bg-chip" onclick="setBgEffect('matrix')" data-bg="matrix"><span class="bc-icon"></span>Matrix</div>
-<div class="bg-chip" onclick="setBgEffect('geometric')" data-bg="geometric"><span class="bc-icon"></span>Geometric</div>
-<div class="bg-chip" onclick="setBgEffect('particles')" data-bg="particles"><span class="bc-icon"></span>Particles</div>
-<div class="bg-chip" onclick="setBgEffect('none')" data-bg="none"><span class="bc-icon"></span>None</div>
-<div class="bg-chip" onclick="setBgEffect('nebula')" data-bg="nebula"><span class="bc-icon"></span>Nebula</div>
+<div class="bg-chip active" onclick="setBgEffect('stars')" data-bg="stars"><span class="bc-icon">✦</span>Stars</div>
+<div class="bg-chip" onclick="setBgEffect('matrix')" data-bg="matrix"><span class="bc-icon">⬛</span>Matrix</div>
+<div class="bg-chip" onclick="setBgEffect('geometric')" data-bg="geometric"><span class="bc-icon">◇</span>Geometric</div>
+<div class="bg-chip" onclick="setBgEffect('particles')" data-bg="particles"><span class="bc-icon">·</span>Particles</div>
+<div class="bg-chip" onclick="setBgEffect('nebula')" data-bg="nebula"><span class="bc-icon">🌌</span>Nebula</div>
+<div class="bg-chip" onclick="setBgEffect('rain')" data-bg="rain"><span class="bc-icon">🌧</span>Rain</div>
+<div class="bg-chip" onclick="setBgEffect('aurora')" data-bg="aurora"><span class="bc-icon">🌈</span>Aurora</div>
+<div class="bg-chip" onclick="setBgEffect('vortex')" data-bg="vortex"><span class="bc-icon">🌀</span>Vortex</div>
+<div class="bg-chip" onclick="setBgEffect('fire')" data-bg="fire"><span class="bc-icon">🔥</span>Fire</div>
+<div class="bg-chip" onclick="setBgEffect('none')" data-bg="none"><span class="bc-icon">✕</span>None</div>
 </div>
-<div style="margin-top:14px">
-<div class="setting-row">
-<div><div class="setting-label">Interactive Background</div><div class="setting-desc">Click canvas to create particle bursts</div></div>
-<label class="s-toggle"><input type="checkbox" id="interactive-toggle" onchange="toggleInteractive(this.checked)"><span class="s-toggle-track"></span></label>
+
 </div>
+
+<div class="settings-card">
+<h3>✨ Click Effects</h3>
+<div class="setting-row" style="margin-bottom:12px">
+<div><div class="setting-label">Enable Click Effects</div><div class="setting-desc">Visual effects when clicking anywhere</div></div>
+<label class="s-toggle"><input type="checkbox" id="click-effects-toggle" onchange="toggleClickEffects(this.checked)"><span class="s-toggle-track"></span></label>
+</div>
+<div class="bg-grid" id="click-effect-grid">
+<div class="bg-chip" onclick="setClickEffectStyle('particles')" data-ce="particles"><span class="bc-icon">💥</span>Particles</div>
+<div class="bg-chip" onclick="setClickEffectStyle('ripple')" data-ce="ripple"><span class="bc-icon">🌊</span>Ripple</div>
+<div class="bg-chip" onclick="setClickEffectStyle('both')" data-ce="both"><span class="bc-icon">✨</span>Both</div>
+<div class="bg-chip" onclick="setClickEffectStyle('sparks')" data-ce="sparks"><span class="bc-icon">⚡</span>Sparks</div>
+<div class="bg-chip" onclick="setClickEffectStyle('confetti')" data-ce="confetti"><span class="bc-icon">🎉</span>Confetti</div>
+<div class="bg-chip" onclick="setClickEffectStyle('stars')" data-ce="stars"><span class="bc-icon">⭐</span>Stars</div>
 </div>
 </div>
 
 <div class="settings-card">
-<h3> Performance</h3>
+<h3>🕐 Navbar Widget</h3>
+<div class="setting-desc" style="margin-bottom:10px;font-size:12px;color:var(--text-muted)">Pick up to <strong style="color:var(--accent)">2 items</strong> to show in the navbar widget.</div>
 <div class="setting-row">
-<div><div class="setting-label">Performance Mode</div><div class="setting-desc">Disable animations & background</div></div>
+<div><div class="setting-label">Show Time</div></div>
+<label class="s-toggle"><input type="checkbox" id="widget-time-toggle" checked onchange="saveWidgetSettings('widget-time-toggle')"><span class="s-toggle-track"></span></label>
+</div>
+<div class="setting-row">
+<div><div class="setting-label">Show Date</div></div>
+<label class="s-toggle"><input type="checkbox" id="widget-date-toggle" onchange="saveWidgetSettings('widget-date-toggle')"><span class="s-toggle-track"></span></label>
+</div>
+<div class="setting-row" id="widget-batt-row">
+<div><div class="setting-label">Show Battery <span id="widget-batt-lock-icon" style="display:none;font-size:12px;color:var(--text-dim)">🔒</span></div><div class="setting-desc" id="widget-batt-desc"></div></div>
+<label class="s-toggle"><input type="checkbox" id="widget-batt-toggle" onchange="handleBattToggle(this)"><span class="s-toggle-track"></span></label>
+</div>
+<div class="setting-row">
+<div><div class="setting-label">Custom Label</div><div class="setting-desc">Optional text shown below time</div></div>
+<label class="s-toggle"><input type="checkbox" id="widget-custom-toggle" onchange="saveWidgetSettings('widget-custom-toggle')"><span class="s-toggle-track"></span></label>
+</div>
+<div class="setting-row" id="widget-custom-row" style="display:none">
+<input type="text" id="widget-custom-input" class="s-select" style="width:100%;max-width:200px" placeholder="e.g. Study Mode 📚" oninput="saveWidgetSettings()" maxlength="24">
+</div>
+<div class="setting-row">
+<div><div class="setting-label">Hide Widget Entirely</div></div>
+<label class="s-toggle"><input type="checkbox" id="widget-hide-toggle" onchange="saveWidgetSettings('widget-hide-toggle')"><span class="s-toggle-track"></span></label>
+</div>
+</div>
+
+<div class="settings-card">
+<h3>🗂️ Tab Order</h3>
+<div class="setting-desc" style="margin-bottom:12px;font-size:12px;color:var(--text-muted)">Drag tabs to reorder. Home and Settings are always pinned.</div>
+<div id="tab-order-list" style="display:flex;flex-direction:column;gap:6px"></div>
+<div style="display:flex;gap:8px;margin-top:12px">
+<button class="s-btn" onclick="resetTabOrder()">↺ Reset Order</button>
+</div>
+</div>
+
+<div class="settings-card">
+<h3>⚡ Performance</h3>
+<div class="setting-row">
+<div><div class="setting-label">Performance Mode</div><div class="setting-desc">Disable animations, background & effects</div></div>
 <label class="s-toggle"><input type="checkbox" id="perf-toggle" onchange="togglePerfMode(this.checked)"><span class="s-toggle-track"></span></label>
+</div>
+<div class="setting-row">
+<div><div class="setting-label">Auto-Perf on Slow Page</div><div class="setting-desc">Detect lag and auto-enable performance mode</div></div>
+<label class="s-toggle"><input type="checkbox" id="auto-perf-toggle" onchange="toggleAutoPerf(this.checked)"><span class="s-toggle-track"></span></label>
+</div>
+<div class="setting-row">
+<div><div class="setting-label">Pause When Tab Hidden</div><div class="setting-desc">Auto performance mode when you leave tab</div></div>
+<label class="s-toggle"><input type="checkbox" id="tab-perf-toggle" onchange="toggleTabPerf(this.checked)"><span class="s-toggle-track"></span></label>
 </div>
 <div class="setting-row">
 <div class="setting-label">Open in About:Blank</div>
@@ -754,9 +917,9 @@ body.perf-mode .page.active{animation:none}
 </div>
 <div class="settings-card">
 <h3>ℹ About</h3>
-<div class="setting-row"><div class="setting-label">Version</div><div style="color:var(--accent);font-weight:600">1.7.0</div></div>
+<div class="setting-row"><div class="setting-label">Version</div><div style="color:var(--accent);font-weight:600">1.7.6</div></div>
 <div class="setting-row"><div class="setting-label">Owner</div><div style="color:var(--text-muted)">Nolan Boyer</div></div>
-<div class="setting-row"><div class="setting-label">Last Updated</div><div style="color:var(--text-muted)">02/18/26</div></div>
+<div class="setting-row"><div class="setting-label">Last Updated</div><div style="color:var(--text-muted)">02/23/25</div></div>
 <div class="setting-row"><div class="setting-label">Hosted On</div><div style="color:var(--text-muted)">Github</div></div>
 <div style="margin-top:12px">
 <a href="https://github.com/NolanBetter/nolanbetter.github.io" target="_blank" class="s-btn" style="display:inline-block;text-decoration:none"> Fork on GitHub</a>
@@ -769,138 +932,182 @@ body.perf-mode .page.active{animation:none}
 
 <script>
 // ============================================================
+// CHANGELOG CONFIG — Edit entries here, HTML auto-generates
+// ============================================================
+// badge options: 'new', 'fix', 'update'  (or '' for none)
+const CHANGELOG = [
+  {
+    version: '1.7.6',
+    badge: 'new',
+    date: '02/20/26',
+    entries: [
+      'added some more links',
+      'Made some Eaglercraft versions use nolan and grayson games rather then another site',
+      'bug fixes',
+    ]
+  },
+  {
+    version: '1.7.0',
+    badge: 'update',
+    date: '02/18/26',
+    entries: [
+      'Recently played tracker with timestamps',
+      '5-star game rating system',
+      'Smooth page fade transitions',
+      'Animated number counters on stats',
+      'Search history with quick-replay tags',
+      'Filter bar on Games page',
+      'Announcement banner (code-only)',
+      'Right-click context menu on cards',
+      'Site-style cards for all link pages',
+    ]
+  },
+  {
+    version: '1.6.0',
+    badge: 'update',
+    date: '02/17/26',
+    entries: [
+      'Full site redesign with multi-page navigation',
+      'Interactive background effects',
+      'Game & website card grid view',
+      'Import / Export data feature',
+    ]
+  },
+];
+
+// ============================================================
 // DATA
 // ============================================================
 const GAMES = [
-{ name:"Bad Parenting 1",href:"Bad Parenting 1.html",icon:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/166.png",tags:["action"] },
-{ name:"Baldi's Basics Plus",href:"Baldi's Basics Plus.html",icon:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/467.png",tags:["horror"] },
-{ name:"Bendy and the Ink Machine",href:"Bendy and the Ink Machine.html",icon:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/215.png",tags:["horror"] },
-{ name:"Buckshot Roulette",href:"Buckshot Roulette.html",icon:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/205.png",tags:["horror"] },
-{ name:"Celeste",href:"Celeste.html",icon:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/623.png",tags:["platformer"] },
-{ name:"Cuphead",href:"Cuphead.html",icon:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/465.png",tags:["action","platformer"] },
-{ name:"Five Nights at Epstein's",href:"Five Nights at Epstein's.html",icon:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/710.png",tags:["horror"] },
-{ name:"Five Nights at Freddy's Pizza Simulator",href:"Five Nights at Freddy's_ Pizza Simulator.html",icon:"",tags:["horror"] },
-{ name:"Five Nights at Freddy's Sister Location",href:"Five Nights at Freddy's_ Sister Location.html",icon:"",tags:["horror"] },
-{ name:"Half Life",href:"Half Life.html",icon:"",tags:["shooter","action"] },
-{ name:"Hollow Knight",href:"Hollow Knight.html",icon:"",tags:["platformer","action"] },
-{ name:"Hotline Miami",href:"Hotline Miami.html",icon:"",tags:["action","shooter"] },
-{ name:"Jelly Drift",href:"Jelly Drift.html",icon:"",tags:["racing"] },
-{ name:"Karlson",href:"Karlson.html",icon:"",tags:["shooter","platformer"] },
-{ name:"Kindergarten",href:"Kindergarten.html",icon:"",tags:["puzzle"] },
-{ name:"Kindergarten 2",href:"Kindergarten 2.html",icon:"",tags:["puzzle"] },
-{ name:"OMORI",href:"OMORI.html",icon:"",tags:["puzzle"] },
-{ name:"Oneshot (LEGACY)",href:"Oneshot (LEGACY).html",icon:"",tags:["puzzle"] },
-{ name:"People Playground",href:"People Playground.html",icon:"",tags:["action"] },
-{ name:"Pizza Tower",href:"Pizza Tower.html",icon:"",tags:["platformer","action"] },
-{ name:"Quake III Arena",href:"Quake III Arena.html",icon:"",tags:["shooter"] },
-{ name:"R.E.P.O",href:"REPO.html",icon:"",tags:["horror"] },
-{ name:"Tattletail",href:"Tattletail.html",icon:"",tags:["horror"] },
-{ name:"Schoolboy Runaway",href:"Schoolboy Runaway.html",icon:"",tags:["action","platformer"] },
-{ name:"Slime Rancher",href:"Slime Rancher.html",icon:"[o]",tags:["action","idle"] },
-{ name:"Soundboard",href:"Soundboard.html",icon:"",tags:[] },
-{ name:"That's Not My Neighbor",href:"That's Not My Neighbor.html",icon:"",tags:["horror","puzzle"] },
-{ name:"ULTRAKILL",href:"ULTRAKILL.html",icon:"",tags:["shooter","action"] },
-{ name:"WebFishing",href:"WebFishing.html",icon:"",tags:["idle"] },
-{ name:"Yume Nikki",href:"Yume Nikki.html",icon:"",tags:["puzzle"] },
-{ name:"1v1.lol",href:"1v1LoL.html",icon:"",tags:["shooter"] },
-{ name:"2048",href:"2048.html",icon:"",tags:["puzzle"] },
-{ name:"2048 Merge Run",href:"2048 Merge Run.html",icon:"",tags:["puzzle","platformer"] },
-{ name:"8 Ball Pool",href:"8 Ball Pool.html",icon:"",tags:["sport"] },
-{ name:"A Bite at Freddy's",href:"A Bite at Freddy's.html",icon:"",tags:["horror"] },
-{ name:"Abandoned",href:"Abandoned.html",icon:"",tags:["horror"] },
-{ name:"Achievement Unlocked",href:"Achievement Unlocked.html",icon:"",tags:["puzzle"] },
-{ name:"Achievement Unlocked 2",href:"Achievement Unlocked 2.html",icon:"",tags:["puzzle"] },
-{ name:"Achievement Unlocked 3",href:"Achievement Unlocked 3.html",icon:"",tags:["puzzle"] },
-{ name:"Adventure Capitalist",href:"Adventure Capatalist.html",icon:"",tags:["idle"] },
-{ name:"Ages of Conflict",href:"Ages of Conflict.html",icon:"",tags:["action"] },
-{ name:"Angry Birds",href:"Angry Birds.html",icon:"",tags:["puzzle"] },
-{ name:"Angry Birds Chrome",href:"Angry Birds Chrome.html",icon:"",tags:["puzzle"] },
-{ name:"Awesome Tanks",href:"Awesome Tanks.html",icon:"",tags:["shooter","action"] },
-{ name:"Awesome Tanks 2",href:"Awesome Tanks 2.html",icon:"",tags:["shooter","action"] },
-{ name:"Backrooms",href:"Backrooms.html",icon:"",tags:["horror"] },
-{ name:"Bad Ice Cream",href:"Bad Ice Cream.html",icon:"",tags:["puzzle","action"] },
-{ name:"Bad Ice Cream 2",href:"Bad Ice Cream 2.html",icon:"",tags:["puzzle","action"] },
-{ name:"Bad Ice Cream 3",href:"Bad Ice Cream 3.html",icon:"",tags:["puzzle","action"] },
-{ name:"Basket Random",href:"Basket Random.html",icon:"",tags:["sport"] },
-{ name:"Basketball Stars",href:"Basketball Stars.html",icon:"",tags:["sport"] },
-{ name:"Big Tower Tiny Square",href:"Big Tower Tiny Square.html",icon:"[sq]",tags:["platformer"] },
-{ name:"Big Tower Tiny Square 2",href:"Big Tower Tiny Square 2.html",icon:"[sq]",tags:["platformer"] },
-{ name:"BitLife",href:"BitLife.html",icon:"",tags:["idle"] },
-{ name:"BitPlanes",href:"BitPlanes.html",icon:"",tags:["action"] },
-{ name:"Block Blast",href:"Block Blast.html",icon:"",tags:["puzzle"] },
-{ name:"BlockPost",href:"BlockPost.html",icon:"",tags:["shooter"] },
-{ name:"Bob The Robber 2",href:"Bob The Robber 2.html",icon:"",tags:["action","puzzle"] },
-{ name:"Boxing Random",href:"Boxing Random.html",icon:"",tags:["sport","action"] },
-{ name:"Brawl Guys.io",href:"Brawl Guysio.html",icon:"",tags:["action"] },
-{ name:"CircloO",href:"CircloO.html",icon:"",tags:["puzzle"] },
-{ name:"CircloO 2",href:"CircloO 2.html",icon:"",tags:["puzzle"] },
-{ name:"Cluster Rush",href:"Cluster Rush.html",icon:"",tags:["platformer","action"] },
-{ name:"Cookie Clicker",href:"Cookie Clicker.html",icon:"",tags:["idle"] },
-{ name:"Crazy Cars",href:"Crazy Cars.html",icon:"",tags:["racing"] },
-{ name:"Crossy Road",href:"Crossy Road.html",icon:"",tags:["action"] },
-{ name:"Cut the Rope",href:"Cut the Rope.html",icon:"",tags:["puzzle"] },
-{ name:"Doom",href:"DOOM.html",icon:"",tags:["shooter","action"] },
-{ name:"Doom 2",href:"Doom 2.html",icon:"",tags:["shooter","action"] },
-{ name:"Doom 3",href:"Doom 3.html",icon:"",tags:["shooter","action"] },
-{ name:"Drift Boss",href:"Drift Boss.html",icon:"",tags:["racing"] },
-{ name:"Draw Joust",href:"Draw Joust.html",icon:"",tags:["action","puzzle"] },
-{ name:"Drift Hunters",href:"Drift Hunters.html",icon:"",tags:["racing"] },
-{ name:"Duck Life",href:"Duck Life.html",icon:"",tags:["sport","action"] },
-{ name:"Duck Life 2",href:"Duck Life 2.html",icon:"",tags:["sport","action"] },
-{ name:"Duck Life 3",href:"Duck Life 3.html",icon:"",tags:["sport","action"] },
-{ name:"Duck Life 4",href:"Duck Life 4.html",icon:"",tags:["sport","action"] },
-{ name:"Duck Life 5",href:"Duck Life 5.html",icon:"",tags:["sport","action"] },
-{ name:"Geometry Dash Lite",href:"Geometry Dash Lite.html",icon:"",tags:["platformer","action"] },
-{ name:"Google Feud",href:"Google Feud.html",icon:"",tags:["puzzle"] },
-{ name:"Jetpack Joyride",href:"Jetpack Joyride.html",icon:"",tags:["action","platformer"] },
-{ name:"Learn to Fly",href:"Learn to Fly.html",icon:"",tags:["action","idle"] },
-{ name:"Learn to Fly 2",href:"Learn to Fly 2.html",icon:"",tags:["action","idle"] },
-{ name:"Learn to Fly 3",href:"Learn to Fly 3.html",icon:"",tags:["action","idle"] },
-{ name:"Learn to Fly Idle",href:"Learn to Fly Idle.html",icon:"",tags:["idle"] },
-{ name:"Line Rider",href:"Line Rider.html",icon:"",tags:["puzzle"] },
-{ name:"Melon Playground",href:"Melon Playground.html",icon:"",tags:["action"] },
-{ name:"Moto X3M",href:"Moto X3M.html",icon:"",tags:["racing","action"] },
-{ name:"OvO",href:"OvO.html",icon:"",tags:["platformer","action"] },
-{ name:"Pixel Gun Survival",href:"Pixel Gun Survival.html",icon:"",tags:["shooter"] },
-{ name:"Poly Track",href:"Poly Track.html",icon:"",tags:["racing"] },
-{ name:"Rooftop Snipers",href:"Rooftop Snipers.html",icon:"",tags:["shooter","action"] },
-{ name:"Rooftop Snipers 2",href:"Rooftop Snipers 2.html",icon:"",tags:["shooter","action"] },
-{ name:"Run",href:"Run 1.html",icon:"",tags:["platformer","action"] },
-{ name:"Sandboxels",href:"Sandboxels.html",icon:"",tags:["puzzle","idle"] },
-{ name:"Sandtris",href:"Sandtris.html",icon:"",tags:["puzzle"] },
-{ name:"Slope",href:"Slope.html",icon:"",tags:["action","racing"] },
-{ name:"Slope 2",href:"Slope 2.html",icon:"",tags:["action","racing"] },
-{ name:"Slowroads",href:"Slowroads.html",icon:"",tags:["racing","idle"] },
-{ name:"Smash Karts",href:"Smash Karts.html",icon:"",tags:["racing","action"] },
-{ name:"Stone Grass Mowing Simulator",href:"Stone Grass Mowing Simulator.html",icon:"",tags:["idle"] },
-{ name:"Temple Run 2",href:"Temple Run 2.html",icon:"",tags:["action"] },
-{ name:"The World's Hardest Game",href:"The World's Hardest Game.html",icon:"",tags:["puzzle","action"] },
-{ name:"World Box",href:"World Box.html",icon:"",tags:["idle","puzzle"] },
-{ name:"Crazy Cattle 3D",href:"Crazy Cattle 3D.html",icon:"",tags:["action"] },
-{ name:"Crazy Chicken 3D",href:"Crazy Chicken 3D.html",icon:"",tags:["action"] },
-{ name:"Crazy Kitty 3D",href:"Crazy Kitty 3D.html",icon:"",tags:["action"] },
-{ name:"Fortzone Battle Royale",href:"Fortzone Battle Royale.html",icon:"",tags:["shooter","action"] },
-{ name:"Getting Over It with Bennett Foddy",href:"Getting Over It with Bennett Foddy.html",icon:"",tags:["platformer","action"] },
-{ name:"Google Baseball",href:"Google Baseball.html",icon:"",tags:["sport"] },
-{ name:"Going Balls",href:"Going Balls.html",icon:"",tags:["action"] },
-{ name:"Gorilla Tag",href:"Gorilla Tag.html",icon:"",tags:["action"] },
-{ name:"Harvest.io",href:"Harvestio.html",icon:"",tags:["idle","action"] },
-{ name:"Madalin Stunt Cars 2",href:"Madalin Stunt Cars 2.html",icon:"",tags:["racing"] },
-{ name:"Madalin Stunt Cars 3",href:"Madalin Stunt Cars 3.html",icon:"",tags:["racing"] },
-{ name:"Maze Speedrun",href:"Maze Speedrun.html",icon:"",tags:["puzzle","action"] },
-{ name:"Moto X3M 2",href:"Moto X3M 2.html",icon:"",tags:["racing","action"] },
-{ name:"Moto X3M 3",href:"Moto X3M 3.html",icon:"",tags:["racing","action"] },
-{ name:"Moto X3M Pool Party",href:"Moto X3M Pool Party.html",icon:"",tags:["racing","action"] },
-{ name:"Moto X3M Spooky",href:"Moto X3M Spooky.html",icon:"",tags:["racing","action","horror"] },
-{ name:"Moto X3M Winter",href:"Moto X3M Winter.html",icon:"",tags:["racing","action"] },
-{ name:"OvO 2",href:"OvO 2.html",icon:"",tags:["platformer","action"] },
-{ name:"OvO 3 Dimensions",href:"OvO 3 Dimensions.html",icon:"",tags:["platformer","action"] },
-{ name:"Ping Pong",href:"pingpong.html",icon:"",tags:["sport"] },
-{ name:"HTML About:Blank Launcher",href:"aboutblank.html",icon:"",tags:[] },
-{ name:"Neon Rush 3D",href:"neonrush.html",icon:"",tags:["racing","action"] },
-{ name:"Gravity Shift",href:"gravityshift.html",icon:"",tags:["platformer","puzzle"] },
-{ name:"Ethereal Barrage",href:"etherealbarrage.html",icon:"",tags:["shooter","action"] },
-{ name:"Realm of Echoes",href:"realmofechoes.html",icon:"",tags:["action","platformer"] }
+{ name:"Bad Parenting 1",href:"Bad Parenting 1.html",img:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/166.png",tags:["action"] },
+{ name:"Baldi's Basics Plus",href:"Baldi's Basics Plus.html",img:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/467.png",tags:["horror"] },
+{ name:"Bendy and the Ink Machine",href:"Bendy and the Ink Machine.html",img:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/215.png",tags:["horror"] },
+{ name:"Buckshot Roulette",href:"Buckshot Roulette.html",img:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/205.png",tags:["horror"] },
+{ name:"Celeste",href:"Celeste.html",img:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/623.png",tags:["platformer"] },
+{ name:"Cuphead",href:"Cuphead.html",img:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/465.png",tags:["action","platformer"] },
+{ name:"Five Nights at Epsteins",href:"Five Nights at Epsteins.html",img:"https://cdn.jsdelivr.net/gh/gn-math/covers@main/710.png",tags:["horror"] },
+{ name:"Five Nights at Freddy's Pizza Simulator",href:"Five Nights at Freddy's_ Pizza Simulator.html",img:"",tags:["horror"] },
+{ name:"Five Nights at Freddy's Sister Location",href:"Five Nights at Freddy's_ Sister Location.html",img:"",tags:["horror"] },
+{ name:"Half Life",href:"Half Life.html",img:"",tags:["shooter","action"] },
+{ name:"Hollow Knight",href:"Hollow Knight.html",img:"",tags:["platformer","action"] },
+{ name:"Hotline Miami",href:"Hotline Miami.html",img:"",tags:["action","shooter"] },
+{ name:"Jelly Drift",href:"Jelly Drift.html",img:"",tags:["racing"] },
+{ name:"Karlson",href:"Karlson.html",img:"",tags:["shooter","platformer"] },
+{ name:"Kindergarten",href:"Kindergarten.html",img:"",tags:["puzzle"] },
+{ name:"Kindergarten 2",href:"Kindergarten 2.html",img:"",tags:["puzzle"] },
+{ name:"OMORI",href:"OMORI.html",img:"",tags:["puzzle"] },
+{ name:"Oneshot (LEGACY)",href:"Oneshot (LEGACY).html",img:"",tags:["puzzle"] },
+{ name:"People Playground",href:"People Playground.html",img:"",tags:["action"] },
+{ name:"Pizza Tower",href:"Pizza Tower.html",img:"",tags:["platformer","action"] },
+{ name:"Quake III Arena",href:"Quake III Arena.html",img:"",tags:["shooter"] },
+{ name:"R.E.P.O",href:"REPO.html",img:"",tags:["horror"] },
+{ name:"Tattletail",href:"Tattletail.html",img:"",tags:["horror"] },
+{ name:"Schoolboy Runaway",href:"Schoolboy Runaway.html",img:"",tags:["action","platformer"] },
+{ name:"Slime Rancher",href:"Slime Rancher.html",img:"",tags:["action","idle"] },
+{ name:"Soundboard",href:"Soundboard.html",img:"",tags:[] },
+{ name:"That's Not My Neighbor",href:"That's Not My Neighbor.html",img:"",tags:["horror","puzzle"] },
+{ name:"ULTRAKILL",href:"ULTRAKILL.html",img:"",tags:["shooter","action"] },
+{ name:"WebFishing",href:"WebFishing.html",img:"",tags:["idle"] },
+{ name:"Yume Nikki",href:"Yume Nikki.html",img:"",tags:["puzzle"] },
+{ name:"1v1.lol",href:"1v1LoL.html",img:"",tags:["shooter"] },
+{ name:"2048",href:"2048.html",img:"",tags:["puzzle"] },
+{ name:"2048 Merge Run",href:"2048 Merge Run.html",img:"",tags:["puzzle","platformer"] },
+{ name:"8 Ball Pool",href:"8 Ball Pool.html",img:"",tags:["sport"] },
+{ name:"A Bite at Freddy's",href:"A Bite at Freddy's.html",img:"",tags:["horror"] },
+{ name:"Abandoned",href:"Abandoned.html",img:"",tags:["horror"] },
+{ name:"Achievement Unlocked",href:"Achievement Unlocked.html",img:"",tags:["puzzle"] },
+{ name:"Achievement Unlocked 2",href:"Achievement Unlocked 2.html",img:"",tags:["puzzle"] },
+{ name:"Achievement Unlocked 3",href:"Achievement Unlocked 3.html",img:"",tags:["puzzle"] },
+{ name:"Adventure Capitalist",href:"Adventure Capatalist.html",img:"",tags:["idle"] },
+{ name:"Ages of Conflict",href:"Ages of Conflict.html",img:"",tags:["action"] },
+{ name:"Angry Birds",href:"Angry Birds.html",img:"",tags:["puzzle"] },
+{ name:"Angry Birds Chrome",href:"Angry Birds Chrome.html",img:"",tags:["puzzle"] },
+{ name:"Awesome Tanks",href:"Awesome Tanks.html",img:"",tags:["shooter","action"] },
+{ name:"Awesome Tanks 2",href:"Awesome Tanks 2.html",img:"",tags:["shooter","action"] },
+{ name:"Backrooms",href:"Backrooms.html",img:"",tags:["horror"] },
+{ name:"Bad Ice Cream",href:"Bad Ice Cream.html",img:"",tags:["puzzle","action"] },
+{ name:"Bad Ice Cream 2",href:"Bad Ice Cream 2.html",img:"",tags:["puzzle","action"] },
+{ name:"Bad Ice Cream 3",href:"Bad Ice Cream 3.html",img:"",tags:["puzzle","action"] },
+{ name:"Basket Random",href:"Basket Random.html",img:"",tags:["sport"] },
+{ name:"Basketball Stars",href:"Basketball Stars.html",img:"",tags:["sport"] },
+{ name:"Big Tower Tiny Square",href:"Big Tower Tiny Square.html",img:"",tags:["platformer"] },
+{ name:"Big Tower Tiny Square 2",href:"Big Tower Tiny Square 2.html",img:"",tags:["platformer"] },
+{ name:"BitLife",href:"BitLife.html",img:"",tags:["idle"] },
+{ name:"BitPlanes",href:"BitPlanes.html",img:"",tags:["action"] },
+{ name:"Block Blast",href:"Block Blast.html",img:"",tags:["puzzle"] },
+{ name:"BlockPost",href:"BlockPost.html",img:"",tags:["shooter"] },
+{ name:"Bob The Robber 2",href:"Bob The Robber 2.html",img:"",tags:["action","puzzle"] },
+{ name:"Boxing Random",href:"Boxing Random.html",img:"",tags:["sport","action"] },
+{ name:"Brawl Guys.io",href:"Brawl Guysio.html",img:"",tags:["action"] },
+{ name:"CircloO",href:"CircloO.html",img:"",tags:["puzzle"] },
+{ name:"CircloO 2",href:"CircloO 2.html",img:"",tags:["puzzle"] },
+{ name:"Cluster Rush",href:"Cluster Rush.html",img:"",tags:["platformer","action"] },
+{ name:"Cookie Clicker",href:"Cookie Clicker.html",img:"",tags:["idle"] },
+{ name:"Crazy Cars",href:"Crazy Cars.html",img:"",tags:["racing"] },
+{ name:"Crossy Road",href:"Crossy Road.html",img:"",tags:["action"] },
+{ name:"Cut the Rope",href:"Cut the Rope.html",img:"",tags:["puzzle"] },
+{ name:"Doom",href:"DOOM.html",img:"",tags:["shooter","action"] },
+{ name:"Doom 2",href:"Doom 2.html",img:"",tags:["shooter","action"] },
+{ name:"Doom 3",href:"Doom 3.html",img:"",tags:["shooter","action"] },
+{ name:"Drift Boss",href:"Drift Boss.html",img:"",tags:["racing"] },
+{ name:"Draw Joust",href:"Draw Joust.html",img:"",tags:["action","puzzle"] },
+{ name:"Drift Hunters",href:"Drift Hunters.html",img:"",tags:["racing"] },
+{ name:"Duck Life",href:"Duck Life.html",img:"",tags:["sport","action"] },
+{ name:"Duck Life 2",href:"Duck Life 2.html",img:"",tags:["sport","action"] },
+{ name:"Duck Life 3",href:"Duck Life 3.html",img:"",tags:["sport","action"] },
+{ name:"Duck Life 4",href:"Duck Life 4.html",img:"",tags:["sport","action"] },
+{ name:"Duck Life 5",href:"Duck Life 5.html",img:"",tags:["sport","action"] },
+{ name:"Geometry Dash Lite",href:"Geometry Dash Lite.html",img:"",tags:["platformer","action"] },
+{ name:"Google Feud",href:"Google Feud.html",img:"",tags:["puzzle"] },
+{ name:"Jetpack Joyride",href:"Jetpack Joyride.html",img:"",tags:["action","platformer"] },
+{ name:"Learn to Fly",href:"Learn to Fly.html",img:"",tags:["action","idle"] },
+{ name:"Learn to Fly 2",href:"Learn to Fly 2.html",img:"",tags:["action","idle"] },
+{ name:"Learn to Fly 3",href:"Learn to Fly 3.html",img:"",tags:["action","idle"] },
+{ name:"Learn to Fly Idle",href:"Learn to Fly Idle.html",img:"",tags:["idle"] },
+{ name:"Line Rider",href:"Line Rider.html",img:"",tags:["puzzle"] },
+{ name:"Melon Playground",href:"Melon Playground.html",img:"",tags:["action"] },
+{ name:"Moto X3M",href:"Moto X3M.html",img:"",tags:["racing","action"] },
+{ name:"OvO",href:"OvO.html",img:"",tags:["platformer","action"] },
+{ name:"Pixel Gun Survival",href:"Pixel Gun Survival.html",img:"",tags:["shooter"] },
+{ name:"Poly Track",href:"Poly Track.html",img:"",tags:["racing"] },
+{ name:"Rooftop Snipers",href:"Rooftop Snipers.html",img:"",tags:["shooter","action"] },
+{ name:"Rooftop Snipers 2",href:"Rooftop Snipers 2.html",img:"",tags:["shooter","action"] },
+{ name:"Run",href:"Run 1.html",img:"",tags:["platformer","action"] },
+{ name:"Sandboxels",href:"Sandboxels.html",img:"",tags:["puzzle","idle"] },
+{ name:"Sandtris",href:"Sandtris.html",img:"",tags:["puzzle"] },
+{ name:"Slope",href:"Slope.html",img:"",tags:["action","racing"] },
+{ name:"Slope 2",href:"Slope 2.html",img:"",tags:["action","racing"] },
+{ name:"Slowroads",href:"Slowroads.html",img:"",tags:["racing","idle"] },
+{ name:"Smash Karts",href:"Smash Karts.html",img:"",tags:["racing","action"] },
+{ name:"Stone Grass Mowing Simulator",href:"Stone Grass Mowing Simulator.html",img:"",tags:["idle"] },
+{ name:"Temple Run 2",href:"Temple Run 2.html",img:"",tags:["action"] },
+{ name:"The World's Hardest Game",href:"The World's Hardest Game.html",img:"",tags:["puzzle","action"] },
+{ name:"World Box",href:"World Box.html",img:"",tags:["idle","puzzle"] },
+{ name:"Crazy Cattle 3D",href:"Crazy Cattle 3D.html",img:"",tags:["action"] },
+{ name:"Crazy Chicken 3D",href:"Crazy Chicken 3D.html",img:"",tags:["action"] },
+{ name:"Crazy Kitty 3D",href:"Crazy Kitty 3D.html",img:"",tags:["action"] },
+{ name:"Fortzone Battle Royale",href:"Fortzone Battle Royale.html",img:"",tags:["shooter","action"] },
+{ name:"Getting Over It with Bennett Foddy",href:"Getting Over It with Bennett Foddy.html",img:"",tags:["platformer","action"] },
+{ name:"Google Baseball",href:"Google Baseball.html",img:"",tags:["sport"] },
+{ name:"Going Balls",href:"Going Balls.html",img:"",tags:["action"] },
+{ name:"Gorilla Tag",href:"Gorilla Tag.html",img:"",tags:["action"] },
+{ name:"Harvest.io",href:"Harvestio.html",img:"",tags:["idle","action"] },
+{ name:"Madalin Stunt Cars 2",href:"Madalin Stunt Cars 2.html",img:"",tags:["racing"] },
+{ name:"Madalin Stunt Cars 3",href:"Madalin Stunt Cars 3.html",img:"",tags:["racing"] },
+{ name:"Maze Speedrun",href:"Maze Speedrun.html",img:"",tags:["puzzle","action"] },
+{ name:"Moto X3M 2",href:"Moto X3M 2.html",img:"",tags:["racing","action"] },
+{ name:"Moto X3M 3",href:"Moto X3M 3.html",img:"",tags:["racing","action"] },
+{ name:"Moto X3M Pool Party",href:"Moto X3M Pool Party.html",img:"",tags:["racing","action"] },
+{ name:"Moto X3M Spooky",href:"Moto X3M Spooky.html",img:"",tags:["racing","action","horror"] },
+{ name:"Moto X3M Winter",href:"Moto X3M Winter.html",img:"",tags:["racing","action"] },
+{ name:"OvO 2",href:"OvO 2.html",img:"",tags:["platformer","action"] },
+{ name:"OvO 3 Dimensions",href:"OvO 3 Dimensions.html",img:"",tags:["platformer","action"] },
+{ name:"Ping Pong",href:"pingpong.html",img:"",tags:["sport"] },
+{ name:"HTML About:Blank Launcher",href:"aboutblank.html",img:"",tags:[] },
+{ name:"Neon Rush 3D",href:"neonrush.html",img:"",tags:["racing","action"] },
+{ name:"Gravity Shift",href:"gravityshift.html",img:"",tags:["platformer","puzzle"] },
+{ name:"Ethereal Barrage",href:"etherealbarrage.html",img:"",tags:["shooter","action"] },
+{ name:"Realm of Echoes",href:"realmofechoes.html",img:"",tags:["action","platformer"] }
 ];
 
 const WEBSITES = [
@@ -1054,22 +1261,46 @@ const PARTNERSHIPS = [
 { name:"KamZone Arcade link #2",href:"https://new-sandbox-program-19-18034111.codehs.me/index.html",cls:"" },
 { name:"KamZone Arcade link #3",href:"https://pub-ac397c96ae2647d4a45221e91f4ce5dd.r2.dev/kzWLsjRZDQ.html",cls:"" },
 { name:"KamZone Arcade link #4",href:"https://18035447-s.codehs.io/index.html",cls:"" },
+{ name:"G.GUI Project",href:"https://jfkmemorialschools.bitbucket.io/",cls:"" },
+{ name:"G.GUI Project",href:"https://biosciences-0080f9.gitlab.io/",cls:"" },
+{ name:"G.GUI Project",href:"https://ggui-classroom-87d930.gitlab.io/",cls:"" },
+{ name:"G.GUI Project",href:"https://highlycapapbleeducation.w3spaces.com/",cls:"" },
+{ name:"G.GUI Project",href:"https://tri-city-math--extreem.replit.app/",cls:"" },
+{ name:"G.GUI Project",href:"https://lmartinschool.vercel.app/",cls:"" },
+{ name:"bestspark687090 games",href:"https://bestspark.onrender.com/",cls:"" },
+{ name:"bestspark687090 games",href:"https://bestspark.vercel.app/",cls:"" },
+{ name:"bestspark687090 games",href:"https://bestspark.pages.dev/",cls:"" },
+{ name:"bestspark687090 games",href:"https://bestspark.netlify.app/",cls:"" },
+{ name:"bestspark687090 games",href:"https://bestspark.replit.app/",cls:"" },
 { name:"Galaxydevs's Hangout",href:"https://sites.google.com/view/gdevs-hangout",cls:"" }
 ];
 
 const EAGLERCRAFT = [
-{ name:"Eaglercraft Indev",href:"https://new-sandbox-program-43-16834996.codehs.me/index.html",cls:"" },
-{ name:"Eaglercraft Beta 1.2.6",href:"https://new-sandbox-program-42-16834902.codehs.me/index.html",cls:"" },
-{ name:"Eaglercraft Beta 1.3",href:"https://new-sandbox-program-41-16834838.codehs.me/index.html",cls:"" },
-{ name:"Eaglercraft Beta 1.7.3",href:"https://new-sandbox-program-40-16834750.codehs.me/index.html",cls:"" },
-{ name:"Eaglercraft 1.5.2",href:"https://new-sandbox-program-38-16834232.codehs.me/index.html",cls:"" },
-{ name:"EaglercraftX 1.8",href:"https://codehs.com/uploads/d88866b9c3eb083b43dac1a94e54d179",cls:"" },
-{ name:"EaglercraftL 1.9.4",href:"https://codehs.com/uploads/1134b7177ae8e97986729eb34a6ce245",cls:"" },
-{ name:"EaglercraftX 1.11.2",href:"https://codehs.com/uploads/37053412754d02c9f1a17740fc92a7c8",cls:"" },
-{ name:"EaglercraftX 1.12.2",href:"https://new-sandbox-program-37-16834106.codehs.me/index.html",cls:"" },
-{ name:"EaglercraftL 1.21.4",href:"https://new-sandbox-program-39-16834383.codehs.me/index.html",cls:"blocked" }
+{ name:"Eaglercraft Indev",href:"Eaglercraft Indev.html",cls:"" },
+{ name:"Eaglercraft Beta 1.2.6",href:"Eaglercraft Alpha 126.html",cls:"" },
+{ name:"Eaglercraft Beta 1.3",href:"Eaglercraft Beta 13.html",cls:"" },
+{ name:"Eaglercraft Beta 1.7.3",href:"Eaglercraft Beta 173.html",cls:"" },
+{ name:"Eaglercraft 1.5.2",href:"Eaglercraft 152.html",cls:"" },
+{ name:"EaglercraftX 1.8",href:"Eaglercraft 188.html",cls:"" },
+{ name:"EaglercraftL 1.9.4",href:"Eaglercraft 194.html",cls:"" },
+{ name:"EaglercraftX 1.11.2",href:"Eaglercraft 1112.html",cls:"" },
+{ name:"EaglercraftX 1.12.2",href:"Eaglercraft 1122.html",cls:"" },
+{ name:"EaglercraftX 1.20.1",href:"Eaglercraft 1201.html",cls:"" },
+{ name:"EaglercraftL 1.21.4",href:"https://new-sandbox-program-39-16834383.codehs.me/index.html",cls:"" },
+{ name:"Eaglerforge 1.8.8",href:"Eaglerforge 188.html",cls:"" },
+{ name:"EaglerRinth",href:"https://eaglerrinth.github.io/index.html",cls:"" },
+{ name:"DragonXLite 1.8.8",href:"DragonXLite.html",cls:"" },
+{ name:"Zeta Client 1.11.2",href:"Zeta Client.html",cls:"" },
+{ name:"Tuff Client 1.12.2",href:"Tuff Client 1122.html",cls:"" },
+{ name:"Starlike Client 1.8.8",href:"Starlike Client 188.html",cls:"" },
+{ name:"Pixel Client 1.8.8",href:"Pixel Client 188.html",cls:"" },
+{ name:"Pixel Client 1.12.2",href:"Pixel Client 1122.html",cls:"" },
+{ name:"Astra Client 1.8.8",href:"Astra Client 188.html",cls:"" },
+{ name:"Resent Client 1.8.8",href:"Resent Client 188.html",cls:"" },
+{ name:"Eclix",href:"https://eaglercrafthub.github.io/index.html",cls:"" },
+{ name:"Ampler Launcher",href:"https://irv77.github.io/AmplerLauncher/",cls:"" }
 ];
-
+/*https://github.com/JustLachin/eaglerforge/blob/main/index.html*/
 const OURLINKS = [
 { name:"Official Portal #1",href:"https://www.nolangraysongames.com/",cls:"" },
 { name:"Official Portal #2",href:"https://nolansandgraysonsgames.w3spaces.com/index.html",cls:"" },
@@ -1152,6 +1383,9 @@ const OTHER = [
 { name:"Report Form",href:"https://forms.gle/cJcDpLaSAm1NNVsR8",cls:"" },
 { name:"Summary Of The Rules",href:"https://drive.google.com/file/d/1tYhAuR_AHav3PDdVl0CYvyrqd-3iEM1j/view",cls:"" },
 { name:"Beta Page",href:"test.html",cls:"" },
+{ name:"Terms of Service",href:"https://www.nolangraysongames.com/Legal.html",cls:"" },
+{ name:"Privacy Policy",href:"https://www.nolangraysongames.com/Legal.html",cls:"" },
+{ name:"DMCA",href:"https://www.nolangraysongames.com/Legal.html",cls:"" },
 { name:"Fork On Github",href:"https://github.com/NolanBetter/nolanbetter.github.io",cls:"" },
 { name:"Official Link",href:"https://www.nolangraysongames.com/",cls:"" },
 { name:"Discord",href:"https://discord.gg/nNCWgRJZ7v",cls:"discord" }
@@ -1168,7 +1402,6 @@ let currentPage = localStorage.getItem('ngg_page') || 'home';
 let currentTheme = localStorage.getItem('ngg_theme') || 'theme-default';
 let currentBg = localStorage.getItem('ngg_bg') || 'stars';
 let isPerfMode = localStorage.getItem('ngg_perf') === 'true';
-let isInteractive = localStorage.getItem('ngg_interactive') === 'true';
 let inactivityTimer = null;
 let inactivityLimit = parseInt(localStorage.getItem('ngg_inactivity') || '120000');
 let inactivityEnabled = localStorage.getItem('ngg_inactivity') !== 'off';
@@ -1183,9 +1416,12 @@ document.addEventListener('DOMContentLoaded', () => {
 applyTheme(currentTheme, false);
 if (isPerfMode) applyPerfMode(true);
 buildAllPages();
+buildChangelog();
 navigate(currentPage, false);
 initBg(currentBg);
-if (isInteractive) enableInteractive();
+resizeCanvas();
+requestAnimationFrame(monitorFPS);
+setTimeout(() => { fpsReady = true; fpsLast = performance.now(); fpsFrames = 0; }, 5000);
 updateVisitorCount();
 loadSettings();
 startInactivity();
@@ -1194,13 +1430,17 @@ initAnnouncement();
 initContextMenu();
 animateStats();
 renderRecentlyPlayed();
+updateNavbarInfo();
+applyTabOrder();
+buildTabOrderList();
+loadWidgetSettings();
 });
 
 // ============================================================
 // ANNOUNCEMENT BANNER — edit the message here in the code
 // ============================================================
 // ↓↓↓ CHANGE THIS LINE TO UPDATE THE ANNOUNCEMENT ↓↓↓
-const ANNOUNCEMENT_MESSAGE = ' Welcome to NGG v1.7.0 — Check out all the new features!';
+const ANNOUNCEMENT_MESSAGE = 'Join Our Discord at dsc.gg/nggs!';
 // ↑↑↑ Set to empty string "" to hide the banner entirely ↑↑↑
 
 function initAnnouncement() {
@@ -1350,9 +1590,11 @@ card.style.setProperty('--i', i);
 const stars = [1,2,3,4,5].map(n =>
 `<span class="star ${n<=rating?'filled':''}" onclick="rateGame(event,'${id}',${n},this.parentElement)">${n<=rating?'★':'☆'}</span>`
 ).join('');
+const hasImg = g.img && g.img.trim() !== '';
 card.innerHTML = `
 <div class="card-thumb">
-<div class="card-thumb-placeholder">${g.icon}</div>
+${hasImg ? `<img class="card-thumb-img" src="${g.img}" alt="${g.name}" onerror="this.style.display='none';this.nextElementSibling.classList.remove('hidden')">` : ''}
+<div class="card-thumb-placeholder${hasImg ? ' hidden' : ''}">${g.icon||'🎮'}</div>
 <div class="card-thumb-overlay"></div>
 ${rp ? `<div class="card-played-badge">▶ PLAYED</div>` : ''}
 <span class="card-fav ${isFav?'active':''}" onclick="toggleFav(event,'${id}',this)">★</span>
@@ -1727,7 +1969,7 @@ navigator.clipboard.writeText(ctxTarget.href).then(() => showToast(' Link copied
 // ============================================================
 function setTheme(theme) { applyTheme(theme, true); }
 function applyTheme(theme, save) {
-const themes = ['theme-default','theme-neon','theme-midnight','theme-sunset','theme-ocean','theme-forest'];
+const themes = ['theme-default','theme-neon','theme-midnight','theme-sunset','theme-ocean','theme-forest','theme-candy','theme-lava','theme-arctic','theme-gold','theme-toxic','theme-blood'];
 document.body.classList.remove(...themes);
 document.body.classList.add(theme);
 currentTheme = theme;
@@ -1750,7 +1992,6 @@ function getAccentColor() { return getComputedStyle(document.body).getPropertyVa
 function getAccent2Color() { return getComputedStyle(document.body).getPropertyValue('--accent2').trim() || '#5eead4'; }
 function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
 window.addEventListener('resize', () => { resizeCanvas(); if(currentBg==='matrix') initMatrix(); });
-resizeCanvas();
 
 function stopBg() {
 if (bgAnim) { cancelAnimationFrame(bgAnim); bgAnim = null; }
@@ -1759,13 +2000,17 @@ bgParticles = []; matrixColumns = [];
 }
 function initBg(type) {
 stopBg(); currentBg = type;
-if (isPerfMode || type === 'none') return;
 document.querySelectorAll('.bg-chip').forEach(c => c.classList.toggle('active', c.dataset.bg === type));
+if (isPerfMode || type === 'none') return;
 if (type==='stars') initStars();
 else if (type==='matrix') initMatrix();
 else if (type==='geometric') initGeometric();
 else if (type==='particles') initParticles();
 else if (type==='nebula') initNebula();
+else if (type==='rain') initRain();
+else if (type==='aurora') initAurora();
+else if (type==='vortex') initVortex();
+else if (type==='fire') initFire();
 }
 
 function initStars() {
@@ -1803,12 +2048,117 @@ function initNebula() {
 bgParticles=Array.from({length:200},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*100+20,opacity:Math.random()*0.06+0.01,phase:Math.random()*Math.PI*2}));
 function draw(){ctx.clearRect(0,0,canvas.width,canvas.height); const accent=getAccentColor(); bgParticles.forEach(p=>{p.phase+=0.003; const op=p.opacity*(0.7+0.3*Math.sin(p.phase)); try{const r=parseInt(accent.slice(1,3),16),g2=parseInt(accent.slice(3,5),16),b=parseInt(accent.slice(5,7),16); const grad=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r); grad.addColorStop(0,`rgba(${r},${g2},${b},${op})`); grad.addColorStop(1,'rgba(0,0,0,0)'); ctx.fillStyle=grad;}catch(e){ctx.fillStyle='rgba(124,92,252,0.02)';} ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();}); ctx.fillStyle='#ffffff'; for(let i=0;i<5;i++){ctx.globalAlpha=Math.random()*0.5;ctx.beginPath();ctx.arc(Math.random()*canvas.width,Math.random()*canvas.height,0.5,0,Math.PI*2);ctx.fill();} drawClickParticles(); ctx.globalAlpha=1; bgAnim=requestAnimationFrame(draw);} draw();
 }
+function initRain() {
+bgParticles=Array.from({length:120},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,len:Math.random()*15+8,speed:Math.random()*4+6,opacity:Math.random()*0.4+0.1,slant:Math.random()*0.3+0.1}));
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+const accent=getAccentColor();
+bgParticles.forEach(p=>{
+p.y+=p.speed; p.x+=p.slant;
+if(p.y>canvas.height){p.y=-20;p.x=Math.random()*canvas.width;}
+ctx.globalAlpha=p.opacity; ctx.strokeStyle=accent; ctx.lineWidth=1;
+ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(p.x-p.slant*p.len/p.speed,p.y-p.len); ctx.stroke();
+});
+drawClickParticles(); ctx.globalAlpha=1; bgAnim=requestAnimationFrame(draw);
+} draw();
+}
+function initAurora() {
+const waves=Array.from({length:4},(_,i)=>({offset:i*0.8,amp:45+i*18,freq:0.0025+i*0.0008,yBase:0.32+i*0.07}));
+let t=0;
+function hexToRgb(h){try{return[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}catch(e){return[124,92,252];}}
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+const accent=getAccentColor(), accent2=getAccent2Color();
+const [r1,g1,b1]=hexToRgb(accent); const [r2,g2,b2]=hexToRgb(accent2);
+waves.forEach((w,wi)=>{
+const pts=[];
+for(let x=0;x<=canvas.width;x+=8){
+const y=canvas.height*w.yBase + Math.sin(x*w.freq+t+w.offset)*w.amp + Math.cos(x*w.freq*0.6+t*0.5+w.offset)*w.amp*0.4;
+pts.push([x,y]);
+}
+// Fill
+ctx.beginPath();
+ctx.moveTo(pts[0][0],pts[0][1]);
+for(let i=1;i<pts.length-1;i++){const mx=(pts[i][0]+pts[i+1][0])/2,my=(pts[i][1]+pts[i+1][1])/2;ctx.quadraticCurveTo(pts[i][0],pts[i][1],mx,my);}
+ctx.lineTo(canvas.width,canvas.height); ctx.lineTo(0,canvas.height); ctx.closePath();
+const grad=ctx.createLinearGradient(0,canvas.height*w.yBase,0,canvas.height);
+const ca=wi%2===0?[r1,g1,b1]:[r2,g2,b2];
+grad.addColorStop(0,`rgba(${ca[0]},${ca[1]},${ca[2]},0.06)`);
+grad.addColorStop(1,`rgba(${ca[0]},${ca[1]},${ca[2]},0)`);
+ctx.fillStyle=grad; ctx.fill();
+// Thin glowing edge
+ctx.beginPath();
+ctx.moveTo(pts[0][0],pts[0][1]);
+for(let i=1;i<pts.length-1;i++){const mx=(pts[i][0]+pts[i+1][0])/2,my=(pts[i][1]+pts[i+1][1])/2;ctx.quadraticCurveTo(pts[i][0],pts[i][1],mx,my);}
+ctx.strokeStyle=`rgba(${ca[0]},${ca[1]},${ca[2]},0.2)`;
+ctx.lineWidth=1.5; ctx.stroke();
+});
+t+=0.005;
+drawClickParticles(); ctx.globalAlpha=1; bgAnim=requestAnimationFrame(draw);
+} draw();
+}
+function initVortex() {
+bgParticles=Array.from({length:100},(_,i)=>({angle:(i/100)*Math.PI*2,radius:Math.random()*Math.min(canvas.width,canvas.height)*0.45,speed:0.008+Math.random()*0.015,r:Math.random()*2+0.5,opacity:Math.random()*0.5+0.2}));
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+const cx=canvas.width/2,cy=canvas.height/2;
+const accent=getAccentColor(),accent2=getAccent2Color();
+bgParticles.forEach((p,i)=>{
+p.angle+=p.speed*(1-p.radius/(Math.min(canvas.width,canvas.height)*0.5)*0.5);
+const x=cx+Math.cos(p.angle)*p.radius, y=cy+Math.sin(p.angle)*p.radius;
+ctx.globalAlpha=p.opacity*(0.4+0.6*(p.radius/(Math.min(canvas.width,canvas.height)*0.45)));
+ctx.fillStyle=i%2?accent:accent2;
+ctx.beginPath(); ctx.arc(x,y,p.r,0,Math.PI*2); ctx.fill();
+});
+drawClickParticles(); ctx.globalAlpha=1; bgAnim=requestAnimationFrame(draw);
+} draw();
+}
+function initFire() {
+// Proper fire: particles rising from the bottom with heat-based colors
+const W=canvas.width, H=canvas.height;
+const COLS=Math.floor(W/6)+2, ROWS=Math.floor(H/6)+2;
+let heat=new Float32Array(COLS*ROWS);
+function idx(x,y){return y*COLS+x;}
+function draw(){
+// Reseed bottom 2 rows with random heat
+for(let x=0;x<COLS;x++){
+heat[idx(x,ROWS-1)]=Math.random()>0.25?0.8+Math.random()*0.2:Math.random()*0.3;
+heat[idx(x,ROWS-2)]=Math.random()>0.35?0.6+Math.random()*0.4:Math.random()*0.2;
+}
+// Propagate heat upward with slight horizontal drift
+const next=new Float32Array(COLS*ROWS);
+for(let y=1;y<ROWS;y++){
+for(let x=0;x<COLS;x++){
+const l=heat[idx(Math.max(0,x-1),y)];
+const r=heat[idx(Math.min(COLS-1,x+1),y)];
+const d=heat[idx(x,Math.min(ROWS-1,y+1))];
+const d2=heat[idx(x,Math.min(ROWS-1,y+2))];
+next[idx(x,y-1)]=(l+r+d+d2)/4.08;
+}
+}
+heat=next;
+// Draw
+ctx.clearRect(0,0,W,H);
+for(let y=0;y<ROWS;y++){
+for(let x=0;x<COLS;x++){
+const v=heat[idx(x,y)];
+if(v<0.01) continue;
+// Heat → color: black→red→orange→yellow→white tip
+let r,g,b,a;
+if(v<0.33){r=Math.floor(v/0.33*200);g=0;b=0;a=v*0.9;}
+else if(v<0.66){const t=(v-0.33)/0.33;r=200+Math.floor(t*55);g=Math.floor(t*140);b=0;a=0.7+t*0.2;}
+else{const t=(v-0.66)/0.34;r=255;g=140+Math.floor(t*115);b=Math.floor(t*80);a=0.85+t*0.15;}
+ctx.globalAlpha=Math.min(1,a);
+ctx.fillStyle=`rgb(${r},${g},${b})`;
+ctx.fillRect(x*6,y*6,7,7);
+}
+}
+drawClickParticles(); ctx.globalAlpha=1; bgAnim=requestAnimationFrame(draw);
+} draw();
+}
 function spawnClickParticles(x,y){const a=getAccentColor(),b=getAccent2Color(); for(let i=0;i<20;i++){const ang=(i/20)*Math.PI*2+Math.random()*0.5,sp=Math.random()*5+2; clickParticles.push({x,y,vx:Math.cos(ang)*sp,vy:Math.sin(ang)*sp,r:Math.random()*3+1,life:1,color:Math.random()>.5?a:b});}}
 function drawClickParticles(){clickParticles=clickParticles.filter(p=>p.life>0); clickParticles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vx*=0.95;p.vy*=0.95;p.life-=0.035; ctx.globalAlpha=p.life*0.8;ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.r*p.life,0,Math.PI*2);ctx.fill();});}
-function enableInteractive(){canvas.classList.add('interactive');canvas.removeEventListener('click',handleCanvasClick);canvas.addEventListener('click',handleCanvasClick);}
-function disableInteractive(){canvas.classList.remove('interactive');canvas.removeEventListener('click',handleCanvasClick);}
-function handleCanvasClick(e){spawnClickParticles(e.clientX,e.clientY);}
-function toggleInteractive(val){isInteractive=val;localStorage.setItem('ngg_interactive',val);val?enableInteractive():disableInteractive();}
+
 function setBgEffect(type){currentBg=type;localStorage.setItem('ngg_bg',type);initBg(type);}
 
 // ============================================================
@@ -1821,7 +2171,6 @@ applyPerfMode(isPerfMode);
 function applyPerfMode(val) {
 isPerfMode=val; localStorage.setItem('ngg_perf',val);
 document.body.classList.toggle('perf-mode',val);
-const btn=document.getElementById('perf-btn'); if(btn)btn.classList.toggle('active',val);
 const toggle=document.getElementById('perf-toggle'); if(toggle)toggle.checked=val;
 if(val)stopBg(); else initBg(currentBg);
 }
@@ -1833,12 +2182,15 @@ function loadSettings() {
 const inactSel=document.getElementById('inactivity-select');
 const saved=localStorage.getItem('ngg_inactivity');
 if(saved&&inactSel)inactSel.value=saved;
-const intTog=document.getElementById('interactive-toggle'); if(intTog)intTog.checked=isInteractive;
+
 const perfTog=document.getElementById('perf-toggle'); if(perfTog)perfTog.checked=isPerfMode;
 document.querySelectorAll('.bg-chip').forEach(c=>c.classList.toggle('active',c.dataset.bg===currentBg));
 document.querySelectorAll('.theme-chip').forEach(c=>c.classList.toggle('active',c.dataset.theme===currentTheme));
 const anMsg = ANNOUNCEMENT_MESSAGE;
-const banTog = document.getElementById('banner-toggle'); // no longer used
+const ceTog = document.getElementById('click-effects-toggle'); if(ceTog) ceTog.checked = clickEffectsEnabled;
+document.querySelectorAll('#click-effect-grid .bg-chip').forEach(c => c.classList.toggle('active', c.dataset.ce === clickEffectStyle));
+const apTog = document.getElementById('auto-perf-toggle'); if(apTog) apTog.checked = autoPerfEnabled;
+const tpTog = document.getElementById('tab-perf-toggle'); if(tpTog) tpTog.checked = tabPerfEnabled;
 }
 function saveInactivity(val) {
 localStorage.setItem('ngg_inactivity',val);
@@ -1876,7 +2228,7 @@ const el=document.getElementById('stat-views'); if(el){const target=count; el.te
 // DATA IMPORT / EXPORT
 // ============================================================
 function exportData() {
-const data={version:'1.7.0',exported:new Date().toISOString(),favorites,ratings,recentlyPlayed,searchHistory,theme:currentTheme,bg:currentBg,inactivity:localStorage.getItem('ngg_inactivity'),interactive:isInteractive,perf:isPerfMode};
+const data={version:'1.7.6',exported:new Date().toISOString(),favorites,ratings,recentlyPlayed,searchHistory,theme:currentTheme,bg:currentBg,inactivity:localStorage.getItem('ngg_inactivity'),perf:isPerfMode,clickEffects:clickEffectsEnabled,clickStyle:clickEffectStyle,autoPerf:autoPerfEnabled,tabPerf:tabPerfEnabled,tabOrder,widgetSettings};
 const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
 const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='ngg-data.json'; a.click();
 showToast(' Data exported!','success');
@@ -1894,8 +2246,11 @@ if(data.searchHistory){searchHistory=data.searchHistory;localStorage.setItem('ng
 if(data.theme)applyTheme(data.theme,true);
 if(data.bg)setBgEffect(data.bg);
 if(data.inactivity)localStorage.setItem('ngg_inactivity',data.inactivity);
-if(data.interactive!==undefined)toggleInteractive(data.interactive);
-loadSettings(); renderFavorites(); renderRecentlyPlayed(); buildGames();
+if(data.clickEffects!==undefined){clickEffectsEnabled=data.clickEffects;localStorage.setItem('ngg_click_effects',data.clickEffects);}
+if(data.clickStyle){setClickEffectStyle(data.clickStyle);}
+if(data.autoPerf!==undefined){autoPerfEnabled=data.autoPerf;localStorage.setItem('ngg_auto_perf',data.autoPerf);}
+if(data.tabPerf!==undefined){tabPerfEnabled=data.tabPerf;localStorage.setItem('ngg_tab_perf',data.tabPerf);}
+if(data.tabOrder){tabOrder=data.tabOrder;saveTabOrder();} if(data.widgetSettings){widgetSettings=data.widgetSettings;localStorage.setItem('ngg_widget',JSON.stringify(widgetSettings));} loadSettings(); renderFavorites(); renderRecentlyPlayed(); buildGames(); applyTabOrder(); buildTabOrderList();
 showToast(' Data imported!','success');
 } catch(err){showToast(' Invalid file','error');}
 };
@@ -1925,6 +2280,306 @@ function showToast(msg,type){const container=document.getElementById('toast-cont
 function checkOfficialSite(){const official=['https://www.nolangraysongames.com','https://nolansandgraysonsgames.w3spaces.com','https://nolanbetter.github.io','https://nolanbetter-github-io.vercel.app','https://mathisfun-lilac.vercel.app','https://clevercom-iota.vercel.app','about:blank'];if(!official.includes(window.location.origin)){showToast(' Unofficial copy – visit nolangraysongames.com for the official site','error');}}
 
 // ============================================================
+// CHANGELOG RENDERER
+// ============================================================
+function buildChangelog() {
+const list = document.getElementById('changelog-list');
+if (!list) return;
+list.innerHTML = CHANGELOG.map(c => `
+<div class="cl-item">
+<div class="cl-version">v${c.version}${c.badge ? ` <span class="cl-badge ${c.badge}">${c.badge.toUpperCase()}</span>` : ''}</div>
+<div class="cl-date">${c.date}</div>
+${c.entries.map(e => `<div class="cl-entry">${e}</div>`).join('')}
+</div>`).join('');
+}
+
+// ============================================================
+// NAVBAR WIDGET (TIME + DATE + BATTERY + CUSTOM)
+// ============================================================
+let widgetSettings = JSON.parse(localStorage.getItem('ngg_widget') || '{"time":true,"date":false,"batt":true,"custom":false,"customText":"","hide":false}');
+
+function saveWidgetSettings(changedId) {
+  const timeTog = document.getElementById('widget-time-toggle');
+  const dateTog = document.getElementById('widget-date-toggle');
+  const battTog = document.getElementById('widget-batt-toggle');
+  const customTog = document.getElementById('widget-custom-toggle');
+  const customInput = document.getElementById('widget-custom-input');
+  const hideTog = document.getElementById('widget-hide-toggle');
+  const customRow = document.getElementById('widget-custom-row');
+
+  // Enforce max 2 content items (time, date, battery, custom)
+  const contentToggles = [timeTog, dateTog, battTog, customTog];
+  const contentKeys = ['time', 'date', 'batt', 'custom'];
+  const checkedCount = contentToggles.filter(t => t && t.checked).length;
+  if (checkedCount > 2 && changedId) {
+    // The one just turned on is changedId — find and uncheck it
+    const el = document.getElementById(changedId);
+    if (el) { el.checked = false; showToast('Widget max 2 items — uncheck one first', 'error'); return; }
+  }
+
+  if (timeTog) widgetSettings.time = timeTog.checked;
+  if (dateTog) widgetSettings.date = dateTog.checked;
+  if (battTog) widgetSettings.batt = battTog.checked;
+  if (customTog) widgetSettings.custom = customTog.checked;
+  if (customInput) widgetSettings.customText = customInput.value;
+  if (hideTog) widgetSettings.hide = hideTog.checked;
+  if (customRow) customRow.style.display = widgetSettings.custom ? '' : 'none';
+  localStorage.setItem('ngg_widget', JSON.stringify(widgetSettings));
+  updateNavbarInfo();
+}
+
+const IS_MOBILE = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+let battWarningCount = 0;
+
+function handleBattToggle(el) {
+  if (IS_MOBILE) {
+    el.checked = false; // always revert first
+    battWarningCount++;
+    if (battWarningCount >= 2) {
+      battWarningCount = 0;
+      if (confirm('⚠️ Battery API is not supported on most mobile devices and may show incorrect data. Enable anyway?')) {
+        el.checked = true;
+        el.disabled = false;
+        saveWidgetSettings('widget-batt-toggle');
+      }
+    } else {
+      showToast('🔒 Battery not supported on mobile — tap again to override', 'error');
+    }
+    return;
+  }
+  saveWidgetSettings('widget-batt-toggle');
+}
+
+function loadWidgetSettings() {
+  const timeTog = document.getElementById('widget-time-toggle');
+  const dateTog = document.getElementById('widget-date-toggle');
+  const battTog = document.getElementById('widget-batt-toggle');
+  const customTog = document.getElementById('widget-custom-toggle');
+  const customInput = document.getElementById('widget-custom-input');
+  const hideTog = document.getElementById('widget-hide-toggle');
+  const customRow = document.getElementById('widget-custom-row');
+  const battLock = document.getElementById('widget-batt-lock-icon');
+  const battDesc = document.getElementById('widget-batt-desc');
+
+  if (timeTog) timeTog.checked = widgetSettings.time !== false;
+  if (dateTog) dateTog.checked = !!widgetSettings.date;
+  if (customTog) customTog.checked = !!widgetSettings.custom;
+  if (customInput) customInput.value = widgetSettings.customText || '';
+  if (hideTog) hideTog.checked = !!widgetSettings.hide;
+  if (customRow) customRow.style.display = widgetSettings.custom ? '' : 'none';
+
+  // Battery: lock on mobile
+  if (battTog) {
+    if (IS_MOBILE) {
+      battTog.checked = false;
+      battTog.disabled = true;
+      widgetSettings.batt = false;
+      if (battLock) battLock.style.display = 'inline';
+      if (battDesc) battDesc.textContent = 'Not available on mobile — tap toggle twice to override';
+    } else {
+      battTog.checked = widgetSettings.batt !== false;
+      battTog.disabled = false;
+      if (battLock) battLock.style.display = 'none';
+      if (battDesc) battDesc.textContent = '';
+    }
+  }
+}
+
+function updateNavbarInfo() {
+  const widget = document.getElementById('navbar-info');
+  const timeEl = document.getElementById('info-time');
+  const dateEl = document.getElementById('info-date');
+  const battEl = document.getElementById('info-battery');
+  const customEl = document.getElementById('info-custom');
+  const ws = widgetSettings;
+
+  // Hide entire widget if toggled
+  if (widget) widget.style.display = ws.hide ? 'none' : '';
+  if (ws.hide) return;
+
+  const now = new Date();
+  const h = now.getHours(), m = now.getMinutes().toString().padStart(2,'0');
+  const ampm = h >= 12 ? 'PM' : 'AM';
+
+  if (timeEl) {
+    timeEl.style.display = ws.time !== false ? '' : 'none';
+    timeEl.textContent = `${h % 12 || 12}:${m} ${ampm}`;
+  }
+  if (dateEl) {
+    const show = !!ws.date;
+    dateEl.style.display = show ? '' : 'none';
+    if (show) {
+      const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      dateEl.textContent = `${days[now.getDay()]} ${months[now.getMonth()]} ${now.getDate()}`;
+    }
+  }
+  if (customEl) {
+    const show = !!ws.custom && ws.customText;
+    customEl.style.display = show ? '' : 'none';
+    if (show) customEl.textContent = ws.customText;
+  }
+  if (battEl) {
+    battEl.style.display = ws.batt !== false ? '' : 'none';
+    if (ws.batt !== false && navigator.getBattery) {
+      navigator.getBattery().then(b => {
+        const pct = Math.round(b.level * 100);
+        const icon = b.charging ? '⚡' : pct > 70 ? '🔋' : pct > 30 ? '🪫' : '🔴';
+        battEl.textContent = `${icon} ${pct}%`;
+      }).catch(() => { battEl.textContent = '🔋 N/A'; });
+    } else if (battEl && ws.batt === false) { battEl.textContent = ''; }
+  }
+
+  // (preview removed)
+}
+setInterval(updateNavbarInfo, 10000);
+/*document.addEventListener('DOMContentLoaded', () => { updateNavbarInfo(); buildChangelog(); });*/
+
+// ============================================================
+// CLICK EFFECTS
+// ============================================================
+let clickEffectsEnabled = localStorage.getItem('ngg_click_effects') === 'true';
+let clickEffectStyle = localStorage.getItem('ngg_click_style') || 'both';
+
+function toggleClickEffects(val) {
+clickEffectsEnabled = val;
+localStorage.setItem('ngg_click_effects', val);
+}
+function setClickEffectStyle(val) {
+clickEffectStyle = val;
+localStorage.setItem('ngg_click_style', val);
+document.querySelectorAll('#click-effect-grid .bg-chip').forEach(c => c.classList.toggle('active', c.dataset.ce === val));
+}
+function spawnUIClickEffect(e) {
+if (isPerfMode || !clickEffectsEnabled) return;
+const x = e.clientX, y = e.clientY;
+const accent = getComputedStyle(document.body).getPropertyValue('--accent').trim();
+const accent2 = getComputedStyle(document.body).getPropertyValue('--accent2').trim();
+const accent3 = getComputedStyle(document.body).getPropertyValue('--accent3').trim();
+const gold = getComputedStyle(document.body).getPropertyValue('--gold').trim();
+const style = clickEffectStyle;
+
+// PARTICLES
+if (style === 'particles' || style === 'both') {
+for (let i = 0; i < 12; i++) {
+const p = document.createElement('div');
+p.className = 'click-particle';
+const angle = (i / 12) * Math.PI * 2;
+const dist = 30 + Math.random() * 40;
+const size = 4 + Math.random() * 5;
+p.style.cssText = `left:${x}px;top:${y}px;width:${size}px;height:${size}px;background:${[accent,accent2,accent3][Math.floor(Math.random()*3)]};--tx:${Math.cos(angle)*dist}px;--ty:${Math.sin(angle)*dist}px;--dur:${0.4+Math.random()*0.3}s;margin-left:-${size/2}px;margin-top:-${size/2}px`;
+document.body.appendChild(p);
+setTimeout(() => p.remove(), 700);
+}
+}
+
+// RIPPLE
+if (style === 'ripple' || style === 'both') {
+const r = document.createElement('div');
+r.className = 'click-ripple';
+const sz = 40;
+r.style.cssText = `left:${x}px;top:${y}px;width:${sz}px;height:${sz}px;margin-left:-${sz/2}px;margin-top:-${sz/2}px;border-color:${accent}`;
+document.body.appendChild(r);
+setTimeout(() => r.remove(), 600);
+}
+
+// SPARKS — thin fast lines shooting out
+if (style === 'sparks') {
+for (let i = 0; i < 10; i++) {
+const s = document.createElement('div');
+s.className = 'click-particle';
+const angle = (i / 10) * Math.PI * 2;
+const dist = 50 + Math.random() * 30;
+const w = 2, h = 8 + Math.random() * 8;
+s.style.cssText = `left:${x}px;top:${y}px;width:${w}px;height:${h}px;border-radius:1px;background:${Math.random()>.5?accent:gold};--tx:${Math.cos(angle)*dist}px;--ty:${Math.sin(angle)*dist}px;--dur:${0.3+Math.random()*0.2}s;margin-left:-1px;margin-top:-4px;transform-origin:center`;
+document.body.appendChild(s);
+setTimeout(() => s.remove(), 600);
+}
+// small bright center flash
+const flash = document.createElement('div');
+flash.style.cssText = `position:fixed;left:${x}px;top:${y}px;width:14px;height:14px;border-radius:50%;background:${accent};margin:-7px 0 0 -7px;z-index:9999;opacity:1;transition:all 0.25s ease;pointer-events:none`;
+document.body.appendChild(flash);
+requestAnimationFrame(()=>{flash.style.opacity='0';flash.style.transform='scale(3)';});
+setTimeout(() => flash.remove(), 300);
+}
+
+// CONFETTI — colourful squares tumbling down
+if (style === 'confetti') {
+const colors = [accent, accent2, accent3, gold, '#ff6b6b', '#51cf66'];
+for (let i = 0; i < 18; i++) {
+const c = document.createElement('div');
+const size = 5 + Math.random() * 6;
+const tx = (Math.random() - 0.5) * 120;
+const ty = 40 + Math.random() * 80;
+const rot = Math.random() * 720;
+c.style.cssText = `position:fixed;left:${x}px;top:${y}px;width:${size}px;height:${size}px;background:${colors[Math.floor(Math.random()*colors.length)]};margin-left:-${size/2}px;margin-top:-${size/2}px;z-index:9999;pointer-events:none;border-radius:${Math.random()>.5?'50%':'2px'};transition:all ${0.6+Math.random()*0.4}s cubic-bezier(0.25,0.46,0.45,0.94);opacity:1`;
+document.body.appendChild(c);
+requestAnimationFrame(()=>{ c.style.transform = `translate(${tx}px,${ty}px) rotate(${rot}deg)`; c.style.opacity = '0'; });
+setTimeout(() => c.remove(), 1100);
+}
+}
+
+// STARS — ★ symbols floating upward
+if (style === 'stars') {
+for (let i = 0; i < 8; i++) {
+const s = document.createElement('div');
+s.style.cssText = `position:fixed;left:${x + (Math.random()-0.5)*60}px;top:${y}px;font-size:${12+Math.random()*10}px;z-index:9999;pointer-events:none;color:${[gold,accent,accent2][Math.floor(Math.random()*3)]};transition:all ${0.7+Math.random()*0.4}s ease-out;opacity:1;user-select:none`;
+s.textContent = ['★','✦','✧','⭐'][Math.floor(Math.random()*4)];
+document.body.appendChild(s);
+requestAnimationFrame(()=>{ s.style.transform = `translateY(-${50+Math.random()*40}px) rotate(${(Math.random()-.5)*60}deg) scale(0.3)`; s.style.opacity = '0'; });
+setTimeout(() => s.remove(), 1200);
+}
+}
+}
+document.addEventListener('click', spawnUIClickEffect);
+
+// ============================================================
+// AUTO PERFORMANCE MODE (slow page detection + tab visibility)
+// ============================================================
+let autoPerfEnabled = localStorage.getItem('ngg_auto_perf') !== 'false';
+let tabPerfEnabled = localStorage.getItem('ngg_tab_perf') !== 'false';
+let userHadPerfOn = false;
+let fpsFrames = 0, fpsLast = 0, fpsSlow = 0, fpsReady = false;
+
+function toggleAutoPerf(val) {
+autoPerfEnabled = val;
+localStorage.setItem('ngg_auto_perf', val);
+}
+function toggleTabPerf(val) {
+tabPerfEnabled = val;
+localStorage.setItem('ngg_tab_perf', val);
+}
+
+// FPS monitor for auto-perf — starts after 5s grace period so bg can settle
+function monitorFPS() {
+fpsFrames++;
+const now = performance.now();
+if (!fpsReady) { fpsLast = now; requestAnimationFrame(monitorFPS); return; }
+if (now - fpsLast >= 2000) {
+const fps = fpsFrames / ((now - fpsLast) / 1000);
+fpsFrames = 0; fpsLast = now;
+if (autoPerfEnabled && !isPerfMode && fps < 20) {
+fpsSlow++;
+if (fpsSlow >= 2) { applyPerfMode(true); showToast('⚡ Auto Performance Mode enabled (low FPS)',''); }
+} else { fpsSlow = 0; }
+}
+requestAnimationFrame(monitorFPS);
+}
+
+// Tab visibility — guard against firing during initial page load
+let tabPerfReady = false;
+setTimeout(() => { tabPerfReady = true; }, 2000);
+document.addEventListener('visibilitychange', () => {
+if (!tabPerfEnabled || !tabPerfReady) return;
+if (document.hidden) {
+userHadPerfOn = isPerfMode;
+if (!isPerfMode) applyPerfMode(true);
+} else {
+if (!userHadPerfOn) applyPerfMode(false);
+}
+});
+
+// ============================================================
 // NAVBAR EDGE SCROLL
 // ============================================================
 (function(){
@@ -1937,6 +2592,258 @@ tabs.addEventListener('mouseleave',()=>{scrollSpeed=0;});
 function loop(){if(scrollSpeed!==0)tabs.scrollLeft+=scrollSpeed;scrollRAF=requestAnimationFrame(loop);}
 scrollRAF=requestAnimationFrame(loop);
 })();
+
+
+// ============================================================
+// TAB DRAG REORDER
+// ============================================================
+// Locked tabs that can never be moved
+const LOCKED_TABS = ['home', 'settings'];
+// Default order of moveable tabs
+const DEFAULT_TAB_ORDER = ['games','websites','eaglercraft','partnerships','medieval','ourlinks','proxy','other','favorites'];
+
+let tabOrder = JSON.parse(localStorage.getItem('ngg_tab_order') || 'null') || [...DEFAULT_TAB_ORDER];
+
+function applyTabOrder() {
+  const container = document.getElementById('navbar-tabs');
+  if (!container) return;
+  const settingsBtn = container.querySelector('[data-page="settings"]');
+  // Re-insert each tab in order before settings (home stays first naturally)
+  tabOrder.forEach(page => {
+    const btn = container.querySelector(`[data-page="${page}"]`);
+    if (btn) container.insertBefore(btn, settingsBtn);
+  });
+  // Make moveable tabs draggable directly in navbar
+  initNavbarTabDrag();
+}
+
+function initNavbarTabDrag() {
+  const container = document.getElementById('navbar-tabs');
+  if (!container) return;
+  let dragSrc = null;
+
+  // Drop indicator line
+  let indicator = document.getElementById('tab-drop-indicator');
+  if (!indicator) {
+    indicator = document.createElement('div');
+    indicator.id = 'tab-drop-indicator';
+    indicator.style.cssText = 'position:absolute;top:6px;bottom:6px;width:3px;border-radius:2px;background:var(--accent);box-shadow:0 0 8px var(--accent);pointer-events:none;display:none;z-index:100';
+    container.style.position = 'relative';
+    container.appendChild(indicator);
+  }
+
+  function showIndicator(targetTab, after) {
+    const containerRect = container.getBoundingClientRect();
+    const tabRect = targetTab.getBoundingClientRect();
+    const x = after
+      ? tabRect.right - containerRect.left + container.scrollLeft + 2
+      : tabRect.left - containerRect.left + container.scrollLeft - 4;
+    indicator.style.left = x + 'px';
+    indicator.style.display = 'block';
+  }
+  function hideIndicator() { indicator.style.display = 'none'; }
+
+  container.querySelectorAll('.nav-tab').forEach(tab => {
+    const page = tab.dataset.page;
+    if (LOCKED_TABS.includes(page)) { tab.draggable = false; return; }
+    tab.draggable = true;
+    const clone = tab.cloneNode(true);
+    tab.parentNode.replaceChild(clone, tab);
+    clone.draggable = true;
+
+    clone.addEventListener('dragstart', e => {
+      dragSrc = page;
+      clone.classList.add('dragging');
+      e.dataTransfer.setData('text/plain', page);
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    clone.addEventListener('dragend', () => {
+      dragSrc = null;
+      clone.classList.remove('dragging');
+      hideIndicator();
+    });
+    clone.addEventListener('dragover', e => {
+      // Only allow drop if hovering over another .nav-tab, not the navbar itself
+      if (!e.target.closest('.nav-tab')) { e.dataTransfer.dropEffect = 'none'; return; }
+      e.preventDefault();
+      if (!dragSrc || dragSrc === page || LOCKED_TABS.includes(page)) return;
+      const rect = clone.getBoundingClientRect();
+      showIndicator(clone, e.clientX > rect.left + rect.width / 2);
+    });
+    clone.addEventListener('drop', e => {
+      // Reject drops onto non-tab areas
+      if (!e.target.closest('.nav-tab')) return;
+      e.preventDefault();
+      hideIndicator();
+      const fromPage = e.dataTransfer.getData('text/plain');
+      if (!fromPage || fromPage === page || LOCKED_TABS.includes(page)) return;
+      const fromIdx = tabOrder.indexOf(fromPage);
+      if (fromIdx === -1 || tabOrder.indexOf(page) === -1) return;
+      const rect = clone.getBoundingClientRect();
+      const after = e.clientX > rect.left + rect.width / 2;
+      tabOrder.splice(fromIdx, 1);
+      const toIdx = tabOrder.indexOf(page);
+      tabOrder.splice(after ? toIdx + 1 : toIdx, 0, fromPage);
+      saveTabOrder();
+      buildTabOrderList();
+    });
+  });
+
+  container.addEventListener('dragleave', e => {
+    if (!container.contains(e.relatedTarget)) hideIndicator();
+  });
+  // Prevent drop on the container background (non-tab areas)
+  container.addEventListener('dragover', e => {
+    if (!e.target.closest('.nav-tab')) e.dataTransfer.dropEffect = 'none';
+  });
+}
+
+function buildTabOrderList() {
+  const list = document.getElementById('tab-order-list');
+  if (!list) return;
+  list.innerHTML = '';
+  let dragSrcRow = null;
+
+  tabOrder.forEach((page, idx) => {
+    const btn = document.querySelector(`[data-page="${page}"]`);
+    if (!btn) return;
+    const label = btn.textContent.trim();
+    const icon = btn.querySelector('.tab-icon')?.textContent || '';
+
+    // Wrapper with indicator
+    const wrapper = document.createElement('div');
+    wrapper.style.cssText = 'position:relative';
+
+    // Drop indicator line for settings list
+    const lineIndicator = document.createElement('div');
+    lineIndicator.style.cssText = 'height:2px;border-radius:2px;background:var(--accent);box-shadow:0 0 6px var(--accent);display:none;margin:0 4px;transition:opacity 0.1s';
+
+    const row = document.createElement('div');
+    row.className = 'setting-row';
+    row.style.cssText = 'cursor:grab;user-select:none;padding:8px 12px;border-radius:var(--radius-sm);transition:background 0.15s;border:1.5px solid transparent';
+    row.draggable = true;
+    row.dataset.page = page;
+    row.innerHTML = `<div style="display:flex;align-items:center;gap:10px;flex:1"><span style="font-size:18px;opacity:0.4">⠿</span><span style="font-size:15px">${icon}</span><span style="font-size:14px;color:var(--text)">${label.replace(icon,'').trim()}</span></div><div style="display:flex;gap:4px"><button class="s-btn" style="padding:4px 8px;font-size:12px" onclick="moveTab('${page}',-1)">▲</button><button class="s-btn" style="padding:4px 8px;font-size:12px" onclick="moveTab('${page}',1)">▼</button></div>`;
+
+    lineIndicator.dataset.indicator = '1';
+
+    row.addEventListener('dragstart', e => {
+      dragSrcRow = page;
+      e.dataTransfer.setData('text/plain', page);
+      
+    });
+    row.addEventListener('dragend', () => {
+      
+      dragSrcRow = null;
+      list.querySelectorAll('[data-indicator]').forEach(el => el.style.display = 'none');
+    });
+    row.addEventListener('dragover', e => {
+      e.preventDefault();
+      if (!dragSrcRow || dragSrcRow === page) return;
+      list.querySelectorAll('[data-indicator]').forEach(el => el.style.display = 'none');
+      const rect = row.getBoundingClientRect();
+      const after = e.clientY > rect.top + rect.height / 2;
+      if (after) { wrapper.appendChild(lineIndicator); } else { wrapper.insertBefore(lineIndicator, row); }
+      lineIndicator.style.display = 'block';
+    });
+    row.addEventListener('dragleave', e => {
+      if (!wrapper.contains(e.relatedTarget)) lineIndicator.style.display = 'none';
+    });
+    row.addEventListener('drop', e => {
+      e.preventDefault();
+      list.querySelectorAll('[data-indicator]').forEach(el => el.style.display = 'none');
+      const fromPage = e.dataTransfer.getData('text/plain');
+      const toPage = page;
+      if (fromPage === toPage) return;
+      const fromIdx = tabOrder.indexOf(fromPage);
+      const after = e.clientY > row.getBoundingClientRect().top + row.getBoundingClientRect().height / 2;
+      tabOrder.splice(fromIdx, 1);
+      const toIdx = tabOrder.indexOf(toPage);
+      tabOrder.splice(after ? toIdx + 1 : toIdx, 0, fromPage);
+      saveTabOrder();
+      buildTabOrderList();
+    });
+
+    wrapper.appendChild(row);
+    list.appendChild(wrapper);
+  });
+}
+
+function moveTab(page, dir) {
+  const idx = tabOrder.indexOf(page);
+  const newIdx = idx + dir;
+  if (newIdx < 0 || newIdx >= tabOrder.length) return;
+  tabOrder.splice(idx, 1);
+  tabOrder.splice(newIdx, 0, page);
+  saveTabOrder();
+  buildTabOrderList();
+}
+
+function saveTabOrder() {
+  localStorage.setItem('ngg_tab_order', JSON.stringify(tabOrder));
+  applyTabOrder();
+}
+
+function resetTabOrder() {
+  tabOrder = [...DEFAULT_TAB_ORDER];
+  localStorage.removeItem('ngg_tab_order');
+  applyTabOrder();
+  buildTabOrderList();
+  showToast('Tab order reset','success');
+}
+
+// ============================================================
+// PROXY FUNCTIONS
+// ============================================================
+const PROXY_BASE = 'https://67-blue.vercel.app/api/proxy?url=';
+
+function loadProxy() {
+  const input = document.getElementById('proxy-input');
+  if (!input) return;
+  let url = input.value.trim();
+  if (!url) return;
+  // Strip the proxy base if user somehow has it in the bar already
+  if (url.startsWith(PROXY_BASE)) url = decodeURIComponent(url.slice(PROXY_BASE.length));
+  if (!url.startsWith('http://') && !url.startsWith('https://')) url = 'https://' + url;
+  // Show clean URL in the bar, load through proxy internally
+  input.value = url;
+  proxyLoad(PROXY_BASE + encodeURIComponent(url));
+}
+
+function proxyLoad(proxyUrl) {
+  const frame = document.getElementById('proxy-frame');
+  const placeholder = document.getElementById('proxy-placeholder');
+  if (!frame) return;
+  // Load iframe with the proxy URL but don't show it in the input bar
+  frame.src = proxyUrl;
+  frame.style.display = 'block';
+  if (placeholder) placeholder.style.display = 'none';
+  showToast('Loading... (some sites block embedding)','');
+}
+
+function proxyNavBack() {
+  const frame = document.getElementById('proxy-frame');
+  if (frame) try { frame.contentWindow.history.back(); } catch(e) { showToast('Cannot navigate (cross-origin)','error'); }
+}
+
+function proxyNavRefresh() {
+  const frame = document.getElementById('proxy-frame');
+  if (frame && frame.src && frame.src !== 'about:blank') {
+    frame.src = frame.src;
+  }
+}
+
+function proxyOpenBlank() {
+  const frame = document.getElementById('proxy-frame');
+  const url = frame?.src;
+  if (!url || url === 'about:blank') { showToast('Load a page first','error'); return; }
+  const w = window.open('about:blank','_blank');
+  if (w) {
+    w.document.open();
+    w.document.write(`<iframe src="${url}" style="width:100%;height:100%;border:none;position:fixed;inset:0"></iframe>`);
+    w.document.close();
+  }
+}
 
 // ============================================================
 // KEYBOARD SHORTCUTS
