@@ -324,6 +324,56 @@ body.perf-mode .page.active{animation:none}
 /* ===== TAB ORDER ===== */
 .nav-tab.dragging{opacity:1}
 
+/* ===== SETTINGS SAVE BAR ===== */
+#settings-save-bar{
+  position:sticky;top:calc(var(--nav-h) + 4px);z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  margin:12px 24px 0;padding:10px 16px;
+  background:var(--bg2);border:1px solid var(--border-strong);
+  border-radius:var(--radius-sm);
+  box-shadow:0 4px 20px rgba(0,0,0,0.4);
+  backdrop-filter:blur(12px);
+}
+#settings-save-bar.saved #settings-save-status{color:var(--accent2)}
+
+/* ===== OPEN BEHAVIOR OPTIONS ===== */
+.open-behavior-group{display:flex;flex-direction:column;gap:8px}
+.ob-option{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;transition:all 0.2s;background:var(--surface)}
+.ob-option:hover{border-color:var(--border-strong);background:var(--surface2)}
+.ob-option.active{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,transparent)}
+.ob-radio{width:16px;height:16px;border-radius:50%;border:2px solid var(--border-strong);flex-shrink:0;margin-top:2px;transition:all 0.2s;position:relative}
+.ob-option.active .ob-radio{border-color:var(--accent);background:var(--accent);box-shadow:0 0 6px var(--accent)}
+.ob-option.active .ob-radio::after{content:'';position:absolute;inset:3px;border-radius:50%;background:var(--bg)}
+.ob-content{flex:1}
+.ob-label{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:var(--text);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.ob-desc{font-size:11px;color:var(--text-muted);margin-top:2px;line-height:1.5}
+.ob-default{font-size:10px;background:rgba(94,234,212,0.15);color:var(--accent2);padding:1px 5px;border-radius:3px;font-family:'Rajdhani',sans-serif;font-weight:700;text-transform:uppercase}
+.ob-stealth{font-size:10px;background:rgba(244,114,182,0.15);color:var(--accent3);padding:1px 5px;border-radius:3px;font-family:'Rajdhani',sans-serif;font-weight:700;text-transform:uppercase}
+@media(max-width:600px){.settings-card [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}}
+
+/* ===== BACK TO TOP ===== */
+#back-to-top{position:fixed;bottom:28px;left:28px;z-index:8000;width:40px;height:40px;border-radius:999px;background:var(--accent);color:var(--bg);font-size:18px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.4),var(--glow);opacity:0;transform:translateY(12px);pointer-events:none;transition:all 0.3s ease}
+#back-to-top.visible{opacity:1;transform:translateY(0);pointer-events:all}
+#back-to-top:hover{filter:brightness(1.15);transform:translateY(-2px)}
+
+/* ===== GRID DENSITY TOGGLE ===== */
+.density-bar{display:flex;align-items:center;gap:6px;padding:8px 24px 0}
+.density-btn{display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:999px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;border:1.5px solid var(--border);background:var(--surface);color:var(--text-muted);cursor:pointer;transition:all 0.2s}
+.density-btn:hover{border-color:var(--accent);color:var(--text)}
+.density-btn.active{background:var(--surface2);border-color:var(--accent);color:var(--accent)}
+.card-grid.density-compact{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.card-grid.density-list{grid-template-columns:1fr!important;max-width:900px;margin:0 auto}
+.card-grid.density-list .game-card{display:flex;flex-direction:row;height:72px}
+.card-grid.density-list .card-thumb{width:112px;height:72px;flex-shrink:0;aspect-ratio:unset}
+.card-grid.density-list .card-info{display:flex;align-items:center;gap:12px;padding:10px 14px;flex:1}
+.card-grid.density-list .card-tag{margin-top:0}
+
+/* ===== MODAL FULLSCREEN BTN ===== */
+.modal-btn.fullscreen-btn:hover{background:color-mix(in srgb,var(--accent2) 15%,transparent);border-color:var(--accent2);color:var(--accent2)}
+
+/* ===== SITE MODAL BADGE ===== */
+.modal-badge.site{background:rgba(94,234,212,0.15);color:var(--accent2)}
+
 /* ===== MOBILE ===== */
 @media(max-width:1024px){#page-home{grid-template-columns:1fr}#game-modal-content{width:100vw;height:100dvh;border-radius:0}}
 @media(max-width:768px){:root{--nav-h:100px}#navbar-logo-text{display:none}#navbar-top{padding:0 12px;gap:10px}#navbar-tabs{padding:0 8px;gap:4px}.nav-tab{padding:0 12px;font-size:12px;height:34px}.card-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;padding:16px}.modal-btn{padding:4px 8px;font-size:11px}}
@@ -334,8 +384,9 @@ body.perf-mode .page.active{animation:none}
 <canvas id="bgCanvas"></canvas>
 <div class="bg-overlay"></div>
 <div id="toast-container"></div>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
 
-<!-- GAME MODAL -->
+<!-- GAME / SITE MODAL -->
 <div id="game-modal" role="dialog" aria-modal="true">
   <div id="game-modal-overlay" onclick="closeGameModal()"></div>
   <div id="game-modal-content">
@@ -351,6 +402,7 @@ body.perf-mode .page.active{animation:none}
         <button class="modal-btn" id="modal-download-btn" onclick="downloadCurrentGame()" title="Download HTML">⬇ Download</button>
         <button class="modal-btn" onclick="openCurrentGameTab()" title="Open in new tab">↗ New Tab</button>
         <button class="modal-btn" onclick="shareCurrentGame()" title="Share">🔗 Share</button>
+        <button class="modal-btn fullscreen-btn" id="modal-fs-btn" onclick="toggleModalFullscreen()" title="Fullscreen (F)">⛶ Full</button>
         <button class="modal-btn danger" onclick="closeGameModal()" title="Close (Esc)">✕ Close</button>
       </div>
     </div>
@@ -414,6 +466,7 @@ body.perf-mode .page.active{animation:none}
     <button class="nav-tab" data-page="proxy" onclick="navigate('proxy')"><span class="tab-icon">🔒</span> Proxy</button>
     <button class="nav-tab" data-page="other" onclick="navigate('other')"><span class="tab-icon">📦</span> Other</button>
     <button class="nav-tab" data-page="favorites" onclick="navigate('favorites')"><span class="tab-icon">⭐</span> Favorites</button>
+    <button class="nav-tab" data-page="version" onclick="navigate('version')"><span class="tab-icon">🗃️</span> Version</button>
     <button class="nav-tab" data-page="settings" onclick="navigate('settings')"><span class="tab-icon">⚙️</span> Settings</button>
   </div>
 </nav>
@@ -490,8 +543,14 @@ body.perf-mode .page.active{animation:none}
       <option value="recent">Sort: Recently Played</option>
     </select>
   </div>
+  <div class="density-bar">
+    <span style="font-size:11px;color:var(--text-dim);font-family:'Rajdhani',sans-serif;text-transform:uppercase;letter-spacing:1px;margin-right:2px">View:</span>
+    <button class="density-btn active" data-density="normal" onclick="setGridDensity('normal',this)">⊞ Normal</button>
+    <button class="density-btn" data-density="compact" onclick="setGridDensity('compact',this)">⊟ Compact</button>
+    <button class="density-btn" data-density="list" onclick="setGridDensity('list',this)">☰ List</button>
+  </div>
   <div class="card-grid" id="games-grid"></div>
-  <div class="page-footer"><div class="footer-text">Click a game to play in popup · ★ to favorite · Right-click for more options</div></div>
+  <div class="page-footer"><div class="footer-text">Click to play · ★ favorite · Right-click for more · Drag to reorder tabs</div></div>
 </div>
 
 <!-- WEBSITES -->
@@ -561,6 +620,16 @@ body.perf-mode .page.active{animation:none}
   <div class="card-grid" id="other-grid"></div>
 </div>
 
+<!-- VERSION -->
+<div id="page-version" class="page">
+  <div class="section-header">
+    <div class="section-title">🗃️ Version <span id="version-count"></span></div>
+  </div>
+  <div class="section-desc-bar" style="padding:6px 24px 0;font-size:12px;color:var(--text-dim)">Version history, changelogs, and archived builds.</div>
+  <div class="card-grid" id="version-grid"></div>
+  <div class="page-footer"><div class="footer-text">Version archive — more coming soon</div></div>
+</div>
+
 <!-- FAVORITES -->
 <div id="page-favorites" class="page">
   <div class="section-header"><div class="section-title">⭐ Favorites</div></div>
@@ -570,6 +639,14 @@ body.perf-mode .page.active{animation:none}
 <!-- SETTINGS -->
 <div id="page-settings" class="page">
   <div class="section-header"><div class="section-title">⚙️ Settings</div></div>
+  <!-- Sticky save bar -->
+  <div id="settings-save-bar">
+    <span id="settings-save-status" style="font-size:12px;color:var(--text-muted)">All changes save automatically</span>
+    <div style="display:flex;gap:8px">
+      <button class="s-btn" onclick="exportData()" style="border-color:var(--border-strong)">⬇ Export All</button>
+      <button class="s-btn" style="background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:700" onclick="saveAllSettings()">✓ Save Settings</button>
+    </div>
+  </div>
   <div class="settings-grid">
 
     <div class="settings-card">
@@ -666,6 +743,44 @@ body.perf-mode .page.active{animation:none}
       <button class="s-btn" style="margin-top:12px" onclick="resetTabOrder()">↺ Reset Order</button>
     </div>
 
+    <!-- OPEN BEHAVIOR CARD -->
+    <div class="settings-card" style="grid-column:1/-1">
+      <h3>🖱️ Open Behavior</h3>
+      <div class="setting-desc" style="margin-bottom:16px">Choose how games and website links open when you click them.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+        <div>
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">🎮 Games</div>
+          <div class="open-behavior-group" id="ob-games-group">
+            <label class="ob-option" data-val="modal" onclick="setOpenBehavior('games','modal',this)">
+              <div class="ob-radio"></div>
+              <div class="ob-content"><div class="ob-label">In-page popup <span class="ob-default">Default</span></div><div class="ob-desc">Fullscreen overlay — download, share &amp; fullscreen supported.</div></div>
+            </label>
+            <label class="ob-option" data-val="newtab" onclick="setOpenBehavior('games','newtab',this)">
+              <div class="ob-radio"></div>
+              <div class="ob-content"><div class="ob-label">New tab</div><div class="ob-desc">Opens in a separate browser tab.</div></div>
+            </label>
+            <label class="ob-option" data-val="aboutblank" onclick="setOpenBehavior('games','aboutblank',this)">
+              <div class="ob-radio"></div>
+              <div class="ob-content"><div class="ob-label">About:blank tab <span class="ob-stealth">STEALTH</span></div><div class="ob-desc">Writes game into an about:blank window — URL is hidden.</div></div>
+            </label>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:var(--accent2);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">🌐 Websites &amp; Links</div>
+          <div class="open-behavior-group" id="ob-sites-group">
+            <label class="ob-option" data-val="newtab" onclick="setOpenBehavior('sites','newtab',this)">
+              <div class="ob-radio"></div>
+              <div class="ob-content"><div class="ob-label">New tab <span class="ob-default">Default</span></div><div class="ob-desc">Opens in a new browser tab. Best compatibility.</div></div>
+            </label>
+            <label class="ob-option" data-val="modal" onclick="setOpenBehavior('sites','modal',this)">
+              <div class="ob-radio"></div>
+              <div class="ob-content"><div class="ob-label">In-page iframe</div><div class="ob-desc">Opens in an overlay with ✕ to close. Some sites block embedding.</div></div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="settings-card">
       <h3>⚡ Performance</h3>
       <div class="setting-row"><div><div class="setting-label">Performance Mode</div><div class="setting-desc">Disable animations &amp; background</div></div><label class="s-toggle"><input type="checkbox" id="perf-toggle" onchange="togglePerfMode(this.checked)"><span class="s-toggle-track"></span></label></div>
@@ -700,7 +815,7 @@ body.perf-mode .page.active{animation:none}
 
     <div class="settings-card">
       <h3>ℹ️ About</h3>
-      <div class="setting-row"><div class="setting-label">Version</div><div style="color:var(--accent);font-weight:600">1.8.0</div></div>
+      <div class="setting-row"><div class="setting-label">Version</div><div style="color:var(--accent);font-weight:600">1.9.0</div></div>
       <div class="setting-row"><div class="setting-label">Owner</div><div style="color:var(--text-muted)">Nolan Boyer</div></div>
       <div class="setting-row"><div class="setting-label">Hosted On</div><div style="color:var(--text-muted)">GitHub</div></div>
       <div style="margin-top:12px"><a href="https://github.com/NolanBetter/nolanbetter.github.io" target="_blank" class="s-btn" style="display:inline-block;text-decoration:none">🍴 Fork on GitHub</a></div>
@@ -713,6 +828,7 @@ body.perf-mode .page.active{animation:none}
 <script>
 // ===== CHANGELOG =====
 const CHANGELOG = [
+  { version:'1.9.0', badge:'new', date:'2026', entries:['Version tab added (customisable archive section)','Open Behavior setting — games: popup/new tab/about:blank; sites: new tab/iframe','Grid density toggle on Games page (Normal / Compact / List)','Fullscreen button on modal (F key shortcut)','Site iframe modal — open any link in an in-page overlay','Settings Save button with sticky save bar','Back-to-top button appears when scrolling'] },
   { version:'1.8.0', badge:'new', date:'2026', entries:['Games open in popup modal instead of new tab','Download any game as an HTML file','Share game links via Web Share API','Custom CSS editor in Settings with live preview','Import your own HTML game files (up to 5 MB)','Enhanced right-click menu: play, download, share, rate, star, remove'] },
   { version:'1.7.6', badge:'update', date:'02/20/26', entries:['Added more links','Made Eaglercraft versions use NGG','Bug fixes'] },
   { version:'1.7.0', badge:'update', date:'02/18/26', entries:['Recently played tracker','5-star rating system','Page fade transitions','Search history','Filter bar on Games page','Announcement banner','Right-click context menu'] }
@@ -860,7 +976,11 @@ const MEDIEVAL=[{name:"Medieval Chronicles Discord",href:"https://discord.gg/sfk
 {name:"Medieval Chronicles Link",href:"https://play1.coolmathgames.eu.org.cdn.cloudflare.net/",cls:""},{name:"Medieval Chronicles Link",href:"https://moneynow.cc/",cls:""},{name:"Medieval Chronicles Link",href:"https://homeworkhelp.cc/",cls:""},{name:"Medieval Chronicles Link",href:"https://businessschool.cc/",cls:""},{name:"Medieval Chronicles Link",href:"https://splash.best/",cls:""}];
 const OTHER=[{name:"Rules",href:"https://drive.google.com/file/d/1nidsUc8iekU_k7Myid8rveo9-cUK0g0h/view",cls:""},{name:"Report Form",href:"https://forms.gle/cJcDpLaSAm1NNVsR8",cls:""},{name:"Terms of Service",href:"https://www.nolangraysongames.com/Legal.html",cls:""},{name:"Privacy Policy",href:"https://www.nolangraysongames.com/Legal.html",cls:""},{name:"DMCA",href:"https://www.nolangraysongames.com/Legal.html",cls:""},{name:"Fork On Github",href:"https://github.com/NolanBetter/nolanbetter.github.io",cls:""},{name:"Official Link",href:"https://www.nolangraysongames.com/",cls:""},{name:"Discord",href:"https://discord.gg/nNCWgRJZ7v",cls:"discord"}];
 
-// ===== CUSTOM GAMES =====
+// ===== VERSION DATA =====
+const VERSION = [
+  {name:'Nothing',href:'404.html',cls:'',desc:'Placeholder — more coming soon'}
+];
+
 let customGames = [];
 function loadCustomGames(){try{customGames=JSON.parse(localStorage.getItem('ngg_custom_games')||'[]');}catch(e){customGames=[];}renderCustomGamesList();}
 function getAllGames(){return[...BASE_GAMES,...customGames];}
@@ -918,6 +1038,73 @@ let inactivityTimer=null,inactivityLimit=parseInt(localStorage.getItem('ngg_inac
 let currentFilter='all',currentSort='default',ctxTarget=null;
 const ANNOUNCEMENT_MESSAGE='Join Our Discord at dsc.gg/nggs!';
 
+// ===== OPEN BEHAVIOR STATE =====
+let openBehavior = JSON.parse(localStorage.getItem('ngg_open_behavior') || '{"games":"modal","sites":"newtab"}');
+
+function setOpenBehavior(group, val, el) {
+  openBehavior[group] = val;
+  localStorage.setItem('ngg_open_behavior', JSON.stringify(openBehavior));
+  // Update radio UI
+  const groupId = group === 'games' ? 'ob-games-group' : 'ob-sites-group';
+  document.querySelectorAll('#'+groupId+' .ob-option').forEach(o => o.classList.toggle('active', o.dataset.val === val));
+  showToast((group==='games'?'🎮':'🌐')+' Open behavior saved', 'success');
+}
+
+function loadOpenBehavior() {
+  ['games','sites'].forEach(group => {
+    const val = openBehavior[group] || (group==='games'?'modal':'newtab');
+    const groupId = group === 'games' ? 'ob-games-group' : 'ob-sites-group';
+    document.querySelectorAll('#'+groupId+' .ob-option').forEach(o => o.classList.toggle('active', o.dataset.val === val));
+  });
+}
+
+// ===== GRID DENSITY =====
+let gridDensity = localStorage.getItem('ngg_grid_density') || 'normal';
+
+function setGridDensity(val, btn) {
+  gridDensity = val;
+  localStorage.setItem('ngg_grid_density', val);
+  document.querySelectorAll('.density-btn').forEach(b => b.classList.toggle('active', b.dataset.density === val));
+  const grid = document.getElementById('games-grid');
+  if (grid) {
+    grid.classList.remove('density-compact','density-list');
+    if (val !== 'normal') grid.classList.add('density-'+val);
+  }
+}
+
+// ===== MODAL FULLSCREEN =====
+let modalIsFullscreen = false;
+function toggleModalFullscreen() {
+  const content = document.getElementById('game-modal-content');
+  const btn = document.getElementById('modal-fs-btn');
+  modalIsFullscreen = !modalIsFullscreen;
+  if (modalIsFullscreen) {
+    content.style.width = '100vw';
+    content.style.height = '100dvh';
+    content.style.borderRadius = '0';
+    content.style.maxWidth = '100vw';
+    if (btn) btn.textContent = '⛶ Exit Full';
+    // Try real fullscreen API
+    if (content.requestFullscreen) content.requestFullscreen().catch(()=>{});
+  } else {
+    content.style.width = '';
+    content.style.height = '';
+    content.style.borderRadius = '';
+    content.style.maxWidth = '';
+    if (btn) btn.textContent = '⛶ Full';
+    if (document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+  }
+}
+document.addEventListener('fullscreenchange', () => {
+  if (!document.fullscreenElement && modalIsFullscreen) {
+    modalIsFullscreen = false;
+    const content = document.getElementById('game-modal-content');
+    if (content) { content.style.width='';content.style.height='';content.style.borderRadius='';content.style.maxWidth=''; }
+    const btn = document.getElementById('modal-fs-btn');
+    if (btn) btn.textContent = '⛶ Full';
+  }
+});
+
 // ===== GAME MODAL =====
 let currentModalGame=null,modalBlobUrl=null;
 
@@ -945,12 +1132,6 @@ function openGameModal(game){
   const onLoad=()=>{loading.classList.add('hidden');frame.style.opacity='1';frame.removeEventListener('load',onLoad);};
   frame.addEventListener('load',onLoad);
   setTimeout(()=>{if(!loading.classList.contains('hidden')){loading.classList.add('hidden');frame.style.opacity='1';}},8000);
-}
-
-function closeGameModal(){
-  document.getElementById('game-modal').classList.remove('open');
-  document.body.classList.remove('modal-open');
-  setTimeout(()=>{document.getElementById('game-modal-frame').src='about:blank';if(modalBlobUrl){URL.revokeObjectURL(modalBlobUrl);modalBlobUrl=null;}currentModalGame=null;},200);
 }
 
 function openCurrentGameTab(){
@@ -994,7 +1175,45 @@ function shareGame(href,name,isCustom){
   else{navigator.clipboard.writeText(url).then(()=>showToast('🔗 Link copied!','success')).catch(()=>showToast('Copy failed','error'));}
 }
 
-function openFeaturedGame(name,icon,href){const g=getAllGames().find(x=>x.href===href)||{name,icon,href};trackPlay(name,icon||'🎮',href);openGameModal(g);}
+function openFeaturedGame(name,icon,href){const g=getAllGames().find(x=>x.href===href)||{name,icon,href};trackPlay(name,icon||'🎮',href);
+  const mode=openBehavior.games||'modal';
+  if(mode==='newtab') window.open(href,'_blank');
+  else if(mode==='aboutblank'){const w=window.open('about:blank','_blank');if(w){fetch(href).then(r=>r.text()).then(html=>{w.document.open();w.document.write(html);w.document.close();}).catch(()=>{w.location.href=href;});}}
+  else openGameModal(g);
+}
+
+// ===== SITE MODAL (iframe popup for websites) =====
+function openSiteModal(name, href) {
+  // Reuse the game modal but labelled as a site
+  currentModalGame = {name, href, icon:'🌐', isSite:true};
+  const modal=document.getElementById('game-modal');
+  const frame=document.getElementById('game-modal-frame');
+  document.getElementById('game-modal-title').textContent=name;
+  document.getElementById('game-modal-icon').textContent='🌐';
+  const badge=document.getElementById('game-modal-badge');
+  badge.textContent='Site';badge.className='modal-badge site';
+  // Hide game-only buttons
+  const dlBtn=document.getElementById('modal-download-btn');if(dlBtn)dlBtn.style.display='none';
+  const rateBtn=document.getElementById('modal-rate-btn');if(rateBtn)rateBtn.style.display='none';
+  const favBtn=document.getElementById('modal-fav-btn');if(favBtn)favBtn.style.display='none';
+  modal.classList.add('open');document.body.classList.add('modal-open');
+  const loading=document.getElementById('game-modal-loading'),errorEl=document.getElementById('game-modal-error');
+  loading.classList.remove('hidden');errorEl.classList.remove('visible');frame.style.opacity='0';
+  frame.src='about:blank';
+  setTimeout(()=>{frame.src=href;},60);
+  const onLoad=()=>{loading.classList.add('hidden');frame.style.opacity='1';frame.removeEventListener('load',onLoad);};
+  frame.addEventListener('load',onLoad);
+  setTimeout(()=>{if(!loading.classList.contains('hidden')){loading.classList.add('hidden');frame.style.opacity='1';}},8000);
+}
+
+function closeGameModal(){
+  const modal=document.getElementById('game-modal');
+  modal.classList.remove('open');document.body.classList.remove('modal-open');
+  // Restore buttons that might have been hidden for site mode
+  ['modal-download-btn','modal-rate-btn','modal-fav-btn'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='';});
+  if(modalIsFullscreen){modalIsFullscreen=false;const c=document.getElementById('game-modal-content');if(c){c.style.width='';c.style.height='';c.style.borderRadius='';c.style.maxWidth='';}if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});const b=document.getElementById('modal-fs-btn');if(b)b.textContent='⛶ Full';}
+  setTimeout(()=>{document.getElementById('game-modal-frame').src='about:blank';if(modalBlobUrl){URL.revokeObjectURL(modalBlobUrl);modalBlobUrl=null;}currentModalGame=null;},200);
+}
 
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded',()=>{
@@ -1030,18 +1249,29 @@ function buildAllPages(){
   buildGames();buildWebsites();
   buildSiteCards('eaglercraft-grid',EAGLERCRAFT);buildSiteCards('partnerships-grid',PARTNERSHIPS);
   buildSiteCards('medieval-grid',MEDIEVAL);buildSiteCards('ourlinks-grid',OURLINKS);buildSiteCards('other-grid',OTHER);
+  buildSiteCards('version-grid',VERSION);
   renderFavorites();
   document.getElementById('games-count').innerHTML='<span>'+getAllGames().length+'</span>';
   document.getElementById('websites-count').innerHTML='<span>'+WEBSITES.length+'</span>';
+  const vc=document.getElementById('version-count');if(vc)vc.innerHTML='<span>'+VERSION.length+'</span>';
 }
 
 function buildSiteCards(id,data){
   const grid=document.getElementById(id);if(!grid)return;grid.innerHTML='';
   data.forEach((item,i)=>{
     const sid='link:'+item.href,isFav=favorites.includes(sid),domain=getDomain(item.href),fav=getFavicon(item.href);
-    const card=document.createElement('a');card.className='site-card';card.href=item.href;card.target='_blank';
+    const card=document.createElement('a');card.className='site-card';
     card.dataset.id=sid;card.dataset.name=item.name;card.dataset.href=item.href;card.style.setProperty('--i',i);
     card.innerHTML=`<div class="site-preview"><div class="site-preview-bg"></div><img class="site-favicon" src="${fav}" onerror="this.style.display='none'"><div class="site-domain">${domain}</div><span class="site-fav ${isFav?'active':''}" onclick="toggleFav(event,'${sid.replace(/'/g,"\\'")}',this)">★</span></div><div class="site-info"><div class="site-name ${item.cls||''}">${item.name}</div></div>`;
+    card.addEventListener('click',e=>{
+      e.preventDefault();
+      const mode = openBehavior.sites || 'newtab';
+      if (mode === 'modal') {
+        openSiteModal(item.name, item.href);
+      } else {
+        window.open(item.href,'_blank');
+      }
+    });
     card.addEventListener('contextmenu',e=>showContextMenu(e,{name:item.name,href:item.href,id:sid,type:'site'}));
     grid.appendChild(card);
   });
@@ -1060,7 +1290,18 @@ function buildGames(filtered){
     const stars=[1,2,3,4,5].map(n=>`<span class="star ${n<=rating?'filled':''}" onclick="rateGame(event,'${id}',${n},this.parentElement)">${n<=rating?'★':'☆'}</span>`).join('');
     const hasImg=g.img&&g.img.trim()!=='';
     card.innerHTML=`<div class="card-thumb">${hasImg?`<img class="card-thumb-img" src="${g.img}" onerror="this.style.display='none';this.nextElementSibling.classList.remove('hidden')">`:''}<div class="card-thumb-placeholder${hasImg?' hidden':''}">${g.icon||'🎮'}</div><div class="card-thumb-overlay"></div>${rp?'<div class="card-played-badge">▶ PLAYED</div>':''}<span class="card-fav ${isFav?'active':''}" onclick="toggleFav(event,'${id}',this)">★</span><div class="card-rating">${stars}</div></div><div class="card-info"><div class="card-name">${g.name}</div><span class="card-tag${g.isCustom?' custom-tag':''}">${g.isCustom?'📁 Custom':'Game'}</span></div>`;
-    card.addEventListener('click',e=>{e.preventDefault();trackPlay(g.name,g.icon||'🎮',g.href);openGameModal(g);});
+    card.addEventListener('click',e=>{
+      e.preventDefault();
+      trackPlay(g.name,g.icon||'🎮',g.href);
+      const mode=openBehavior.games||'modal';
+      if(mode==='newtab'){
+        if(g.isCustom&&g.htmlContent){const b=new Blob([g.htmlContent],{type:'text/html'});window.open(URL.createObjectURL(b),'_blank');}
+        else window.open(g.href,'_blank');
+      }else if(mode==='aboutblank'){
+        if(g.isCustom&&g.htmlContent){const b=new Blob([g.htmlContent],{type:'text/html'});const u=URL.createObjectURL(b);const w=window.open('about:blank','_blank');if(w)w.location.href=u;}
+        else{const w=window.open('about:blank','_blank');if(w){fetch(g.href).then(r=>r.text()).then(html=>{w.document.open();w.document.write(html);w.document.close();}).catch(()=>{w.location.href=g.href;});}}
+      }else{openGameModal(g);}
+    });
     card.addEventListener('contextmenu',e=>showContextMenu(e,{name:g.name,href:g.href,id,type:'game',isCustom:!!g.isCustom,customId:g.id,game:g}));
     grid.appendChild(card);
   });
@@ -1070,9 +1311,10 @@ function buildWebsites(){
   const grid=document.getElementById('websites-grid');grid.innerHTML='';
   WEBSITES.forEach((w,i)=>{
     const isFav=favorites.includes('site:'+w.href),domain=getDomain(w.href),fav=getFavicon(w.href);
-    const card=document.createElement('a');card.className='site-card';card.href=w.href;card.target='_blank';
+    const card=document.createElement('a');card.className='site-card';
     card.dataset.id='site:'+w.href;card.dataset.name=w.name;card.style.setProperty('--i',i);
     card.innerHTML=`<div class="site-preview"><div class="site-preview-bg"></div><img class="site-favicon" src="${fav}" onerror="this.style.display='none'"><div class="site-domain">${domain}</div><span class="site-fav ${isFav?'active':''}" onclick="toggleFav(event,'site:${w.href.replace(/'/g,"\\'")}',this)">★</span></div><div class="site-info"><div class="site-name ${w.cls||''}">${w.name}</div></div>`;
+    card.addEventListener('click',e=>{e.preventDefault();const mode=openBehavior.sites||'newtab';if(mode==='modal')openSiteModal(w.name,w.href);else window.open(w.href,'_blank');});
     card.addEventListener('contextmenu',e=>showContextMenu(e,{name:w.name,href:w.href,id:'site:'+w.href,type:'site'}));
     grid.appendChild(card);
   });
@@ -1337,8 +1579,38 @@ function loadSettings(){
   document.querySelectorAll('#click-effect-grid .bg-chip').forEach(c=>c.classList.toggle('active',c.dataset.ce===clickEffectStyle));
   const apTog=document.getElementById('auto-perf-toggle');if(apTog)apTog.checked=autoPerfEnabled;
   const tpTog=document.getElementById('tab-perf-toggle');if(tpTog)tpTog.checked=tabPerfEnabled;
+  loadOpenBehavior();
+  setGridDensity(gridDensity, document.querySelector(`.density-btn[data-density="${gridDensity}"]`));
 }
 function saveInactivity(val){localStorage.setItem('ngg_inactivity',val);inactivityEnabled=val!=='off';inactivityLimit=val==='off'?0:parseInt(val);resetInactivity();}
+
+// ===== SAVE ALL SETTINGS (manual save button) =====
+function saveAllSettings(){
+  // Theme + BG already live-saved; persist explicitly just in case
+  localStorage.setItem('ngg_theme',currentTheme);
+  localStorage.setItem('ngg_bg',currentBg);
+  localStorage.setItem('ngg_perf',isPerfMode);
+  localStorage.setItem('ngg_click_effects',clickEffectsEnabled);
+  localStorage.setItem('ngg_click_style',clickEffectStyle);
+  localStorage.setItem('ngg_auto_perf',autoPerfEnabled);
+  localStorage.setItem('ngg_tab_perf',tabPerfEnabled);
+  localStorage.setItem('ngg_open_behavior',JSON.stringify(openBehavior));
+  localStorage.setItem('ngg_grid_density',gridDensity);
+  localStorage.setItem('ngg_widget',JSON.stringify(widgetSettings));
+  localStorage.setItem('ngg_tab_order',JSON.stringify(tabOrder));
+  // CSS
+  const ta=document.getElementById('custom-css-input');
+  if(ta){customCSS=ta.value;localStorage.setItem('ngg_custom_css',customCSS);applyCustomCSSTag(customCSS);}
+  // Feedback
+  const bar=document.getElementById('settings-save-bar');
+  const status=document.getElementById('settings-save-status');
+  if(bar&&status){
+    bar.classList.add('saved');
+    status.textContent='✓ All settings saved!';
+    setTimeout(()=>{bar.classList.remove('saved');status.textContent='All changes save automatically';},2500);
+  }
+  showToast('✓ Settings saved!','success');
+}
 
 // ============================================================
 // INACTIVITY
@@ -1390,8 +1662,8 @@ setInterval(updateNavbarInfo,10000);
 // EXPORT / IMPORT DATA
 // ============================================================
 function exportData(){
-  const data={version:'1.8.0',exported:new Date().toISOString(),favorites,ratings,recentlyPlayed,searchHistory,theme:currentTheme,bg:currentBg,inactivity:localStorage.getItem('ngg_inactivity'),perf:isPerfMode,clickEffects:clickEffectsEnabled,clickStyle:clickEffectStyle,autoPerf:autoPerfEnabled,tabPerf:tabPerfEnabled,tabOrder,widgetSettings,customCSS};
-  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ngg-data.json';a.click();showToast(' Data exported!','success');
+  const data={version:'1.9.0',exported:new Date().toISOString(),favorites,ratings,recentlyPlayed,searchHistory,theme:currentTheme,bg:currentBg,inactivity:localStorage.getItem('ngg_inactivity'),perf:isPerfMode,clickEffects:clickEffectsEnabled,clickStyle:clickEffectStyle,autoPerf:autoPerfEnabled,tabPerf:tabPerfEnabled,tabOrder,widgetSettings,customCSS,openBehavior,gridDensity};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ngg-data.json';a.click();showToast('⬇ Data exported!','success');
 }
 function importData(input){
   const file=input.files[0];if(!file)return;
@@ -1412,8 +1684,10 @@ function importData(input){
     if(data.tabOrder){tabOrder=data.tabOrder;saveTabOrder();}
     if(data.widgetSettings){widgetSettings=data.widgetSettings;localStorage.setItem('ngg_widget',JSON.stringify(widgetSettings));}
     if(data.customCSS){customCSS=data.customCSS;localStorage.setItem('ngg_custom_css',customCSS);const ta=document.getElementById('custom-css-input');if(ta)ta.value=customCSS;applyCustomCSSTag(customCSS);}
+    if(data.openBehavior){openBehavior=data.openBehavior;localStorage.setItem('ngg_open_behavior',JSON.stringify(openBehavior));}
+    if(data.gridDensity){gridDensity=data.gridDensity;localStorage.setItem('ngg_grid_density',gridDensity);}
     loadSettings();renderFavorites();renderRecentlyPlayed();buildGames();applyTabOrder();buildTabOrderList();loadWidgetSettings();
-    showToast(' Data imported!','success');
+    showToast('⬆ Data imported!','success');
   }catch(err){showToast(' Invalid file','error');}};
   reader.readAsText(file);input.value='';
 }
@@ -1452,7 +1726,7 @@ function buildChangelog(){
 // TAB DRAG REORDER
 // ============================================================
 const LOCKED_TABS=['home','settings'];
-const DEFAULT_TAB_ORDER=['games','websites','eaglercraft','partnerships','medieval','ourlinks','proxy','other','favorites'];
+const DEFAULT_TAB_ORDER=['games','websites','eaglercraft','partnerships','medieval','ourlinks','proxy','other','version','favorites'];
 let tabOrder=JSON.parse(localStorage.getItem('ngg_tab_order')||'null')||[...DEFAULT_TAB_ORDER];
 
 function applyTabOrder(){
@@ -1518,7 +1792,14 @@ function proxyOpenBlank(){const frame=document.getElementById('proxy-frame');con
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){if(document.getElementById('game-modal').classList.contains('open')){closeGameModal();}else{clearSearch();}}
   if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();document.getElementById('search').focus();}
+  if(e.key==='f'||e.key==='F'){if(document.getElementById('game-modal').classList.contains('open')&&!e.target.closest('input,textarea')){e.preventDefault();toggleModalFullscreen();}}
 });
+
+// Back-to-top visibility
+window.addEventListener('scroll',()=>{
+  const btn=document.getElementById('back-to-top');
+  if(btn)btn.classList.toggle('visible',window.scrollY>400);
+},{ passive:true });
 
 // ============================================================
 // INIT
@@ -1531,12 +1812,11 @@ document.addEventListener('DOMContentLoaded',()=>{
   buildAllPages();
   buildChangelog();
   navigate(currentPage,false);
-  initBg(currentBg);
-  resizeCanvas();
+  initBg(currentBg);resizeCanvas();
   requestAnimationFrame(monitorFPS);
   setTimeout(()=>{fpsReady=true;fpsLast=performance.now();fpsFrames=0;},5000);
   updateVisitorCount();
-  loadSettings();
+  loadSettings();       // calls loadOpenBehavior + setGridDensity internally
   startInactivity();
   checkOfficialSite();
   initAnnouncement();
